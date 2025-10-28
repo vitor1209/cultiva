@@ -52,8 +52,9 @@ export default function ProductCard({ image,
                     </Typography>
                 </div>
 
-                {tipoCard === "Produto" ? <div className="inline-item">
-                    <Chip color="success">
+                {tipoCard === "Produto" ? 
+                <div className="inline-item">
+                    <Chip size='lg' color="success">
                         R${preco}
                     </Chip>
                 </div> : <></>}

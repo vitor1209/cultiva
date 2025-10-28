@@ -20,7 +20,7 @@ export const Header = () => {
             <Button variante="ButtonLinkBlack" tamanho="sm">Produtores</Button>
             <Button variante="ButtonLinkBlack" tamanho="sm">Produtos</Button>
             <Button variante="ButtonLinkBlack" tamanho="sm">Como Funciona</Button>
-            <Button variante="ButtonGreen" espacamento={14} tamanho="md">Login</Button>
+            <Button to="/Login" variante="ButtonGreen" espacamento={14} tamanho="md">Login</Button>
         </Stack>)
 
 
@@ -56,7 +56,7 @@ export const Header = () => {
                         <Button variante="ButtonLinkBlack" tamanho="sm">Produtos</Button>
                         <Button variante="ButtonLinkBlack" tamanho="sm">Como Funciona</Button>
                     </Stack>
-                    <Button variante="ButtonGreen" espacamento={14} tamanho="md">Login</Button>
+                    <Button to="/Login" variante="ButtonGreen" espacamento={14} tamanho="md">Login</Button>
                 </>
             )}
         </HeaderContainer>)

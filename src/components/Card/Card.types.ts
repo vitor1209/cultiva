@@ -4,5 +4,5 @@ export interface CardProps {
     name: string;
     lugar: string;
     avaliacao: number;
-    preco?: number;
+    preco?: string;
 }
