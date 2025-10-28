@@ -4,7 +4,6 @@ import "slick-carousel/slick/slick-theme.css";
 import { Box } from "@mui/material";
 import type { CarouselFullScreenProps } from "./Carousel.types.ts"
 
-
 export const CarouselFullScreen: React.FC<CarouselFullScreenProps> = ({ children }) => {
     const settings = {
         dots: true,

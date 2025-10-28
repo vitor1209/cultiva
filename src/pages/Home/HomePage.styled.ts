@@ -1,13 +1,13 @@
-import { Stack, styled } from "@mui/material";
+import { Stack, styled } from "@mui/material"
 
 export const Container = styled(Stack)(() => ({
     minHeight: "100vh",
     overflowX: "hidden",
-}));
+}))
 
 export const Division = styled(Stack)(() => ({
-    padding: "2.5% 0",
-}));
+    padding: "3% 0",
+}))
 
 export const ContainerFull = styled(Stack)(() => ({
     minHeight: "16.875rem",
@@ -17,11 +17,12 @@ export const ContainerFull = styled(Stack)(() => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-}));
+}))
 
 export const Session = styled(Stack)(() => ({
-    width: "50%", // largura interna padrão
+    width: "60%", // largura interna padrão
     display: "flex",
+    padding: "8% 0",
     alignItems: "center",
     justifyContent: "center",
     "& h1": {
@@ -40,4 +41,4 @@ export const Session = styled(Stack)(() => ({
         textAlign: "center",
         display: "inline-block",
     },
-}));
+}))
