@@ -47,7 +47,7 @@ export function HomePage() {
 
             <Container maxWidth={"xl"} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', }}>
                 <Stack direction="row" justifyContent='space-between' width="90%" alignItems='center' marginBottom={2}>
-                    <Typography level="body-lg">Mais Vendidos</Typography>
+                    <Typography level="h4">Mais Vendidos</Typography>
                     <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho={"sm"}>Ver todos</Button>
                 </Stack>
                 <Stack direction={{ xs: "column", sm: "row" }} gap={2} flexWrap="wrap" justifyContent="space-evenly" alignItems="center" width="95%"    >
@@ -56,7 +56,7 @@ export function HomePage() {
                         name={"Alface Orgânica"}
                         lugar={"Sítio Verde"}
                         avaliacao={4.8}
-                        preco={3.50}
+                        preco={'3.50'}
                         tipoCard={'Produto'}
                     />
                     <ProductCard
@@ -64,7 +64,7 @@ export function HomePage() {
                         name={"Alface Orgânica"}
                         lugar={"Sítio Verde"}
                         avaliacao={4.8}
-                        preco={3.50}
+                        preco={'3.50'}
                         tipoCard={'Produto'}
                     />
                     <ProductCard
@@ -72,7 +72,7 @@ export function HomePage() {
                         name={"Alface Orgânica"}
                         lugar={"Sítio Verde"}
                         avaliacao={4.8}
-                        preco={3.50}
+                        preco={'3.50'}
                         tipoCard={'Produto'}
                     />
                     <ProductCard
@@ -80,7 +80,7 @@ export function HomePage() {
                         name={"Alface Orgânica"}
                         lugar={"Sítio Verde"}
                         avaliacao={4.8}
-                        preco={3.50}
+                        preco={'3.50'}
                         tipoCard={'Produto'}
                     />
                 </Stack>
@@ -90,7 +90,7 @@ export function HomePage() {
 
             <Container maxWidth={"xl"} sx={{ width: '95%', padding: '3% 0 4% 0 ', p: { xs: 2, md: 4 }, borderRadius: '25px', backgroundColor: '#d9d3d0', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', }}>
                 <Stack direction="row" justifyContent='space-between' width="95%" alignItems='center' marginBottom={2}>
-                    <Typography level="body-lg">Produtores em Destaque</Typography>
+                    <Typography level="h4">Produtores em Destaque</Typography>
                     <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho={"sm"}>Ver todos</Button>
                 </Stack>
                 <Stack direction={{ xs: "column", sm: "row" }} flexWrap="wrap" gap={2.5}>

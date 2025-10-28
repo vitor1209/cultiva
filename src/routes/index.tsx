@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { PublicRoute } from "./utils";
 import { HomePage } from "../pages/Home/HomePage";
+import { LoginPage } from "./pages";
 // import Login from "../pages/Login"; // se quiser, pode criar depois
 
 export default function AppRoutes() {
@@ -14,6 +15,10 @@ export default function AppRoutes() {
             {/* Rota privada */}
             <Route element={<PublicRoute />}>
                 <Route path="/Home" element={<HomePage />} />
+            </Route>
+
+            <Route element={<PublicRoute />}>
+                <Route path="/Login" element={<LoginPage />} />
             </Route>
 
             {/* Rota padrão (Home sem login) */}
