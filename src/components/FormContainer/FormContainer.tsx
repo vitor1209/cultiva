@@ -6,6 +6,7 @@ import { useState } from "react";
 import { LogoCultiva } from "../../assets";
 import { useSearchParams } from "react-router-dom"
 import type { ContainerFormProps } from "./Form.types";
+import { TabsApple } from "./TabsApple/TabsApple";
 
 export default function ContainerForm({ children }: ContainerFormProps) {
 
@@ -30,12 +31,14 @@ export default function ContainerForm({ children }: ContainerFormProps) {
             </styled.ImgStack>
             <styled.FormContainer>
 
-                <Stack padding={'0 6%'} alignSelf={'start'}><Typography level="body-lg">Bem Vindo de Volta!</Typography></Stack>
+                <Stack padding={'0 6%'} alignSelf={'start'}><Typography level="h4">Bem Vindo de Volta!</Typography></Stack>
 
-                <Tabs value={tabIndex} onChange={handleChange} aria-label="wrapped label tabs example">
-                    <Tab label="Consumidor" value={0} />
-                    <Tab label="Produtor" value={1} />
-                </Tabs>
+                <TabsApple
+                    value={tabIndex}
+                    onChange={handleChange}
+                    tabs={["Consumidor", "Produtor"]}
+                    sx={{ width: "90%", alignSelf: "center"}}
+                />                   
 
                 <Stack component={'form'} spacing={3} sx={{ width: "90%", mt: 2 }} >
                     {children}
