@@ -1,21 +1,20 @@
-import { ButtonBase, styled } from "@mui/material";
+import { ButtonBase, styled } from "@mui/material"
 
 export const ButtonVariants = styled(ButtonBase, {
-    shouldForwardProp: prop =>
-        prop !== "tamanho" && prop !== "espacamento" && prop !== "variante",
+    shouldForwardProp: (prop) => prop !== "tamanho" && prop !== "espacamento" && prop !== "variante",
 })<{
-    tamanho: "sm" | "md" | "lg" | "xl";
-    espacamento: number;
-    variante: "ButtonGreen" | "ButtonLinkBlack";
+    tamanho: "sm" | "md" | "lg" | "xl"
+    espacamento: number
+    variante: "ButtonGreen" | "ButtonLinkBlack" | "ButtonLinkGreen"
 }>(({ tamanho, espacamento, variante }) => {
     const sizeMap = {
         sm: { height: 30, fontSize: 14 },
         md: { height: 37, fontSize: 17 },
         lg: { height: 44, fontSize: 10.6 },
         xl: { height: 51, fontSize: 24.2 },
-    };
+    }
 
-    const { height, fontSize } = sizeMap[tamanho] || sizeMap["md"];
+    const { height, fontSize } = sizeMap[tamanho] || sizeMap["md"]
 
     return {
         width: "auto",
@@ -47,5 +46,10 @@ export const ButtonVariants = styled(ButtonBase, {
             color: "Black",
             "&:hover": { opacity: 0.5 },
         }),
-    };
-});
+        ...(variante === "ButtonLinkGreen" && {
+            background: "transparent",
+            color: "#00A63E",
+            "&:hover": { opacity: 0.5 },
+        }),
+    }
+})
