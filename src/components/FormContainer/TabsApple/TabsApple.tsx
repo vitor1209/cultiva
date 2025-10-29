@@ -1,28 +1,36 @@
-import type { SxProps, Theme } from "@mui/material/styles";
+import type { Theme } from "@mui/material/styles";
 import Tab, { tabClasses } from "@mui/material/Tab";
 import Tabs, { tabsClasses, type TabsProps } from "@mui/material/Tabs";
-import * as styled from "./TabsApple.styled"
+import * as styled from "./TabsApple.styled";
 
 function toSx<ClassKey extends string>(
-  styles: (theme: Theme) => Partial<Record<ClassKey, any>>,
+  styles: (theme: Theme) => Partial<Record<ClassKey, unknown>>,
   classes: Record<ClassKey, string>
 ) {
-  return function sxCallback(theme: Theme) {
-    let sx: any = {};
-    Object.entries<any>(styles(theme)).forEach(([key, value]) => {
-        const typedKey = key as ClassKey;
+  return (theme: Theme) => {
+    const sx: Record<string, unknown> = {};
+
+    for (const [key, value] of Object.entries(styles(theme)) as [ClassKey, unknown][]) {
+      if (value == null) continue;
+
       if (key === "root") {
-        sx = { ...sx, ...value };
+        Object.assign(sx, value);
       } else {
-        sx[`& .${classes[typedKey]}`] = value;
+        sx[`& .${classes[key]}`] = value;
       }
-    });
+    }
     return sx;
-  } as SxProps<Theme>;
+  };
 }
 
-export function TabsApple({ value, onChange, sx, tabs }: TabsProps & { tabs: string[] }) {
+export function TabsApple({
+  value,
+  onChange,
+  sx,
+  tabs,
+}: TabsProps & { tabs: string[] }) {
   const tabItemSx = toSx(styled.tabItemStyles, tabClasses);
+
   return (
     <Tabs
       value={value}

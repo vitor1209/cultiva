@@ -67,7 +67,6 @@ export const Input = <T extends FieldValues>({
                         <Typography
                             variant="body2"
                             color="#A91208"
-                            mt={0.5}
                         >
                             {error?.message || " "}
                         </Typography>
