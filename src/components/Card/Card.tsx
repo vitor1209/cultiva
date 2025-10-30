@@ -6,7 +6,7 @@ import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import * as Styled from "./Card.styled.ts";
 import { Button } from "../../components/Button/Button";
-import { Star, ShoppingCart, MapPin } from 'lucide-react';
+import { Star, ShoppingCart, MapPin, Trash2 } from 'lucide-react';
 import type { CardProps } from "./Card.types.ts";
 
 export default function ProductCard({ image,
@@ -16,6 +16,39 @@ export default function ProductCard({ image,
     preco,
     tipoCard,
 }: CardProps) {
+
+    const renderByType = () => {
+        switch (tipoCard) {
+            case "Horta":
+                return (
+                    <div className="center">
+                        <Button variante="ButtonLinkBlack" espacamento={70} tamanho="sm" sx={{ border: '1px solid', borderColor: 'grey.300' }}>
+                            Ver produtos
+                        </Button>
+                    </div>
+                );
+            case "Produtor":
+                return (
+                    <div className="center">
+                        <Button variante="ButtonGreen" espacamento={70} tamanho="md" icon={ShoppingCart}>
+                            Adicionar
+                        </Button>
+                        <Trash2 stroke='red' />
+                    </div>
+                );
+            case "Produto":
+                return (
+                    <div className="center">
+                        <Button variante="ButtonGreen" espacamento={70} tamanho="md" icon={ShoppingCart}>
+                            Adicionar
+                        </Button>
+                    </div>
+                );
+            default:
+                return null;
+        }
+    };
+
     return (
         <Styled.ProductCardStyled tipoCard={tipoCard}>
             <CardOverflow>
@@ -52,30 +85,20 @@ export default function ProductCard({ image,
                     </Typography>
                 </div>
 
-                {tipoCard === "Produto" ? 
-                <div className="inline-item">
-                    <Chip size='lg' color="success">
-                        R${preco}
-                    </Chip>
-                </div> : <></>}
+                {tipoCard === "Produto" ?
+                    <div className="inline-item">
+                        <Chip size='lg' color="success">
+                            R${preco}
+                        </Chip>
+                    </div> : <></>}
 
             </CardContent>
 
-            {tipoCard === "Produto" ?
-                <div className="center">
-                    <Button variante="ButtonGreen" espacamento={70} tamanho="md" icon={ShoppingCart}>
-                        Adicionar
-                    </Button>
-                </div>
-                : <div className="center">
-                    <Button variante="ButtonLinkBlack" espacamento={70} tamanho="sm" sx={{ border: '1px solid', borderColor: 'grey.300' }}>
-                        Ver produtos
-                    </Button>
-                </div>
-            }
-
+            <div >{renderByType()}</div>
 
 
         </Styled.ProductCardStyled>
     );
 }
+
+

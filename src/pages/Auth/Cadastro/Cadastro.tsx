@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "../../../components/Button/Button";
 import { Input } from "../../../components/Input/Input";
 import { User } from "./Cadastro.schemas";
+import Typography from "@mui/joy/Typography";
 
 export function CadastroPage() {
     const { handleSubmit, control } = useForm({
@@ -36,6 +37,8 @@ export function CadastroPage() {
                         <Button tamanho="md" variante="ButtonGreen" onClick={onSubmit}>
                             Cadastrar
                         </Button>
+
+                        <Typography textAlign={'center'} level="body-xs">Ao se cadastrar, você concorda com nossos Termos de Uso e Política de Privacidade.</Typography>
                     </>
                 }
             />

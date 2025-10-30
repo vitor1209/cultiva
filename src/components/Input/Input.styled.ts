@@ -5,7 +5,7 @@ export const InputForm = styled(Input)(() => ({
     width: "100%",
     padding: "8px 10px",
     borderRadius: "8px",
-    backgroundColor: "#d3d3d3ff",
+    backgroundColor: "#e9e7e7ff",
     border: "1px solid rgba(0, 0, 0, 0)",
     boxSizing: "border-box",
     overflow: "hidden",

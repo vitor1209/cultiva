@@ -57,7 +57,7 @@ export function HomePage() {
                         lugar={"Sítio Verde"}
                         avaliacao={4.8}
                         preco={'3.50'}
-                        tipoCard={'Produto'}
+                        tipoCard={'Produtor'}
                     />
                     <ProductCard
                         image={"https://images.unsplash.com/photo-1593121925328-369cc8459c08?auto=format&fit=crop&w=286"}

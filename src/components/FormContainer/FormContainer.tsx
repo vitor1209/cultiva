@@ -26,8 +26,8 @@ export default function ContainerForm({ children, childrenSecund, acao }: Contai
 
     return (
         <Stack>
-            <styled.ImgStack>
-                <img src={LogoCultiva} alt="Logo Cultiva" width={120} />
+            <styled.ImgStack acao={acao}>
+                <img className="img" src={LogoCultiva} alt="Logo Cultiva" width={120} />
             </styled.ImgStack>
             <styled.FormContainer acao={acao}>
 
