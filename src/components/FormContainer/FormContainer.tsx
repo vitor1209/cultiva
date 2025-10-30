@@ -53,9 +53,16 @@ export default function ContainerForm({ children, childrenSecund, acao }: Contai
                         height: "100%",
                         flex: 1,
                     }}>
-                        <Stack direction={'row'} sx={{ width: "90%", mt: 2 }} spacing={2} justifyContent={'center'} alignItems={'flex-start'} >
-
-                            <Stack component={'form'} spacing={3} sx={{ width: "70%" }} >
+                        <Stack   direction={{ xs: "column", md: "row" }}
+                            justifyContent="center"
+                            alignItems= {{ xs: "center", md: "stretch" }}
+                            sx={{
+                                mt: 2,
+                                flex: 1,
+                                overflow: "auto", 
+                                gap: { xs: 3, md: 2 },
+                            }}>
+                            <Stack component={'form'} spacing={3} sx={{ width: { xs: "90%", md: "45%" }}} >
                                 <Stack padding={'0 6%'} alignSelf={'start'}><Typography level="body-lg">Bem Vindo de Volta!</Typography></Stack>
 
                                 <TabsApple
@@ -67,7 +74,7 @@ export default function ContainerForm({ children, childrenSecund, acao }: Contai
                                 {children}
                             </Stack>
 
-                            <Stack component={'form'} spacing={3} sx={{ width: "70%" }} >
+                            <Stack component={'form'} spacing={3} sx={{ width: { xs: "90%", md: "45%" }}} >
                                 {childrenSecund}
                             </Stack>
                         </Stack>
@@ -78,6 +85,7 @@ export default function ContainerForm({ children, childrenSecund, acao }: Contai
                     <Stack
                         direction="row"
                         justifyContent="space-around"
+                        spacing={2}
                         sx={{ p: "1% 3%", width: "100%", mt: 1 }}
                     >
                         <Button tamanho="sm" variante="ButtonLinkGreen">

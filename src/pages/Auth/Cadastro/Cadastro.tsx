@@ -6,6 +6,7 @@ import { Button } from "../../../components/Button/Button";
 import { Input } from "../../../components/Input/Input";
 import { User } from "./Cadastro.schemas";
 import Typography from "@mui/joy/Typography";
+import { Stack } from '@mui/material';
 
 export function CadastroPage() {
     const { handleSubmit, control } = useForm({
@@ -22,21 +23,25 @@ export function CadastroPage() {
                 acao="Cadastro"
                 children={
                     <>
-                        <Input placeholder="Email" name="email" label="Email" control={control} />
-                        <Input placeholder="Nome" name="senha" label="Nome" control={control} />
-                        <Input placeholder="Nome" name="senha" label="Nome" control={control} />
+                        <Input placeholder="Nome completo" name="NomeCompleto" label="Nome completo" control={control} />
+                        <Input placeholder="E-mail" name="Email" label="E-mail" control={control} />
+                        <Input placeholder="CPF" name="CPF" label="CPF" control={control} />
+                        <Input placeholder="Data de Nascimento" name="dataNasci" label="Data de Nascimento" control={control} />
                     </>
                 }
                 childrenSecund={
                     <>
-                        <Input placeholder="Senha" name="senha" label="Senha" control={control} />
-                        <Input placeholder="Nome" name="senha" label="Nome" control={control} />
-                        <Input placeholder="Nome" name="senha" label="Nome" control={control} />
-                        <Input placeholder="Nome" name="senha" label="Nome" control={control} />
+                        <Input placeholder="CEP" name="CEP" label="CEP" control={control} />
+                        <Input placeholder="Estado" name="Estado" label="Estado" control={control} />
+                        <Input placeholder="Senha" name="Senha" label="Senha" control={control} />
+                        <Input placeholder="Confirmar senha" name="ConfirmarSenha" label="Confirmar senha" control={control} />
 
-                        <Button tamanho="md" variante="ButtonGreen" onClick={onSubmit}>
-                            Cadastrar
-                        </Button>
+                        <Stack>
+                            <Button tamanho="md" variante="ButtonGreen" onClick={onSubmit}>
+                                Cadastrar
+                            </Button>
+                        </Stack>
+
 
                         <Typography textAlign={'center'} level="body-xs">Ao se cadastrar, você concorda com nossos Termos de Uso e Política de Privacidade.</Typography>
                     </>

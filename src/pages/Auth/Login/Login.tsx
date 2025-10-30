@@ -18,7 +18,7 @@ export function LoginPage() {
     })
 
     return (
-        <styled.ContainerAuth>
+        <styled.ContainerAuth sx={{width: "100%",}}>
 
             <ContainerForm acao={"Login"}>
                 <Input<LoginForm>
