@@ -1,4 +1,3 @@
-import AspectRatio from '@mui/joy/AspectRatio';
 import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
 import Chip from '@mui/joy/Chip';
@@ -6,8 +5,9 @@ import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import * as Styled from "./Card.styled.ts";
 import { Button } from "../../components/Button/Button";
-import { Star, ShoppingCart, MapPin, Trash2 } from 'lucide-react';
+import { Star, ShoppingCart, MapPin, Trash2, Pencil } from 'lucide-react';
 import type { CardProps } from "./Card.types.ts";
+import { Box, Stack } from '@mui/material';
 
 export default function ProductCard({ image,
     name,
@@ -21,28 +21,28 @@ export default function ProductCard({ image,
         switch (tipoCard) {
             case "Horta":
                 return (
-                    <div className="center">
+                    <Box className="center">
                         <Button variante="ButtonLinkBlack" espacamento={70} tamanho="sm" sx={{ border: '1px solid', borderColor: 'grey.300' }}>
                             Ver produtos
                         </Button>
-                    </div>
+                    </Box>
                 );
             case "Produtor":
                 return (
-                    <div className="center">
-                        <Button variante="ButtonGreen" espacamento={70} tamanho="md" icon={ShoppingCart}>
-                            Adicionar
+                    <Box className="center" gap={1}>
+                        <Button variante="ButtonGreen" espacamento={70} tamanho="md" icon={Pencil}>
+                            Editar
                         </Button>
-                        <Trash2 stroke='red' />
-                    </div>
+                        <Button variante='ButtonLinkRed' icon={Trash2} tamanho={'xl'}></Button>
+                    </Box>
                 );
             case "Produto":
                 return (
-                    <div className="center">
+                    <Box className="center">
                         <Button variante="ButtonGreen" espacamento={70} tamanho="md" icon={ShoppingCart}>
                             Adicionar
                         </Button>
-                    </div>
+                    </Box>
                 );
             default:
                 return null;
@@ -51,22 +51,28 @@ export default function ProductCard({ image,
 
     return (
         <Styled.ProductCardStyled tipoCard={tipoCard}>
-            <CardOverflow>
-                <AspectRatio sx={tipoCard === "Produto" ? { minWidth: '130%' } : { minWidth: '85%' }}>
+            <CardOverflow sx={{ height: '50%', width: '100%' }}>
+                <Stack height="100%" width="100%">
                     <img
                         src={image}
+                        alt=""
                         loading="lazy"
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                        }}
                     />
-                </AspectRatio>
+                </Stack>
             </CardOverflow>
             <CardContent className="cardContainer">
                 <div className="inline-item">
-                    <Link href="#product-card" color="neutral" textColor="text.primary" overlay>
+                    <Link href="#product-card" color="neutral" textColor="text.primary" >
                         {name}
                     </Link>
                 </div>
 
-                {tipoCard === "Produto" ?
+                {tipoCard === "Produto" || tipoCard === "Produtor" ?
                     <div >
                         <div className="inline-item">
                             <Typography level="body-sm">{lugar}</Typography>
@@ -85,7 +91,7 @@ export default function ProductCard({ image,
                     </Typography>
                 </div>
 
-                {tipoCard === "Produto" ?
+                {tipoCard === "Produto" || tipoCard === "Produtor" ?
                     <div className="inline-item">
                         <Chip size='lg' color="success">
                             R${preco}
@@ -94,8 +100,7 @@ export default function ProductCard({ image,
 
             </CardContent>
 
-            <div >{renderByType()}</div>
-
+            <>{renderByType()}</>
 
         </Styled.ProductCardStyled>
     );

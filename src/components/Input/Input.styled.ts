@@ -6,7 +6,7 @@ export const InputForm = styled(Input)(() => ({
     padding: "8px 10px",
     borderRadius: "8px",
     backgroundColor: "#e9e7e7ff",
-    border: "1px solid rgba(0, 0, 0, 0)",
+    border: "1px solid transparent",
     boxSizing: "border-box",
     overflow: "hidden",
     outline: "none",
@@ -15,8 +15,15 @@ export const InputForm = styled(Input)(() => ({
     alignItems: "flex-start",
     transition: "border-color 0.2s, box-shadow 0.2s",
 
-    "&:focus": {
-        borderColor: "#000",
-        boxShadow: "0 0 0 1px #000",
+    "&.MuiInput-root::before": {
+        borderBottom: "1px solid #000",
+    },
+
+    "&.MuiInput-root::after": {
+        borderBottom: "2px solid #000",
+    },
+
+    "&:hover:not(.Mui-disabled, .Mui-error):before": {
+        borderBottom: "1px solid #000",
     },
 }))

@@ -5,7 +5,7 @@ export const ButtonVariants = styled(ButtonBase, {
 })<{
     tamanho: "sm" | "md" | "lg" | "xl"
     espacamento: number
-    variante: "ButtonGreen" | "ButtonLinkBlack" | "ButtonLinkGreen"
+    variante: "ButtonGreen" | "ButtonLinkBlack" | "ButtonLinkGreen" | "ButtonLinkRed"
 }>(({ tamanho, espacamento, variante }) => {
     const sizeMap = {
         sm: { height: 30, fontSize: 14 },
@@ -49,6 +49,12 @@ export const ButtonVariants = styled(ButtonBase, {
         ...(variante === "ButtonLinkGreen" && {
             background: "transparent",
             color: "#00A63E",
+            "&:hover": { opacity: 0.5 },
+        }),
+
+        ...(variante === "ButtonLinkRed" && {
+            background: "transparent",
+            color: "#FF0000",
             "&:hover": { opacity: 0.5 },
         }),
     }

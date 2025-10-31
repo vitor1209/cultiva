@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { PublicRoute } from "./utils";
-import { HomePage } from "../pages/Home/HomePage";
-import { CadastroPage, LoginPage } from "./pages";
+import { HomePage } from "../pages/Home/LandingPage/LandingPage";
+import { CadastroPage, HomePageProdutor, LoginPage } from "./pages";
 // import Login from "../pages/Login"; // se quiser, pode criar depois
 
 export default function AppRoutes() {
@@ -23,6 +23,10 @@ export default function AppRoutes() {
 
             <Route element={<PublicRoute />}>
                 <Route path="/Cadastro" element={<CadastroPage />} />
+            </Route>
+
+            <Route element={<PublicRoute />}>
+                <Route path="/HomeProdutor" element={<HomePageProdutor />} />
             </Route>
 
             {/* Rota padrão (Home sem login) */}

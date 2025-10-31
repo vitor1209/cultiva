@@ -5,6 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { User } from "./Login.schemas";
 import { Button } from "../../../components/Button/Button";
 import { Input } from "../../../components/Input/Input";
+import { ChevronLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 type LoginForm = { email: string; senha: string; }
 
@@ -13,12 +15,20 @@ export function LoginPage() {
         resolver: zodResolver(User)
     })
 
-    const onSubmit = handleSubmit(async (values) => {
-        console.log(values);
+    const navigate = useNavigate();
+
+    const onSubmit = handleSubmit(() => {
+        navigate("/HomeProdutor");
     })
 
     return (
-        <styled.ContainerAuth sx={{width: "100%",}}>
+        <styled.ContainerAuth sx={{ width: "100%", }}>
+            <Button icon={ChevronLeft} sx={{
+                position: "absolute",
+                top: "3%",
+                right: "3%",
+                zIndex: 10,
+            }} tamanho={"sm"} to="/" variante="ButtonLinkBlack">Voltar</Button>
 
             <ContainerForm acao={"Login"}>
                 <Input<LoginForm>

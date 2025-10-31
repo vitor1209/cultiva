@@ -1,4 +1,21 @@
-import { Stack, styled } from "@mui/material"
+import { Stack, Box, styled } from "@mui/material"
+
+export const boxName = styled(Box)(() => ({
+    width: "100%",
+    height: "6rem",
+    position: "relative",
+    background: "#00a63e",
+    textAlign: "left",
+    fontSize: "1rem",
+    color: "#fff",
+    fontFamily: "Arimo",
+    padding: "0 0 2.5rem 0",
+    gap: "0.5rem",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    justifyContent: "end",
+}))
 
 export const Container = styled(Stack)(() => ({
     minHeight: "100vh",

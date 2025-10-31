@@ -1,3 +1,4 @@
-export { HomePage } from "../pages/Home/HomePage"
+export { HomePage } from "../pages/Home/LandingPage/LandingPage"
 export { LoginPage } from "../pages/Auth/Login/Login"
 export { CadastroPage } from "../pages/Auth/Cadastro/Cadastro"
+export { HomePageProdutor } from "../pages/Home/Produtor/LandingPageProdutor"

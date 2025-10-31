@@ -7,6 +7,8 @@ import { Input } from "../../../components/Input/Input";
 import { User } from "./Cadastro.schemas";
 import Typography from "@mui/joy/Typography";
 import { Stack } from '@mui/material';
+import { MASCARAS } from "../../../masks";
+import { ChevronLeft } from "lucide-react";
 
 export function CadastroPage() {
     const { handleSubmit, control } = useForm({
@@ -19,19 +21,25 @@ export function CadastroPage() {
 
     return (
         <styled.ContainerAuth>
+            <Button icon={ChevronLeft} sx={{
+                position: "absolute",
+                top: "3%",
+                right: "3%",
+                zIndex: 10,
+            }} tamanho={"sm"} to="/Login" variante="ButtonLinkBlack">Voltar</Button>
             <ContainerForm
                 acao="Cadastro"
                 children={
                     <>
                         <Input placeholder="Nome completo" name="NomeCompleto" label="Nome completo" control={control} />
                         <Input placeholder="E-mail" name="Email" label="E-mail" control={control} />
-                        <Input placeholder="CPF" name="CPF" label="CPF" control={control} />
-                        <Input placeholder="Data de Nascimento" name="dataNasci" label="Data de Nascimento" control={control} />
+                        <Input mask={MASCARAS.cpf} placeholder="000.000.000-00" name="CPF" label="CPF" control={control} />
+                        <Input mask={MASCARAS.data} placeholder="00/00/0000" name="dataNasci" label="Data de Nascimento" control={control} />
                     </>
                 }
                 childrenSecund={
                     <>
-                        <Input placeholder="CEP" name="CEP" label="CEP" control={control} />
+                        <Input mask={MASCARAS.cep} placeholder="00000-000" name="CEP" label="CEP" control={control} />
                         <Input placeholder="Estado" name="Estado" label="Estado" control={control} />
                         <Input placeholder="Senha" name="Senha" label="Senha" control={control} />
                         <Input placeholder="Confirmar senha" name="ConfirmarSenha" label="Confirmar senha" control={control} />

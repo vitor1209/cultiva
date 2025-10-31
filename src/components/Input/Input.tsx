@@ -1,13 +1,31 @@
-import type { EstiloInput, InputProps } from "./Input.types"
+import type { EstiloInput, InputProps, MaskedInputComponentProps } from "./Input.types"
 import { InputAdornment, Stack, Typography } from "@mui/material"
 import * as Styled from "./Input.styled"
 import { Controller, type FieldValues } from "react-hook-form"
+import { IMaskInput } from "react-imask"
+import { forwardRef, type FormEvent } from "react"
+
+const MaskedInputComponent = forwardRef<HTMLInputElement, MaskedInputComponentProps>(
+    ({ onChange, ...props }, ref) => (
+        <IMaskInput
+            {...props}
+            overwrite={false}
+            lazy={false}
+            inputRef={ref}
+            onAccept={(val) => {
+                if (onChange)
+                    onChange({ target: { value: val } } as unknown as FormEvent<HTMLInputElement>)
+            }}
+        />
+    )
+)
 
 export const Input = <T extends FieldValues>({
     name,
     control,
     Icon,
     label,
+    mask,
     ...props
 }: InputProps<T>) => {
     return (
@@ -50,16 +68,15 @@ export const Input = <T extends FieldValues>({
                             </Typography>
                         )}
 
+
+
                         <Styled.InputForm
                             {...defaultProps}
+                            inputComponent={mask ? MaskedInputComponent : undefined}
+                            inputProps={mask ? { mask } : {}}
                             startAdornment={
                                 <InputAdornment position="start">
-                                    {Icon && (
-                                        <Icon
-                                            size={20}
-                                            color="grey"
-                                        />
-                                    )}
+                                    {Icon && <Icon size={20} color="grey" />}
                                 </InputAdornment>
                             }
                         />
