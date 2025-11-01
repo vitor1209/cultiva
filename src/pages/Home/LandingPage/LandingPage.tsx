@@ -36,7 +36,7 @@ export function HomePage() {
             </Header>
 
             <Styled.Division />
-            <CarouselFullScreen>
+            <CarouselFullScreen tamanho={"full"}>
                 <Box sx={{ background: "#1976d2", height: 324 }}></Box>
                 <Box sx={{ background: "#9c27b0", height: 324 }}></Box>
                 <Box sx={{ background: "#2e7d32", height: 324 }}></Box>

@@ -1,18 +1,21 @@
-import { Card, styled } from "@mui/material"
+import { Card, Stack, styled } from "@mui/material"
 
-export const CardInfo = styled(Card)<{
+export const CardInfo = styled(Card, {
+    shouldForwardProp: (prop) => prop !== "tamanho",
+})<{
     tamanho: "md" | "lg"
-}>(({ tamanho }) => {
+}>(({ theme, tamanho }) => {
     const sizeMap = {
-        md: { height: "1.25rem", width: "20rem" },
-        lg: { height: "1rem", width: "19.5rem" },
+        md: { height: "9.5rem", width: "18rem" },
+        lg: { height: "10rem", width: "19rem" },
     }
 
     const { height, width } = sizeMap[tamanho]
 
     return {
-        width: width,
-        height: height,
+        width,
+        height,
+        padding: "2% 2%",
         display: "flex",
         flex: "1",
         position: "relative",
@@ -20,11 +23,54 @@ export const CardInfo = styled(Card)<{
         backgroundColor: "#fff",
         border: "1px solid rgba(0, 0, 0, 0.1)",
         boxSizing: "border-box",
-        flexDirection: "column",
-        alignItems: "flex-start",
+        flexDirection: tamanho === "lg" ? "row" : "column",
         cursor: "pointer",
         textAlign: "center",
         fontSize: "1rem",
         color: "#0a0a0a",
+        justifyContent: "space-between",
+        transition: "transform 0.2s ease-in-out",
+
+        "&:hover": {
+            transform: "scale(1.05, 1.05)",
+        },
+
+        [theme.breakpoints.down("sm")]: {
+            width: tamanho === "md" ? "14rem" : "15rem",
+            height: tamanho === "md" ? "7rem" : "8rem",
+            fontSize: "0.9rem",
+            padding: "1rem",
+        },
+    }
+})
+
+export const StackIcon = styled(Stack, {
+    shouldForwardProp: (prop) => prop !== "colorKey",
+})<{
+    colorKey: "blue" | "green" | "purple" | "orange"
+}>(({ theme, colorKey }) => {
+    const colorMap = {
+        blue: { backgroundColor: "#DBEAFE" },
+        green: { backgroundColor: "#DCFCE7" },
+        purple: { backgroundColor: "#F3E8FF" },
+        orange: { backgroundColor: "#FFEDD5" },
+    }
+
+    return {
+        backgroundColor: colorMap[colorKey].backgroundColor,
+        borderRadius: "50%",
+        padding: "0.5rem",
+        height: "2.25rem",
+        width: "2.25rem",
+        alignItems: "center",
+        justifyContent: "center",
+        alignSelf: "flex-end",
+
+        // 🔹 Ícone menor em telas pequenas
+        [theme.breakpoints.down("sm")]: {
+            height: "1.8rem",
+            width: "1.8rem",
+            padding: "0.4rem",
+        },
     }
 })

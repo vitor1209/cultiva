@@ -30,7 +30,7 @@ export default function ProductCard({ image,
             case "Produtor":
                 return (
                     <Box className="center" gap={1}>
-                        <Button variante="ButtonGreen" espacamento={70} tamanho="md" icon={Pencil}>
+                        <Button variante="ButtonGreen" espacamento={60} tamanho="md" icon={Pencil}>
                             Editar
                         </Button>
                         <Button variante='ButtonLinkRed' icon={Trash2} tamanho={'xl'}></Button>
