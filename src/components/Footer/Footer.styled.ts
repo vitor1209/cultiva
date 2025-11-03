@@ -2,7 +2,7 @@ import { Box, styled } from "@mui/material"
 
 export const ContainerFooter = styled(Box)(() => ({
     backgroundColor: "#ebebf0",
-    padding: "3% 0 5% 0",
+    padding: "3% 0 4% 0",
     width: "100%",
     textAlign: "start",
     margin: "0",

@@ -2,7 +2,7 @@ import type { ButtonBaseProps } from "@mui/material"
 import type { LucideIcon } from "lucide-react"
 
 export interface ButtonProp extends ButtonBaseProps {
-    variante?: "ButtonGreen" | "ButtonLinkBlack" | "ButtonLinkGreen" | "ButtonLinkRed"
+    variante?: "ButtonGreen" | "ButtonLinkBlack" | "ButtonLinkGreen" | "ButtonOrange" | "ButtonRed"
     tamanho: "sm" | "md" | "lg" | "xl"
     espacamento?: number
     loading?: boolean

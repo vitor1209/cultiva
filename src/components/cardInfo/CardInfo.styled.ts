@@ -66,7 +66,6 @@ export const StackIcon = styled(Stack, {
         justifyContent: "center",
         alignSelf: "flex-end",
 
-        // 🔹 Ícone menor em telas pequenas
         [theme.breakpoints.down("sm")]: {
             height: "1.8rem",
             width: "1.8rem",

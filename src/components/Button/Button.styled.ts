@@ -5,7 +5,7 @@ export const ButtonVariants = styled(ButtonBase, {
 })<{
     tamanho: "sm" | "md" | "lg" | "xl"
     espacamento: number
-    variante: "ButtonGreen" | "ButtonLinkBlack" | "ButtonLinkGreen" | "ButtonLinkRed"
+    variante: "ButtonGreen" | "ButtonLinkBlack" | "ButtonLinkGreen" | "ButtonOrange" | "ButtonRed"
 }>(({ tamanho, espacamento, variante }) => {
     const sizeMap = {
         sm: { height: 30, fontSize: 14 },
@@ -18,9 +18,10 @@ export const ButtonVariants = styled(ButtonBase, {
 
     return {
         width: "auto",
-        height,
+        minHeight: height,
         paddingInline: espacamento,
         fontSize,
+        overflow: "hidden",
         fontFamily: '"Anybody", "Inter", sans-serif',
         borderRadius: 8,
         fontWeight: 500,
@@ -40,6 +41,7 @@ export const ButtonVariants = styled(ButtonBase, {
         ...(variante === "ButtonGreen" && {
             backgroundColor: "#00A63E",
             color: "#FFFFFF",
+            transition: " 0.5s",
         }),
         ...(variante === "ButtonLinkBlack" && {
             background: "transparent",
@@ -52,10 +54,15 @@ export const ButtonVariants = styled(ButtonBase, {
             "&:hover": { opacity: 0.5 },
         }),
 
-        ...(variante === "ButtonLinkRed" && {
-            background: "transparent",
-            color: "#FF0000",
-            "&:hover": { opacity: 0.5 },
+        ...(variante === "ButtonOrange" && {
+            backgroundColor: "#F54900",
+            color: "#FFFFFF",
+            transition: " 0.5s",
+        }),
+        ...(variante === "ButtonRed" && {
+            backgroundColor: "#D4183D",
+            color: "#FFFFFF",
+            transition: " 0.5s",
         }),
     }
 })
