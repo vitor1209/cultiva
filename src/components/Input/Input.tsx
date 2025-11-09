@@ -6,12 +6,13 @@ import { IMaskInput } from "react-imask"
 import { forwardRef, type FormEvent } from "react"
 
 const MaskedInputComponent = forwardRef<HTMLInputElement, MaskedInputComponentProps>(
-    ({ onChange, ...props }, ref) => (
+    ({ onChange, value, ...props }, ref) => (
         <IMaskInput
             {...props}
             overwrite={false}
             lazy={false}
             inputRef={ref}
+            value={String(value ?? "")}
             onAccept={(val) => {
                 if (onChange)
                     onChange({ target: { value: val } } as unknown as FormEvent<HTMLInputElement>)
@@ -68,15 +69,13 @@ export const Input = <T extends FieldValues>({
                             </Typography>
                         )}
 
-
-
                         <Styled.InputForm
                             {...defaultProps}
                             inputComponent={mask ? MaskedInputComponent : undefined}
                             inputProps={mask ? { mask } : {}}
-                            startAdornment={
-                                <InputAdornment position="start">
-                                    {Icon && <Icon size={20} color="grey" />}
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    {Icon && <Icon size={20} color="#FF2222" />}
                                 </InputAdornment>
                             }
                         />

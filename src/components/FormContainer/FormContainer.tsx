@@ -53,16 +53,16 @@ export default function ContainerForm({ children, childrenSecund, acao }: Contai
                         height: "100%",
                         flex: 1,
                     }}>
-                        <Stack   direction={{ xs: "column", md: "row" }}
+                        <Stack direction={{ xs: "column", md: "row" }}
                             justifyContent="center"
-                            alignItems= {{ xs: "center", md: "stretch" }}
+                            alignItems={{ xs: "center", md: "stretch" }}
                             sx={{
                                 mt: 2,
                                 flex: 1,
-                                overflow: "auto", 
+                                overflow: "auto",
                                 gap: { xs: 3, md: 2 },
                             }}>
-                            <Stack component={'form'} spacing={3} sx={{ width: { xs: "90%", md: "45%" }}} >
+                            <Stack component={'form'} spacing={3} sx={{ width: { xs: "90%", md: "45%" } }} >
                                 <Stack padding={'0 6%'} alignSelf={'start'}><Typography level="body-lg">Bem Vindo de Volta!</Typography></Stack>
 
                                 <TabsApple
@@ -74,7 +74,7 @@ export default function ContainerForm({ children, childrenSecund, acao }: Contai
                                 {children}
                             </Stack>
 
-                            <Stack component={'form'} spacing={3} sx={{ width: { xs: "90%", md: "45%" }}} >
+                            <Stack component={'form'} spacing={3} sx={{ width: { xs: "90%", md: "45%" } }} >
                                 {childrenSecund}
                             </Stack>
                         </Stack>

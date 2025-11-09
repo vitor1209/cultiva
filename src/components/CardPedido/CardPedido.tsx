@@ -2,10 +2,11 @@ import Typography from "@mui/joy/Typography"
 import { Box, FormControl, MenuItem, Select, Stack, type SelectChangeEvent } from "@mui/material"
 import { Button } from "../Button/Button"
 import type { CardPedidoPros, StatusType } from "./CardPedido.type"
-import * as styled from "./CardPedido.styled";
 import { useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { theme } from "../../lib/theme/theme";
+
+import * as styled from "./CardPedido.styled";
 
 export const CardPedido = ({
     img,

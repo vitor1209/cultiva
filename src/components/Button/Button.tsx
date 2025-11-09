@@ -22,7 +22,6 @@ export const Button = ({
 
     const iconSize = iconSizeMap[tamanho] || 20
 
-
     return (
         <Component.ButtonVariants
             disabled={disabled || loading}
@@ -36,6 +35,5 @@ export const Button = ({
             {<span>{children}</span>}
             {ladoIcon == "direita" && Icon && <Icon size={iconSize} />}
         </Component.ButtonVariants>
-
     )
 }

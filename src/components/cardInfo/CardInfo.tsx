@@ -2,12 +2,15 @@ import { Stack } from "@mui/material";
 import * as styled from "./CardInfo.styled";
 import type { CardInfoProps } from "./CardInfo.types";
 import Typography from "@mui/joy/Typography";
+import Link from '@mui/joy/Link';
+
 
 export default function CardInfo({
     name,
     valor,
     color,
     acrescimo,
+    to,
     tamanho,
     icon: Icon,
 }: CardInfoProps) {
@@ -39,7 +42,7 @@ export default function CardInfo({
                     </styled.StackIcon>
 
                     <Stack justifyContent="space-evenly" direction="column">
-                        <Typography fontSize="1rem" level="body-sm" sx={{ color: "#000" }}>{name}</Typography>
+                        <Link href={to} color="neutral" fontSize="1rem" sx={{ justifyContent: 'center', color: "#000" }} overlay>{name}</Link>
                         <Typography level="body-sm" fontSize="0.875rem">{valor}</Typography>
                     </Stack>
                 </styled.CardInfo >

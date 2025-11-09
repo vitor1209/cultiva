@@ -1,13 +1,17 @@
-export const MASCARA_REAL = {
-    mask: Number,
-    scale: 2, // duas casas decimais
-    signed: false, // não permite negativo
-    thousandsSeparator: ".", // separador de milhar
-    radix: ",", // separador decimal
-    mapToRadix: ["."], // mapeia ponto para vírgula
-    padFractionalZeros: true, // sempre mostra 2 casas decimais
-    normalizeZeros: true, // remove zeros desnecessários
-    min: 0,
-    max: 9999999,
-    prefix: "R$ ", // adiciona R$ no início
-}
+export const MASCARA_DINHEIRO_REAL = [
+    {
+        mask: "R$ num",
+        blocks: {
+            num: {
+                mask: Number,
+                signed: false,
+                min: 0,
+                thousandsSeparator: ".",
+                radix: ",",
+                scale: 2,
+                normalizeZeros: false,
+                padFractionalZeros: false,
+            },
+        },
+    },
+]
