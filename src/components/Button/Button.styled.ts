@@ -12,6 +12,7 @@ export const ButtonVariants = styled(ButtonBase, {
         | "ButtonOrange"
         | "ButtonRed"
         | "ButtonLinkRed"
+        | "ButtonGray"
 }>(({ tamanho, espacamento, variante }) => {
     const sizeMap = {
         sm: { height: 30, fontSize: 14 },
@@ -74,6 +75,11 @@ export const ButtonVariants = styled(ButtonBase, {
             background: "transparent",
             color: "#D4183D",
             "&:hover": { opacity: 0.5 },
+        }),
+        ...(variante === "ButtonGray" && {
+            backgroundColor: "#ccccccff",
+            color: "#000",
+            transition: " 0.5s",
         }),
     }
 })

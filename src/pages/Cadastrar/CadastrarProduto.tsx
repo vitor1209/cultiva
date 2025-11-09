@@ -67,7 +67,7 @@ export function CadastrarProdutoPage() {
 
                     <styled.BoxInputs>
 
-                        <styled.input>
+                        <styled.InputWrapper>
                             <Input
                                 Icon={Asterisk}
                                 required
@@ -76,9 +76,9 @@ export function CadastrarProdutoPage() {
                                 label="Nome do Produto:"
                                 control={control}
                             />
-                        </styled.input>
+                        </styled.InputWrapper>
 
-                        <styled.input direction="row" sx={{ width: "100%", gap: 2 }}>
+                        <styled.InputRow>
 
                             <Input
                                 Icon={Asterisk}
@@ -100,9 +100,9 @@ export function CadastrarProdutoPage() {
                                 control={control}
                             />
 
-                        </styled.input>
+                        </styled.InputRow>
 
-                        <styled.input>
+                        <styled.InputWrapper>
                             <Input
                                 multiline
                                 rows={5}
@@ -111,9 +111,9 @@ export function CadastrarProdutoPage() {
                                 label="Descrição detalhada:"
                                 control={control}
                             />
-                        </styled.input>
+                        </styled.InputWrapper>
 
-                        <styled.input direction="row" sx={{ width: "100%", gap: 2 }}>
+                        <styled.InputRow>
 
                             <Input
                                 Icon={Asterisk}
@@ -151,9 +151,9 @@ export function CadastrarProdutoPage() {
                                 </SelectControlado>
                             </Stack>
 
-                        </styled.input>
+                        </styled.InputRow>
 
-                        <styled.input direction="row" sx={{ width: "100%", gap: 2 }}>
+                        <styled.InputRow>
                             <Input
                                 Icon={Asterisk}
                                 required
@@ -172,14 +172,16 @@ export function CadastrarProdutoPage() {
                                 control={control}
                             />
 
-                        </styled.input>
+                        </styled.InputRow>
+                        <Stack flexDirection={'row'} width={'90%'} justifyContent={'space-between'} mt={'3%'}>
+                            <Button variante="ButtonGray" sx={{ width: "48%" }} tamanho="md">Cancelar</Button>
+                            <Button sx={{ width: "48%" }} tamanho="md">Salvar</Button>
+                        </Stack>
                     </styled.BoxInputs>
+
                 </styled.ContainerInputs>
 
-                <Stack>
-                    <Typography>Informações sobre a Tabela Nutricional:</Typography>
-                    <Typography>Tabela Nutricional (100g)</Typography>
-                </Stack>
+
             </Stack>
 
             <Footer />

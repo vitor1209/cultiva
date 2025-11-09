@@ -9,6 +9,7 @@ export interface ButtonProp extends ButtonBaseProps {
         | "ButtonOrange"
         | "ButtonRed"
         | "ButtonLinkRed"
+        | "ButtonGray"
     tamanho: "sm" | "md" | "lg" | "xl"
     espacamento?: number
     loading?: boolean
