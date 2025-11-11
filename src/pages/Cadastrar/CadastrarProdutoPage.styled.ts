@@ -10,6 +10,10 @@ export const ContainerInputs = styled(Stack)(({ theme }) => ({
     boxSizing: "border-box",
     width: "100%",
 
+    ".css-1466lf0": {
+        width: "15rem",
+        height: "10rem",
+    },
     // Responsividade: em telas pequenas, vira coluna
     [theme.breakpoints.down("lg")]: {
         flexDirection: "column",
@@ -35,11 +39,9 @@ export const BoxInputs = styled(Stack)(({ theme }) => ({
 export const BoxFoto = styled(Stack)(({ theme }) => ({
     alignItems: "center",
     flex: 2,
-    width: "40%",
 
     [theme.breakpoints.down("md")]: {
         justifyContent: "center",
-        width: "10% !important",
     },
 }))
 
@@ -55,7 +57,7 @@ export const InputWrapper = styled(Stack)(({ theme }) => ({
     },
 
     [theme.breakpoints.down("sm")]: {
-        width: "100%",
+        width: "90%",
     },
 }))
 

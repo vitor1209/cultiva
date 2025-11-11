@@ -2,14 +2,19 @@ import { useState } from "react";
 import { Box, Typography } from "@mui/material";
 
 type InputIMGProps = {
-    name: string,
-    label: string
-}
+    name: string;
+    label?: string;
+    defaultImage?: string;
+    readOnly?: boolean;
+    width?: number;
+    height?: number;
+};
 
-export function InputImagem({ name, label }: InputIMGProps) {
-    const [preview, setPreview] = useState<string | null>(null);
+export function InputImagem({ name, label, defaultImage, readOnly, width = 43, height = 31.563 }: InputIMGProps) {
+    const [preview, setPreview] = useState<string | null>(defaultImage || null);
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (readOnly) return;
         const file = event.target.files?.[0];
         if (file) {
             const url = URL.createObjectURL(file);
@@ -21,7 +26,7 @@ export function InputImagem({ name, label }: InputIMGProps) {
         <Box>
             {label && (
                 <Typography
-                    sx={{ fontSize: '1.25rem', textAlign: "left", fontWeight: 700, marginBottom: 1 }}
+                    sx={{ fontSize: "1.25rem", textAlign: "left", fontWeight: 700, marginBottom: 1 }}
                 >
                     {label}
                 </Typography>
@@ -30,18 +35,18 @@ export function InputImagem({ name, label }: InputIMGProps) {
             <Box
                 component="label"
                 sx={{
-                    width: "43rem",
-                    height: "31.563rem",
+                    width: `${width}rem`,
+                    height: `${height}rem`,
                     borderRadius: "16px",
                     backgroundColor: "#f1f1f1",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     color: "#333",
-                    cursor: "pointer",
+                    cursor: readOnly ? "default" : "pointer",
                     overflow: "hidden",
                     border: "2px dashed #ccc",
-                    "&:hover": { backgroundColor: "#eaeaea" },
+                    "&:hover": readOnly ? {} : { backgroundColor: "#eaeaea" },
                 }}
             >
                 {preview ? (
@@ -59,13 +64,15 @@ export function InputImagem({ name, label }: InputIMGProps) {
                     <Typography>Inserir Imagem</Typography>
                 )}
 
-                <input
-                    type="file"
-                    accept="image/*"
-                    hidden
-                    name={name}
-                    onChange={handleImageChange}
-                />
+                {!readOnly && (
+                    <input
+                        type="file"
+                        accept="image/*"
+                        hidden
+                        name={name}
+                        onChange={handleImageChange}
+                    />
+                )}
             </Box>
         </Box>
     );

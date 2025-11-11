@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { PublicRoute } from "./utils";
 import { HomePage } from "../pages/Home/LandingPage/LandingPage";
-import { CadastrarProdutoPage, CadastroPage, HomePageProdutor, LoginPage, PedidoDetalhe, PedidosPage } from "./pages";
+import { CadastrarProdutoPage, CadastroPage, HomePageProdutor, LoginPage, PedidoDetalhe, PedidosPage, ProdutoDetalhePage } from "./pages";
 
 export default function AppRoutes() {
     return (
@@ -38,6 +38,10 @@ export default function AppRoutes() {
 
             <Route element={<PublicRoute />}>
                 <Route path="/Cadastrar" element={<CadastrarProdutoPage />} />
+            </Route>
+
+            <Route element={<PublicRoute />}>
+                <Route path="/ProdutoDetalhe" element={<ProdutoDetalhePage />} />
             </Route>
 
             {/* Rota padrão (Home sem login) */}
