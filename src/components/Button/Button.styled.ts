@@ -18,7 +18,7 @@ export const ButtonVariants = styled(ButtonBase, {
     const sizeMap = {
         sm: { height: 30, fontSize: 14 },
         md: { height: 37, fontSize: 17 },
-        lg: { height: 44, fontSize: 10.6 },
+        lg: { height: 44, fontSize: 15 },
         xl: { height: 51, fontSize: 24.2 },
     }
 

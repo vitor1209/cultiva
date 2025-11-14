@@ -1,4 +1,4 @@
-import { Container, IconButton, Stack } from "@mui/material";
+import { Container, IconButton, Stack, useMediaQuery, useTheme } from "@mui/material";
 import Typography from '@mui/joy/Typography';
 import { MapPin, Package, ShoppingCart, Star, UserRound } from "lucide-react";
 import { Header } from "../../components/Header/Header";
@@ -7,10 +7,17 @@ import { Button } from "../../components/Button/Button";
 import ProductCard from "../../components/Card/Card";
 import { Footer } from "../../components/Footer/Footer";
 import * as Styled from "./Produtos.styled";
-import { QuantidadeSelector } from "./QuantidadeSelector";
+import { QuantidadeSelector } from "./components/selectQuant/QuantidadeSelector";
 import { InputImagem } from "../../components/Input/BoxImg/BoxImg";
+import TabsProduto from "./components/tabs/tabs";
 
 export function ProdutoDetalhePage() {
+
+    const theme = useTheme();
+    const isSmall = useMediaQuery(theme.breakpoints.down("md"));
+
+    const imgWidth = isSmall ? 19 : 40;
+    const imgHeight = isSmall ? 12 : 30;
 
     return (
         <Container
@@ -51,64 +58,66 @@ export function ProdutoDetalhePage() {
                         name="fotoProduto"
                         defaultImage="https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"
                         readOnly
-                        width={40}
-                        height={30}
+                        width={imgWidth}
+                        height={imgHeight}
                     />
                 </Styled.imagem>
 
                 <Styled.texto>
-                    <Stack spacing={1.5} width="100%" maxWidth="400px">
-                        <Typography level="title-md">Alface Orgânica</Typography>
-                        <Typography level="body-sm" sx={{ color: "green" }}>
+                    <Stack spacing={0.8} width="100%" maxWidth="400px">
+                        <Typography level="body-sm" sx={{ color: 'black', fontSize: '1.3rem' }} >Alface Orgânica</Typography>
+                        <Typography level="body-lg" sx={{ color: "green" }}>
                             Por Sítio Verde
                         </Typography>
 
                         <Stack direction="row" spacing={1} alignItems="center">
-                            <MapPin size={16} />
-                            <Typography level="body-sm">Campinas, SP</Typography>
+                            <MapPin color="#717182" size={20} />
+                            <Typography sx={{ color: "#717182" }} level="body-lg">Campinas, SP</Typography>
                         </Stack>
 
                         <Stack direction="row" spacing={1} alignItems="center">
-                            <Star size={16} color="#f1c40f" />
-                            <Typography level="body-sm">4.8</Typography>
-                            <Typography level="body-xs" sx={{ color: "gray" }}>
+                            <Star size={20} color="#f1c40f" />
+                            <Typography level="body-lg">4.8</Typography>
+                            <Typography level="body-xs" sx={{ color: "#717182" }} >
                                 (128 avaliações)
                             </Typography>
                         </Stack>
 
                         <hr />
 
-                        <Typography level="title-lg" sx={{ color: "green", fontWeight: "bold" }}>
+                        <Typography sx={{ color: "green", fontSize: '1.4rem' }} >
                             R$ 3.50
                         </Typography>
 
                         <Stack direction="row" spacing={1} alignItems="center">
-                            <Package size={16} />
-                            <Typography level="body-sm">25 unidades disponíveis</Typography>
+                            <Package size={24} color="#717182" />
+                            <Typography level="body-lg" sx={{ color: "#717182" }} >25 unidades disponíveis</Typography>
                         </Stack>
 
-                        <Typography level="body-sm">
+                        <Typography mb={2} level="body-lg" sx={{ color: "#717182" }} >
                             Data de colheita: <b>18/10/2025</b>
                         </Typography>
 
                         <hr />
 
                     </Stack>
-                    <Stack>
+                    <Stack mt={2} >
                         <Typography>
                             Alface orgânica cultivada sem agrotóxicos, fresca e crocante.
                         </Typography>
                         <Stack>
                             <QuantidadeSelector />
                         </Stack>
-                        <Stack >
-                            <Button tamanho="md">Comprar agora</Button>
-                            <Button icon={ShoppingCart} tamanho="md" variante="ButtonWhite">Adicionar ao carrinho</Button>
+                        <Stack direction={isSmall ? 'column' : 'row'} gap={2} justifyContent={'space-between'} >
+                            <Button espacamento={20} icon={ShoppingCart} tamanho="lg" variante="ButtonWhite">Adicionar ao carrinho</Button>
+                            <Button espacamento={60} tamanho="lg">Comprar agora</Button>
                         </Stack>
                     </Stack>
                 </Styled.texto>
             </Styled.Produto>
 
+            <Styled.Division />
+            <TabsProduto />
             <Styled.Division />
 
             <Container maxWidth={"xl"} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', }}>
