@@ -7,7 +7,7 @@ import { Button } from "../../components/Button/Button";
 import ProductCard from "../../components/Card/Card";
 import { Footer } from "../../components/Footer/Footer";
 import * as Styled from "./Produtos.styled";
-import { QuantidadeSelector } from "./components/selectQuant/QuantidadeSelector";
+import { QuantidadeSelector } from "../../components/selectQuant/QuantidadeSelector";
 import { InputImagem } from "../../components/Input/BoxImg/BoxImg";
 import TabsProduto from "./components/tabs/tabs";
 
@@ -106,7 +106,7 @@ export function ProdutoDetalhePage() {
                             Alface orgânica cultivada sem agrotóxicos, fresca e crocante.
                         </Typography>
                         <Stack>
-                            <QuantidadeSelector />
+                            <QuantidadeSelector txt="Quantidade: " />
                         </Stack>
                         <Stack direction={isSmall ? 'column' : 'row'} gap={2} justifyContent={'space-between'} >
                             <Button espacamento={20} icon={ShoppingCart} tamanho="lg" variante="ButtonWhite">Adicionar ao carrinho</Button>

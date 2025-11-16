@@ -1,9 +1,10 @@
 import { Button, Stack } from "@mui/material"
 import Typography from "@mui/joy/Typography"
 import { Minus, Plus } from "lucide-react"
-import { useProduto } from "../../Produtos.hooks"
+import { useProduto } from "../../pages/Produtos/Produtos.hooks"
+import type { QuantidadeSelectorProps } from "./QuantidadeSelector.types";
 
-export const QuantidadeSelector = () => {
+export const QuantidadeSelector = ({ txt }: QuantidadeSelectorProps) => {
     const { Quantidade, acrescento, decremento } = useProduto()
 
     const estiloBotao = {
@@ -23,7 +24,10 @@ export const QuantidadeSelector = () => {
 
     return (
         <Stack mt={3} mb={3} direction="row" alignItems="center" gap={3}>
-            <Typography level="body-lg">Quantidade:</Typography>
+            {txt
+                ? <Typography level="body-lg">{txt}</Typography>
+                : <></>
+            }
             <Button onClick={decremento} sx={estiloBotao}>
                 <Minus size={18} strokeWidth={2} />
             </Button>

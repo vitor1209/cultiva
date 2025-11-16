@@ -8,20 +8,26 @@ import { useSearchParams } from "react-router-dom"
 import type { ContainerFormProps } from "./Form.types";
 import { TabsApple } from "./TabsApple/TabsApple";
 
-export default function ContainerForm({ children, childrenSecund, acao }: ContainerFormProps) {
+export default function ContainerForm({ children, childrenSecund, acao, onTabChange, initialTab }: ContainerFormProps) {
 
-    const tabs = [
+    const tabs: { value: "Consumidor" | "Produtor"; label: string }[] = [
         { value: "Consumidor", label: "Consumidor" },
         { value: "Produtor", label: "Produtor" },
     ];
 
     const [searchParams, setSearchParams] = useSearchParams()
     const tabParam = searchParams.get("Tab")
-    const initialIndex = tabs.findIndex((tab) => tab.label.toLowerCase() === tabParam?.toLowerCase())
-    const [tabIndex, setTabIndex] = useState(initialIndex >= 0 ? initialIndex : 0)
+    const initialIndex = tabs.findIndex(
+        (tab) => tab.label.toLowerCase() === (initialTab?.toLowerCase() || tabParam?.toLowerCase())
+    );
+    const [tabIndex, setTabIndex] = useState(initialIndex >= 0 ? initialIndex : 0);
     const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
         setTabIndex(newValue);
         setSearchParams({ Tab: tabs[newValue].label });
+
+        if (onTabChange) {
+            onTabChange(tabs[newValue].value);
+        }
     };
 
     return (
@@ -74,7 +80,7 @@ export default function ContainerForm({ children, childrenSecund, acao }: Contai
                                 {children}
                             </Stack>
 
-                            <Stack component={'form'} spacing={3} sx={{ width: { xs: "90%", md: "45%" } }} >
+                            <Stack component={'form'} spacing={3} sx={{ width: { xs: "90%", md: "44%" } }} >
                                 {childrenSecund}
                             </Stack>
                         </Stack>
