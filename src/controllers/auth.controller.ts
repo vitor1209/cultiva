@@ -9,9 +9,9 @@ export const useRegister = () => {
     return useMutation({
         mutationKey: [AuthQueryKey.REGISTER],
         mutationFn: async (payload: RegisterUser.Request) => {
-            const { data } = await api.post<RegisterUser.Response>("/register", payload)
-            return data
-        },
+            const { data } = await api.post<RegisterUser.Response>("/register", payload);
+            return data;
+        }
     })
 }
 
