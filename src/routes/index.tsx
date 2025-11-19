@@ -1,18 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import { PublicRoute } from "./utils";
 import { HomePage } from "../pages/Home/LandingPage/LandingPage";
-import { CadastrarProdutoPage, CadastroPage, HomePageProdutor, LoginPage, PedidoDetalhe, PedidosPage } from "./pages";
-import { PerfilProdutorPage } from "../pages/PerfilProdutor/PerfilProdutorPublico";
-import { ProdutorPrivatePage } from "../pages/PerfilProdutor/PerfilProdutorPrivado";
+import { CadastrarProdutoPage, CadastroPage, FinalizarCarrinhoPage, FinalizarEnderecoPage, HomePageProdutor, LoginPage, PedidoDetalhe, PedidosPage, ProdutoDetalhePage, PerfilProdutorPage, ProdutorPrivatePage, CarrinhoVazioPage, HomeConsumidorPage } from "./pages";
 
 export default function AppRoutes() {
     return (
         <Routes>
-            {/* Rota pública
-      <Route element={<PublicRoute />}>
-        <Route path="/login" element={<Login />} />
-      </Route> */}
-
             {/* Rota privada */}
             <Route element={<PublicRoute />}>
                 <Route path="/Home" element={<HomePage />} />
@@ -47,7 +40,27 @@ export default function AppRoutes() {
             </Route>
 
             <Route element={<PublicRoute />}>
-                <Route path="/PerfilProdutor" element={<ProdutorPrivatePage />} />
+                <Route path="/PerfilProdutor" element={<ProdutorPrivatePage />} />                
+            </Route>
+
+            <Route element={<PublicRoute />}>                
+                <Route path="/ProdutoDetalhe" element={<ProdutoDetalhePage />} />
+            </Route>
+
+            <Route element={<PublicRoute />}>
+                <Route path="/FinalizarCarrinho" element={<FinalizarCarrinhoPage />} />
+            </Route>
+
+            <Route element={<PublicRoute />}>
+                <Route path="/FinalizarEndereco" element={<FinalizarEnderecoPage />} />
+            </Route>
+
+            <Route element={<PublicRoute />}>
+                <Route path="/CarrinhoVazio" element={<CarrinhoVazioPage />} />
+            </Route>
+
+            <Route element={<PublicRoute />}>
+                <Route path="/HomeConsumidor" element={<HomeConsumidorPage />} />
             </Route>
 
             {/* Rota padrão (Home sem login) */}
