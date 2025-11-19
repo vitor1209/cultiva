@@ -16,7 +16,6 @@ export function CadastrarProdutoPage() {
         control
     } = useProduto()
 
-
     return (
         <Container
             disableGutters
@@ -125,7 +124,7 @@ export function CadastrarProdutoPage() {
                                 control={control}
                             />
 
-                            <Stack width={'35%'}>
+                            <Stack sx={{ width: { md: "90%", lg: "35%" } }}>
                                 <Typography
                                     className="input-label"
                                     variant="subtitle1"
@@ -173,7 +172,7 @@ export function CadastrarProdutoPage() {
                             />
 
                         </styled.InputRow>
-                        <Stack flexDirection={'row'} width={'90%'} justifyContent={'space-between'} mt={'3%'}>
+                        <Stack flexDirection={'row'} width={'90%'} justifyContent={'space-between'} mb={'10%'} mt={'5%'}>
                             <Button variante="ButtonGray" sx={{ width: "48%" }} tamanho="md">Cancelar</Button>
                             <Button sx={{ width: "48%" }} tamanho="md">Salvar</Button>
                         </Stack>

@@ -2,7 +2,7 @@ import { Stack, styled } from "@mui/material"
 
 export const FormContainer = styled(Stack)<{ acao: string }>(({ theme, acao }) => ({
     width: acao === "Login" ? "28rem" : "65rem",
-    height: acao === "Login" ? "28rem" : "38.5rem",
+    height: acao === "Login" ? "28rem" : "32rem",
     boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
     borderBottomLeftRadius: "30px",
     borderBottomRightRadius: "30px",

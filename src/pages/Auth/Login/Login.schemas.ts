@@ -8,5 +8,5 @@ export const User = z.object({
     senha: z
         .string({ error: "Senha é obrigatória" })
         .max(30, { error: "Senha deve ter menos de 30 digitos." })
-        .min(6, { error: "Senha deve ter mais de 6 digitos." }),
+        .min(8, { error: "Senha deve ter mais de 8 digitos." }),
 })

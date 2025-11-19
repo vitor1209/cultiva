@@ -12,20 +12,23 @@ export const User = z
             .email({ error: "E-mail inválido" })
             .max(255, { error: "E-mail deve ter menos de 255 caracteres" }),
 
-        CPF: z.string({ error: "CPF é obrigatório" }).min(1, "CPF é obrigatório"),
+        celular: z.string("Número é obrigatório"),
 
-        CEP: z.string({ error: "CEP é obrigatório" }).min(1, "CEP é obrigatório"),
-
-        dataNasci: z.date({ error: "Data de nascimento é obrigatória" }),
-
-        Estado: z
-            .string({ error: "Estado é obrigatório" })
-            .min(2, { error: "Informe a sigla do estado" })
-            .max(2, { error: "Informe a sigla do estado" }),
+        dataNasci: z
+            .string()
+            .regex(/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/, "Data inválida")
+            .refine(
+                (val) => {
+                    const [day, month, year] = val.split("/").map(Number)
+                    const date = new Date(year, month - 1, day)
+                    return date < new Date()
+                },
+                { message: "A data de nascimento deve ser menor que hoje" }
+            ),
 
         Senha: z
             .string({ error: "Senha é obrigatória" })
-            .min(6, { error: "Senha deve ter pelo menos 6 caracteres" })
+            .min(8, { error: "Senha deve ter pelo menos 8 caracteres" })
             .max(100, { error: "Senha deve ter menos de 100 caracteres" }),
 
         ConfirmarSenha: z.string({ error: "Confirmação de senha é obrigatória" }),

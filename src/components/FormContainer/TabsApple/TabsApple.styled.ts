@@ -13,9 +13,7 @@ export const tabsStyles = () => ({
     },
     indicator: {
         borderRadius: "30px",
-        backgroundColor: "#ffffff",
-        boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-        transition: "all 5s ease",
+        backgroundColor: "transparent",
     },
 })
 
