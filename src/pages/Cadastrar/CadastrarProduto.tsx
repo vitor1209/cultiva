@@ -12,9 +12,7 @@ import { useProduto } from "./CadastrarProduto.hooks.ts";
 import { SelectControlado } from "../../components/Input/Select/Select.tsx";
 
 export function CadastrarProdutoPage() {
-    const {
-        control
-    } = useProduto()
+    const { control, onSubmit, isLoading } = useProduto()
 
     return (
         <Container
@@ -56,130 +54,156 @@ export function CadastrarProdutoPage() {
             </Header>
 
             <Stack>
-                <styled.ContainerInputs>
-                    <styled.BoxFoto>
-                        <InputImagem
-                            name="ImagemProduto"
-                            label="Cadastrar Novo Produto:"
-                        />
-                    </styled.BoxFoto>
-
-                    <styled.BoxInputs>
-
-                        <styled.InputWrapper>
-                            <Input
-                                Icon={Asterisk}
-                                required
-                                placeholder="Nome do Produto"
-                                name="nome"
-                                label="Nome do Produto:"
-                                control={control}
+                <form onSubmit={onSubmit}>
+                    <styled.ContainerInputs>
+                        <styled.BoxFoto>
+                            <InputImagem
+                                name="ImagemProduto"
+                                label="Cadastrar Novo Produto:"
+                                height={40}
+                                width={45}
                             />
-                        </styled.InputWrapper>
+                        </styled.BoxFoto>
 
-                        <styled.InputRow>
+                        <styled.BoxInputs>
 
-                            <Input
-                                Icon={Asterisk}
-                                required
-                                mask={MASCARAS.data}
-                                placeholder="dd/mm/aaaa"
-                                name="dataColheita"
-                                label="Data da colheita:"
-                                control={control}
-                            />
-
-                            <Input
-                                Icon={Asterisk}
-                                required
-                                mask={MASCARAS.data}
-                                placeholder="dd/mm/aaaa"
-                                name="dataValidade"
-                                label="Data de validade:"
-                                control={control}
-                            />
-
-                        </styled.InputRow>
-
-                        <styled.InputWrapper>
-                            <Input
-                                multiline
-                                rows={5}
-                                placeholder="Descrição detalhada"
-                                name="descricao"
-                                label="Descrição detalhada:"
-                                control={control}
-                            />
-                        </styled.InputWrapper>
-
-                        <styled.InputRow>
-
-                            <Input
-                                Icon={Asterisk}
-                                required
-                                type="number"
-                                placeholder="Unidades"
-                                name="quantidadeMedida"
-                                label="Quantidade por unidade:"
-                                control={control}
-                            />
-
-                            <Stack sx={{ width: { md: "90%", lg: "35%" } }}>
-                                <Typography
-                                    className="input-label"
-                                    variant="subtitle1"
-                                    color="#0A0A0A"
-                                    fontWeight={500}
-                                    sx={{
-                                        display: "inline-block",
-                                        transition: "transform 0.2s ease",
-                                        transformOrigin: "left center",
-                                    }}
-                                >
-                                    Unidade de medida:
-                                </Typography>
-
-                                <SelectControlado
+                            <styled.InputWrapper>
+                                <Input
+                                    Icon={Asterisk}
+                                    required
+                                    placeholder="Nome do Produto"
+                                    name="nome"
+                                    label="Nome do Produto:"
                                     control={control}
-                                    name="unidadeMedida"
-                                    placeholder="Selecione uma opção"
+                                />
+                            </styled.InputWrapper>
+
+                            <styled.InputRow>
+
+                                <Input
+                                    Icon={Asterisk}
+                                    required
+                                    mask={MASCARAS.data}
+                                    placeholder="dd/mm/aaaa"
+                                    name="dataColheita"
+                                    label="Data da colheita:"
+                                    control={control}
+                                />
+
+                                <Input
+                                    Icon={Asterisk}
+                                    required
+                                    mask={MASCARAS.data}
+                                    placeholder="dd/mm/aaaa"
+                                    name="dataValidade"
+                                    label="Data de validade:"
+                                    control={control}
+                                />
+
+                            </styled.InputRow>
+
+                            <styled.InputWrapper>
+                                <Input
+                                    multiline
+                                    rows={5}
+                                    placeholder="Descrição detalhada"
+                                    name="descricao"
+                                    label="Descrição detalhada:"
+                                    control={control}
+                                />
+                            </styled.InputWrapper>
+
+                            <styled.InputRow>
+
+                                <Input
+                                    Icon={Asterisk}
+                                    required
+                                    type="number"
+                                    placeholder="Unidades"
+                                    name="quantidadeMedida"
+                                    label="Quantidade por unidade:"
+                                    control={control}
+                                />
+
+                                <Stack sx={{ width: { md: "90%", lg: "35%" } }}>
+                                    <Typography
+                                        className="input-label"
+                                        variant="subtitle1"
+                                        color="#0A0A0A"
+                                        fontWeight={500}
+                                        sx={{
+                                            display: "inline-block",
+                                            transition: "transform 0.2s ease",
+                                            transformOrigin: "left center",
+                                        }}
+                                    >
+                                        Unidade de medida:
+                                    </Typography>
+
+                                    <SelectControlado
+                                        control={control}
+                                        name="unidadeMedida"
+                                        placeholder="Selecione uma opção"
+                                    >
+                                        <MenuItem value="mg">mg</MenuItem>
+                                        <MenuItem value="kg">kg</MenuItem>
+                                        <MenuItem value="ml">ml</MenuItem>
+                                    </SelectControlado>
+                                </Stack>
+
+                            </styled.InputRow>
+
+                            <styled.InputRow>
+                                <Input
+                                    Icon={Asterisk}
+                                    required
+                                    type="number"
+                                    placeholder="Quantidade disponível"
+                                    name="quantidadeEstoque"
+                                    label="Quantidade disponível:"
+                                    control={control}
+                                />
+                                <Input
+                                    mask={MASCARAS.real}
+                                    Icon={Asterisk}
+                                    required
+                                    placeholder="R$ 00,00"
+                                    name="preco"
+                                    label="Preço:"
+                                    control={control}
+                                />
+
+                            </styled.InputRow>
+
+                            <Stack
+                                flexDirection={'row'}
+                                width={'90%'}
+                                justifyContent={'space-between'}
+                                mb={'10%'}
+                                mt={'5%'}
+                            >
+                                <Button
+                                    variante="ButtonGray"
+                                    sx={{ width: "48%" }}
+                                    tamanho="md"
+                                    type="button"
                                 >
-                                    <MenuItem value="mg">mg</MenuItem>
-                                    <MenuItem value="kg">kg</MenuItem>
-                                    <MenuItem value="ml">ml</MenuItem>
-                                </SelectControlado>
+                                    Cancelar
+                                </Button>
+
+                                <Button
+                                    sx={{ width: "48%" }}
+                                    tamanho="md"
+                                    type="submit"
+                                    disabled={isLoading}
+                                >
+                                    {isLoading ? "Salvando..." : "Salvar"}
+                                </Button>
                             </Stack>
+                        </styled.BoxInputs>
 
-                        </styled.InputRow>
-
-                        <styled.InputRow>
-                            <Input
-                                Icon={Asterisk}
-                                required
-                                placeholder="Quantidade disponível"
-                                name="quantidadeEstoque"
-                                label="Quantidade disponível:"
-                                control={control}
-                            />
-                            <Input
-                                mask={MASCARAS.real}
-                                Icon={Asterisk}
-                                required
-                                placeholder="R$ 00,00"
-                                name="preco"
-                                label="Preço:"
-                                control={control}
-                            />
-
-                        </styled.InputRow>
-                        <Stack flexDirection={'row'} width={'90%'} justifyContent={'space-between'} mb={'10%'} mt={'5%'}>
-                            <Button variante="ButtonGray" sx={{ width: "48%" }} tamanho="md">Cancelar</Button>
-                            <Button sx={{ width: "48%" }} tamanho="md">Salvar</Button>
-                        </Stack>
-                    </styled.BoxInputs>
-
-                </styled.ContainerInputs>
-
+                    </styled.ContainerInputs>
+                </form>
 
             </Stack>
 

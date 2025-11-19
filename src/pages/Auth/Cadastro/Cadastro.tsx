@@ -16,6 +16,10 @@ export function CadastroPage() {
         onSubmit,
     } = useRegisterForm()
 
+    const handleTabChange = (tipoUsuario: "Consumidor" | "Produtor") => {
+        setTipoUsuario(tipoUsuario.toLowerCase() as "consumidor" | "produtor");
+    };
+
     return (
         <styled.ContainerAuth>
             <Button
@@ -35,7 +39,7 @@ export function CadastroPage() {
 
             <ContainerForm
                 acao="Cadastro"
-                onTabChange={setTipoUsuario}
+                onTabChange={handleTabChange}
                 initialTab="Consumidor"
                 children={
                     <>

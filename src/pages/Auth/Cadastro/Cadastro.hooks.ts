@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRegister } from "../../../controllers/auth.controller"
 import { User } from "./Cadastro.schemas"
+import type { AxiosError } from "axios"
 
 export const useRegisterForm = () => {
     const registro = useRegister()
@@ -11,7 +12,7 @@ export const useRegisterForm = () => {
         resolver: zodResolver(User),
     })
 
-    const [tipoUsuario, setTipoUsuario] = useState<"Consumidor" | "Produtor">("Consumidor")
+    const [tipoUsuario, setTipoUsuario] = useState<"consumidor" | "produtor">("consumidor")
 
     const onSubmit = handleSubmit((values) => {
         const [day, month, year] = values.dataNasci.split("/").map(Number)
@@ -27,16 +28,21 @@ export const useRegisterForm = () => {
             datanasc: datanascString,
             password: values.Senha,
             password_confirmation: values.ConfirmarSenha,
-            Tipo_usuario: tipoUsuario.toLowerCase(),
+            Tipo_usuario: tipoUsuario,
         }
 
-        console.log(payload)
+        console.log("Payload enviado:", payload)
 
         registro.mutate(payload, {
             onSuccess: ({ token, user }) => {
                 localStorage.setItem("token", token)
                 localStorage.setItem("usuarioLogado", JSON.stringify(user))
-                window.location.href = "/"
+                window.location.href = "/HomeProdutor"
+            },
+            onError: (err: Error) => {
+                const axiosError = err as AxiosError<{ message: string }>
+                console.error("Erro ao registrar:", axiosError.response?.data ?? err.message)
+                alert(axiosError.response?.data?.message ?? "Erro ao cadastrar usuário. Verifique os dados.")
             },
         })
     })
