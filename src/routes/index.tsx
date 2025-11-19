@@ -1,7 +1,20 @@
 import { Routes, Route } from "react-router-dom";
 import { PublicRoute } from "./utils";
 import { HomePage } from "../pages/Home/LandingPage/LandingPage";
-import { CadastrarProdutoPage, CadastroPage, FinalizarCarrinhoPage, FinalizarEnderecoPage, HomePageProdutor, LoginPage, PedidoDetalhe, PedidosPage, ProdutoDetalhePage } from "./pages";
+import { 
+    CadastrarProdutoPage, 
+    CadastroPage, 
+    FinalizarCarrinhoPage, 
+    FinalizarEnderecoPage, 
+    HomePageProdutor, 
+    LoginPage, 
+    PedidoDetalhe, 
+    PedidosPage, 
+    ProdutoDetalhePage 
+} from "./pages";
+
+import { PerfilProdutorPage } from "../pages/PerfilProdutor/PerfilProdutorPublico";
+import { ProdutorPrivatePage } from "../pages/PerfilProdutor/PerfilProdutorPrivado";
 
 export default function AppRoutes() {
     return (
@@ -36,16 +49,26 @@ export default function AppRoutes() {
             </Route>
 
             <Route element={<PublicRoute />}>
-                <Route path="/ProdutoDetalhe" element={<ProdutoDetalhePage />} />
-            </Route>
+<Route element={<PublicRoute />}>
+    <Route path="/Perfil" element={<PerfilProdutorPage />} />
+</Route>
 
-            <Route element={<PublicRoute />}>
-                <Route path="/FinalizarCarrinho" element={<FinalizarCarrinhoPage />} />
-            </Route>
+<Route element={<PublicRoute />}>
+    <Route path="/PerfilProdutor" element={<ProdutorPrivatePage />} />
+</Route>
 
-            <Route element={<PublicRoute />}>
-                <Route path="/FinalizarEndereco" element={<FinalizarEnderecoPage />} />
-            </Route>
+<Route element={<PublicRoute />}>
+    <Route path="/ProdutoDetalhe" element={<ProdutoDetalhePage />} />
+</Route>
+
+<Route element={<PublicRoute />}>
+    <Route path="/FinalizarCarrinho" element={<FinalizarCarrinhoPage />} />
+</Route>
+
+<Route element={<PublicRoute />}>
+    <Route path="/FinalizarEndereco" element={<FinalizarEnderecoPage />} />
+</Route>
+
 
             {/* Rota padrão (Home sem login) */}
             <Route path="/" element={<HomePage />} />
