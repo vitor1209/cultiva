@@ -6,15 +6,11 @@ export const useCreateProduto = () => {
     return useMutation({
         mutationKey: [ProdutoQueryKey.CREATE],
         mutationFn: async (payload: FormData) => {
-            const { data } = await api.post(
-                "/produtos",
-                payload,
-                {
-                    headers: { "Content-Type": "multipart/form-data" }
-                }
-            );
+            const { data } = await api.post("/produtos", payload, {
+                headers: { "Content-Type": "multipart/form-data" },
+            });
             return data;
-        }
+        },
     });
 };
 

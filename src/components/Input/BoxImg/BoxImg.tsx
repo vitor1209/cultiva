@@ -1,33 +1,44 @@
 import { useState } from "react";
 import { Box, Typography } from "@mui/material";
+import { useController, type Control, type FieldValues, type Path } from "react-hook-form";
 
-type InputIMGProps = {
-    name: string;
+type InputIMGProps<FormType extends FieldValues> = {
+    name: Path<FormType>;
     label?: string;
+    control: Control<FormType>;
     defaultImage?: string;
     readOnly?: boolean;
     width?: number;
     height?: number;
 };
 
-export function InputImagem({ name, label, defaultImage, readOnly, width = 43, height = 31.563 }: InputIMGProps) {
+export function InputImagem<FormType extends FieldValues>({
+    name,
+    label,
+    control,
+    defaultImage,
+    readOnly,
+    width = 43,
+    height = 31.563,
+}: InputIMGProps<FormType>) {
+
+    const { field } = useController({ name, control });
     const [preview, setPreview] = useState<string | null>(defaultImage || null);
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (readOnly) return;
+
         const file = event.target.files?.[0];
         if (file) {
-            const url = URL.createObjectURL(file);
-            setPreview(url);
+            setPreview(URL.createObjectURL(file));
+            field.onChange(file); // envia FILE para o useForm
         }
     };
 
     return (
         <Box>
             {label && (
-                <Typography
-                    sx={{ fontSize: "1.25rem", textAlign: "left", fontWeight: 700, marginBottom: 1 }}
-                >
+                <Typography sx={{ fontSize: "1.25rem", fontWeight: 700, mb: 1 }}>
                     {label}
                 </Typography>
             )}
@@ -42,23 +53,17 @@ export function InputImagem({ name, label, defaultImage, readOnly, width = 43, h
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    color: "#333",
                     cursor: readOnly ? "default" : "pointer",
                     overflow: "hidden",
                     border: "2px dashed #ccc",
-                    "&:hover": readOnly ? {} : { backgroundColor: "#eaeaea" },
                 }}
             >
                 {preview ? (
                     <Box
                         component="img"
                         src={preview}
-                        alt="Prévia da imagem"
-                        sx={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "cover",
-                        }}
+                        alt="Prévia"
+                        sx={{ width: "100%", height: "100%", objectFit: "cover" }}
                     />
                 ) : (
                     <Typography>Inserir Imagem</Typography>
@@ -69,7 +74,8 @@ export function InputImagem({ name, label, defaultImage, readOnly, width = 43, h
                         type="file"
                         accept="image/*"
                         hidden
-                        name={name}
+                        name={field.name}
+                        ref={field.ref}
                         onChange={handleImageChange}
                     />
                 )}

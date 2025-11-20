@@ -8,6 +8,13 @@ import { Button } from "../../../components/Button/Button.tsx";
 import ProductCard from "../../../components/Card/Card.tsx";
 import { Footer } from "../../../components/Footer/Footer.tsx";
 
+const scrollToSection = (id: string) => {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
 export function HomePage() {
     return (
         <Container
@@ -31,7 +38,7 @@ export function HomePage() {
                     <Button variante="ButtonLinkBlack" tamanho="sm">Início</Button>
                     <Button variante="ButtonLinkBlack" tamanho="sm">Produtores</Button>
                     <Button variante="ButtonLinkBlack" tamanho="sm">Produtos</Button>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Como Funciona</Button>
+                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('ComoFunciona')} tamanho="sm">Como Funciona</Button>
                 </>
             </Header>
 
@@ -44,7 +51,7 @@ export function HomePage() {
             <Styled.Division />
 
             <Styled.ContainerFull>
-                <Styled.Session>
+                <Styled.Session id='ComoFunciona'>
                     <h1>Conectando quem planta com quem consome</h1>
                     <p>
                         Encontre produtos frescos diretamente dos produtores da sua região. Apoie a agricultura local e tenha acesso a hortaliças de qualidade superior.

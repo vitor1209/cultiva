@@ -18,7 +18,7 @@ export namespace CreateProduto {
         quantidadeMedida: number;
         dataColheita: string;
         dataValidade?: string;
-        imagem?: Blob; 
+        caminho?: Blob; 
         created_at: string;
     };
 }

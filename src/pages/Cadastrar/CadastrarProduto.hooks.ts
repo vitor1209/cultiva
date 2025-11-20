@@ -11,18 +11,34 @@ export const useProduto = () => {
 
     const createMutation = useCreateProduto();
 
+    const convertDate = (str: string) => {
+        const [d, m, y] = str.split("/");
+        return `${y}-${m}-${d}`;
+    };
+
     const onSubmit = form.handleSubmit((data) => {
         const formData = new FormData();
 
-        Object.entries(data).forEach(([key, value]) => {
-            if (key === "imagem") {
-                if (value instanceof File) {
-                    formData.append("imagem", value); 
-                }
-            } else {
-                formData.append(key, String(value)); 
-            }
-        });
+        formData.append("nome", data.nome);
+        formData.append("descricao", data.descricao ?? "");
+        formData.append("preco_unit", String(
+            Number(data.preco.replace("R$", "").replace(/\./g, "").replace(",", "."))
+        ));
+        formData.append("quantidade_estoque", String(Number(data.quantidadeEstoque)));
+        formData.append("quant_unit_medida", String(Number(data.quantidadeMedida)));
+        formData.append("validade", convertDate(data.dataValidade));
+
+        // fk_unidade_medida_id: mapear de acordo com backend
+        formData.append("fk_unidade_medida_id", String(
+            data.unidadeMedida === "mg" ? 1 : data.unidadeMedida === "kg" ? 2 : 3
+        ));
+
+        // fk_horta_id fixo ou dinâmico
+        formData.append("fk_horta_id", "1");
+
+        if (data.imagem instanceof File) {
+            formData.append("caminho", data.imagem);
+        }
 
         createMutation.mutate(formData);
     });
@@ -31,5 +47,6 @@ export const useProduto = () => {
         ...form,
         onSubmit,
         isLoading: createMutation.isPending,
+        control: form.control
     };
 };

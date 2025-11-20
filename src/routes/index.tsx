@@ -7,7 +7,7 @@ import {
     HomePageProdutor,
     PedidosPage,
     PedidoDetalhe,
-    // CadastrarProdutoPage,
+    CadastrarProdutoPage,
     ProdutoDetalhePage,
     FinalizarCarrinhoPage,
     FinalizarEnderecoPage,
@@ -42,7 +42,7 @@ export default function AppRoutes() {
                 <Route path="/HomeProdutor" element={<HomePageProdutor />} />
                 <Route path="/Pedidos" element={<PedidosPage />} />
                 <Route path="/Pedidos/:id" element={<PedidoDetalhe />} />
-                {/* <Route path="/Cadastrar" element={<CadastrarProdutoPage />} /> */}
+                <Route path="/Cadastrar" element={<CadastrarProdutoPage />} />
                 <Route path="/ProdutorPrivatePage" element={<ProdutorPrivatePage />} />
                 {/* <Route path="/EditarProdutoPage/:id" element={<EditarProdutoPage />} /> */}
             </Route>
