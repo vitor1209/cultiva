@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { PublicRoute } from "./utils";
 import { HomePage } from "../pages/Home/LandingPage/LandingPage";
 import { CadastrarProdutoPage, CadastroPage, FinalizarCarrinhoPage, FinalizarEnderecoPage, HomePageProdutor, LoginPage, PedidoDetalhe, PedidosPage, ProdutoDetalhePage } from "./pages";
+import PerfilProdutor from "../pages/Produtor/PerfilProdutor";
 
 export default function AppRoutes() {
     return (
@@ -45,6 +46,10 @@ export default function AppRoutes() {
 
             <Route element={<PublicRoute />}>
                 <Route path="/FinalizarEndereco" element={<FinalizarEnderecoPage />} />
+            </Route>
+
+            <Route element={<PublicRoute />}>
+                <Route path="/PerfilProdutor" element={<PerfilProdutor />} />
             </Route>
 
             {/* Rota padrão (Home sem login) */}
