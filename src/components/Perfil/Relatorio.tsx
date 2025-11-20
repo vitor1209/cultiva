@@ -1,107 +1,135 @@
-import React from 'react';
-import { Box, Typography, Grid, Button, Paper } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
+import React from "react";
+import { Box, Typography, Paper } from "@mui/material";
+import StarIcon from "@mui/icons-material/Star";
 
-// 1. Tipagem para o DataField (props do componente auxiliar)
-interface DataFieldProps {
-    label: string;
-    value: string;
-}
-
-// Componente para um Campo Individual de Visualização de Dados (Tipado)
-const DataField: React.FC<DataFieldProps> = ({ label, value }) => (
-    // Solução do Erro: Adicionar item={true} explicitamente se o TypeScript
-    // estiver falhando em inferir que a presença de 'xs' ou 'sm' implica 'item'.
-    <Grid size={{ xs: 12, sm: 6 }}>
-        <Box sx={{ mb: 2 }}>
-            {/* Rótulo (ex: Nome completo) */}
-            <Typography
-                variant="subtitle2"
-                color="text.secondary"
-                sx={{ mb: 0.5 }}
-            >
-                {label}
-            </Typography>
-
-            {/* Valor (ex: Usuário Exemplo) */}
-            <Typography
-                variant="body1"
-                color="text.primary"
-                sx={{ fontWeight: 500 }}
-            >
-                {value}
-            </Typography>
-        </Box>
-    </Grid>
-);
-
-
-// 2. Tipagem para o componente principal (Props vazias, mas tipado)
 const Relatorio: React.FC = () => {
-    return (
+  return (
+    <Paper
+      elevation={0}
+      sx={{
+        p: 4,
+        mt: 3,
+        mb: 5,
+        mx: 5,
+        borderRadius: "12px",
+        boxShadow: "none",
+      }}
+    >
+      {/* Título */}
+      <Typography variant="h6" fontWeight="bold" sx={{ mb: 3 }}>
+        Relatórios de Vendas
+      </Typography>
+
+      {/* Cards superiores */}
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+          gap: 3,
+          mb: 5,
+        }}
+      >
+        {/* CARD 1 */}
         <Paper
-            elevation={0}
-            sx={{
-                p: 4,
-                mt: 3,
-                mb: 5,
-                ml: 5,
-                mr: 5,
-                borderRadius: '8px',
-                boxShadow: 'none',
-
-            }}
+          elevation={0}
+          sx={{
+            p: 3,
+            borderRadius: "12px",
+            border: "1px solid #e0e0e0",
+            textAlign: "center",
+          }}
         >
-
-            {/* 1. Cabeçalho com Título e Botão Editar */}
-            <Box
-                sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    mb: 4
-                }}
-            >
-                <Typography variant="h5" fontWeight="bold">
-                    Relatório
-                </Typography>
-
-                <Button
-                    variant="outlined"
-                    startIcon={<EditIcon />}
-                    sx={{
-                        borderRadius: 2,
-                        textTransform: 'none',
-                        py: 1,
-                        px: 2,
-                        borderColor: 'primary.main',
-                        color: 'primary.main',
-                    }}
-                >
-                    Editar
-                </Button>
-            </Box>
-
-            {/* 2. Conteúdo em Layout de Grid (Duas Colunas) */}
-            {/* Adicionar a propriedade container={true} é sempre uma boa prática */}
-            <Grid container spacing={4}>
-
-                {/* Linha 1 */}
-                <DataField label="Nome completo" value="Usuário Exemplo" />
-                <DataField label="E-mail" value="tyr@fr" />
-
-                {/* Linha 2 */}
-                <DataField label="CPF" value="123.456.789-00" />
-                <DataField label="CEP" value="12345-678" />
-
-                {/* Linha 3 */}
-                <DataField label="Telefone" value="(11) 98765-4321" />
-                <DataField label="Endereço" value="Rua das Hortas, 123" />
-
-            </Grid>
-
+          <Typography variant="subtitle2" color="text.secondary">
+            Faturamento
+          </Typography>
+          <Typography variant="h6" fontWeight="bold">
+            R$ 3.240,00
+          </Typography>
         </Paper>
-    );
+
+        {/* CARD 2 */}
+        <Paper
+          elevation={0}
+          sx={{
+            p: 3,
+            borderRadius: "12px",
+            border: "1px solid #e0e0e0",
+            textAlign: "center",
+          }}
+        >
+          <Typography variant="subtitle2" color="text.secondary">
+            Pedidos do Mês
+          </Typography>
+          <Typography variant="h6" fontWeight="bold">
+            45
+          </Typography>
+        </Paper>
+
+        {/* CARD 3 */}
+        <Paper
+          elevation={0}
+          sx={{
+            p: 3,
+            borderRadius: "12px",
+            border: "1px solid #e0e0e0",
+            textAlign: "center",
+          }}
+        >
+          <Typography variant="subtitle2" color="text.secondary">
+            Avaliação Média
+          </Typography>
+          <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
+            <Typography variant="h6" fontWeight="bold">
+              4.8
+            </Typography>
+            <StarIcon sx={{ color: "#f7c600" }} />
+          </Box>
+        </Paper>
+      </Box>
+
+      {/* Produtos Mais Vendidos */}
+      <Typography variant="subtitle1" fontWeight="bold" sx={{ mb: 2 }}>
+        Produtos Mais Vendidos
+      </Typography>
+
+      <Box sx={{ pl: 1 }}>
+        {/* Item 1 */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            mb: 1.5,
+          }}
+        >
+          <Typography>1. Alface Orgânica</Typography>
+          <Typography color="text.secondary">39 vendas</Typography>
+        </Box>
+
+        {/* Item 2 */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            mb: 1.5,
+          }}
+        >
+          <Typography>2. Tomate Cereja</Typography>
+          <Typography color="text.secondary">45 vendas</Typography>
+        </Box>
+
+        {/* Item 3 */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Typography>3. Cenoura Orgânica</Typography>
+          <Typography color="text.secondary">37 vendas</Typography>
+        </Box>
+      </Box>
+    </Paper>
+  );
 };
 
 export default Relatorio;

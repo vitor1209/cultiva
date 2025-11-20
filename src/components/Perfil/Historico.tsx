@@ -1,38 +1,30 @@
-import React from 'react';
-import { Box, Typography, Grid, Button, Paper } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
 
-interface DataFieldProps {
-  label: string;
-  value: string;
+import { Box, Typography, Paper, Button } from "@mui/material";
+
+interface Pedido {
+  id: string;
+  data: string;
+  status: "Finalizado" | "Em preparo";
+  valor: string;
 }
 
-const DataField: React.FC<DataFieldProps> = ({ label, value }) => (
-  <Grid size={{ xs: 12, sm: 6 }}>
+const pedidos: Pedido[] = [
+  { id: "001", data: "19/10/2025", status: "Finalizado", valor: "R$ 45,50" },
+  { id: "002", data: "15/10/2025", status: "Em preparo", valor: "R$ 32,00" },
+  { id: "003", data: "10/10/2025", status: "Finalizado", valor: "R$ 28,90" },
+];
 
-    <Box sx={{ mb: 2 }}>
+const getStatusColor = (status: string) => {
+  switch (status) {
+    case "Finalizado":
+      return "success.main";
+    case "Em preparo":
+      return "warning.main";
+    default:
+      return "text.secondary";
+  }
+};
 
-      <Typography
-        variant="subtitle2"
-        color="text.secondary"
-        sx={{ mb: 0.5 }}
-      >
-        {label}
-      </Typography>
-
-      <Typography
-        variant="body1"
-        color="text.primary"
-        sx={{ fontWeight: 500 }}
-      >
-        {value}
-      </Typography>
-    </Box>
-  </Grid>
-);
-
-
-// 2. Tipagem para o componente principal (Props vazias, mas tipado)
 const Historico = () => {
   return (
     <Paper
@@ -41,55 +33,80 @@ const Historico = () => {
         p: 4,
         mt: 3,
         mb: 5,
-        ml: 5,
-        mr: 5,
-        borderRadius: '8px',
-        boxShadow: 'none',
-
+        mx: 5,
+        borderRadius: "12px",
+        boxShadow: "none",
       }}
     >
-
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          mb: 4
-        }}
+      <Typography
+        variant="h5"
+        fontWeight="bold"
+        sx={{ mb: 3, textAlign: "left" }}
       >
-        <Typography variant="h5" fontWeight="bold">
-          Histórico
-        </Typography>
+        Histórico de Pedidos
+      </Typography>
 
-        <Button
-          variant="outlined"
-          startIcon={<EditIcon />}
+      {pedidos.map((pedido) => (
+        <Paper
+          key={pedido.id}
+          elevation={0}
           sx={{
-            borderRadius: 2,
-            textTransform: 'none',
-            py: 1,
-            px: 2,
-            borderColor: 'primary.main',
-            color: 'primary.main',
+            p: 3,
+            mb: 2,
+            borderRadius: "12px",
+            border: "1px solid #e0e0e0",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-start",
           }}
         >
-          Editar
-        </Button>
-      </Box>
+          {/* ESQUERDA */}
+          <Box>
+            <Typography variant="subtitle1" fontWeight={600}>
+              Pedido #{pedido.id}
+            </Typography>
 
-      <Grid container spacing={4}>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ mt: 0.5 }}
+            >
+              Data: {pedido.data}
+            </Typography>
 
-        <DataField label="Nome completo" value="Usuário Exemplo" />
-        <DataField label="E-mail" value="tyr@fr" />
+            <Typography
+              variant="body2"
+              sx={{
+                mt: 1,
+                color: getStatusColor(pedido.status),
+                fontWeight: 600,
+              }}
+            >
+              {pedido.status}
+            </Typography>
+          </Box>
 
-        <DataField label="CPF" value="123.456.789-00" />
-        <DataField label="CEP" value="12345-678" />
+          {/* DIREITA */}
+          <Box textAlign="right">
+            <Typography variant="subtitle1" fontWeight={600}>
+              {pedido.valor}
+            </Typography>
 
-        <DataField label="Telefone" value="(11) 98765-4321" />
-        <DataField label="Endereço" value="Rua das Hortas, 123" />
-
-      </Grid>
-
+            <Button
+              variant="outlined"
+              size="small"
+              sx={{
+                textTransform: "none",
+                mt: 1,
+                borderRadius: 2,
+                fontSize: "0.75rem",
+              }}
+            >
+              Ver detalhes
+            </Button>
+          </Box>
+        </Paper>
+      ))}
     </Paper>
   );
 };

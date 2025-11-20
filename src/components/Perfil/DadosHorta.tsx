@@ -8,10 +8,8 @@ interface DataFieldProps {
 }
 
 const DataField: React.FC<DataFieldProps> = ({ label, value }) => (
-
     <Grid size={{ xs: 12, sm: 6 }}>
         <Box sx={{ mb: 2 }}>
-
             <Typography
                 variant="subtitle2"
                 color="text.secondary"
@@ -20,20 +18,27 @@ const DataField: React.FC<DataFieldProps> = ({ label, value }) => (
                 {label}
             </Typography>
 
-            <Typography
-                variant="body1"
-                color="text.primary"
-                sx={{ fontWeight: 500 }}
+            <Box
+                sx={{
+                    backgroundColor: '#F7F7F7',
+                    borderRadius: '8px',
+                    px: 2,
+                    py: 1.5,
+                }}
             >
-                {value}
-            </Typography>
+                <Typography
+                    variant="body1"
+                    color="text.primary"
+                    sx={{ fontWeight: 500 }}
+                >
+                    {value}
+                </Typography>
+            </Box>
         </Box>
     </Grid>
 );
 
-
-// 2. Tipagem para o componente principal (Props vazias, mas tipado)
-const DadosHorta: React.FC = () => {
+const DadosHorta = () => {
     return (
         <Paper
             elevation={0}
@@ -41,14 +46,12 @@ const DadosHorta: React.FC = () => {
                 p: 4,
                 mt: 3,
                 mb: 5,
-                ml: 5,
-                mr: 5,
-                borderRadius: '8px',
+                mx: 5,
+                borderRadius: '12px',
                 boxShadow: 'none',
-
             }}
         >
-
+            {/* Cabeçalho */}
             <Box
                 sx={{
                     display: 'flex',
@@ -58,7 +61,7 @@ const DadosHorta: React.FC = () => {
                 }}
             >
                 <Typography variant="h5" fontWeight="bold">
-                    Dados Horta
+                    Dados da Horta
                 </Typography>
 
                 <Button
@@ -77,19 +80,20 @@ const DadosHorta: React.FC = () => {
                 </Button>
             </Box>
 
+            {/* Grid dos campos */}
             <Grid container spacing={4}>
+                <DataField label="Nome" value="Exemplo: Horta da Aline" />
+                <DataField label="Estado" value="São Paulo" />
 
-                <DataField label="Nome completo" value="Usuário Exemplo" />
-                <DataField label="E-mail" value="tyr@fr" />
+                <DataField label="Telefone" value="123.456.789-00" />
+                <DataField label="CEP" value="13045-230" />
 
-                <DataField label="CPF" value="123.456.789-00" />
-                <DataField label="CEP" value="12345-678" />
-
-                <DataField label="Telefone" value="(11) 98765-4321" />
-                <DataField label="Endereço" value="Rua das Hortas, 123" />
-
+                <DataField label="CEP" value="13045-230" />
+                <DataField
+                    label="Endereço"
+                    value="Rua Bélgica, 55, Ribeirão Pires - SP"
+                />
             </Grid>
-
         </Paper>
     );
 };

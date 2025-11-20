@@ -1,59 +1,61 @@
 import { Routes, Route } from "react-router-dom";
-import { PublicRoute } from "./utils";
-import { HomePage } from "../pages/Home/LandingPage/LandingPage";
-import { CadastrarProdutoPage, CadastroPage, FinalizarCarrinhoPage, FinalizarEnderecoPage, HomePageProdutor, LoginPage, PedidoDetalhe, PedidosPage, ProdutoDetalhePage } from "./pages";
-import PerfilProdutor from "../pages/Produtor/PerfilProdutor";
+import { PublicRoute, PrivateRoute } from "./utils";
+
+import {
+    HomePage,
+    LoginPage,
+    CadastroPage,
+    HomePageProdutor,
+    PedidosPage,
+    PedidoDetalhe,
+    CadastrarProdutoPage,
+    ProdutoDetalhePage,
+    FinalizarCarrinhoPage,
+    FinalizarEnderecoPage,
+    ProdutorPrivatePage,
+    PerfilProdutorPage,
+    ResetSenhaPage,
+    ResetTokenPage,
+    HomeConsumidorPage,
+} from "./pages";
+
+// Caso queira manter sua página antiga (import de PerfilProdutor)
+// import PerfilProdutor from "../pages/Produtor/PerfilProdutor";
 
 export default function AppRoutes() {
     return (
         <Routes>
-            {/* Rota privada */}
+            {/* Rotas públicas */}
             <Route element={<PublicRoute />}>
-                <Route path="/Home" element={<HomePage />} />
-            </Route>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/HomeConsumidor" element={<HomeConsumidorPage />} />
 
-            <Route element={<PublicRoute />}>
                 <Route path="/Login" element={<LoginPage />} />
-            </Route>
+                <Route path="/ResetSenha" element={<ResetSenhaPage />} />
+                <Route path="/ResetTokenPage" element={<ResetTokenPage />} />
 
-            <Route element={<PublicRoute />}>
                 <Route path="/Cadastro" element={<CadastroPage />} />
-            </Route>
 
-            <Route element={<PublicRoute />}>
-                <Route path="/HomeProdutor" element={<HomePageProdutor />} />
-            </Route>
-
-            <Route element={<PublicRoute />}>
-                <Route path="/Pedidos" element={<PedidosPage />} />
-            </Route>
-
-            <Route element={<PublicRoute />}>
-                <Route path="/Pedidos/:id" element={<PedidoDetalhe />} />
-            </Route>
-
-            <Route element={<PublicRoute />}>
-                <Route path="/Cadastrar" element={<CadastrarProdutoPage />} />
-            </Route>
-
-            <Route element={<PublicRoute />}>
                 <Route path="/ProdutoDetalhe" element={<ProdutoDetalhePage />} />
-            </Route>
-
-            <Route element={<PublicRoute />}>
                 <Route path="/FinalizarCarrinho" element={<FinalizarCarrinhoPage />} />
-            </Route>
-
-            <Route element={<PublicRoute />}>
                 <Route path="/FinalizarEndereco" element={<FinalizarEnderecoPage />} />
+
+                {/* Rotas de perfil público do produtor */}
+                <Route path="/PerfilProdutorPage" element={<PerfilProdutorPage />} />
+
+                {/* Compatibilidade com sua rota antiga */}
+                {/* <Route path="/PerfilProdutor" element={<PerfilProdutor />} /> */}
+                <Route path="/PerfilProdutor" element={<PerfilProdutorPage />} />
             </Route>
 
-            <Route element={<PublicRoute />}>
-                <Route path="/PerfilProdutor" element={<PerfilProdutor />} />
+            {/* Rotas privadas */}
+            <Route element={<PrivateRoute />}>
+                <Route path="/HomeProdutor" element={<HomePageProdutor />} />
+                <Route path="/Pedidos" element={<PedidosPage />} />
+                <Route path="/Pedidos/:id" element={<PedidoDetalhe />} />
+                <Route path="/Cadastrar" element={<CadastrarProdutoPage />} />
+                <Route path="/ProdutorPrivatePage" element={<ProdutorPrivatePage />} />
             </Route>
-
-            {/* Rota padrão (Home sem login) */}
-            <Route path="/" element={<HomePage />} />
         </Routes>
     );
 }

@@ -1,14 +1,11 @@
-import { Navigate, Outlet } from "react-router-dom"
+import { Outlet } from "react-router-dom";
 
-const isAuthenticated = (): boolean => {
-    const user = localStorage.getItem("usuarioLogado")
-    return !!user
-}
-
+// PrivateRoute: permite acesso a todos
 export const PrivateRoute = () => {
-    return isAuthenticated() ? <Outlet /> : <Navigate to="/login" />
-}
+    return <Outlet />;
+};
 
+// PublicRoute: permite acesso a todos
 export const PublicRoute = () => {
-    return !isAuthenticated() ? <Outlet /> : <Navigate to="/cultiva" />
-}
+    return <Outlet />;
+};
