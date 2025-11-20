@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { PublicRoute, PrivateRoute } from "./utils";
+import PerfilProdutor from "../pages/Produtor/PerfilProdutor"
 
 import {
     HomePage,
@@ -45,7 +46,7 @@ export default function AppRoutes() {
 
                 {/* Compatibilidade com sua rota antiga */}
                 {/* <Route path="/PerfilProdutor" element={<PerfilProdutor />} /> */}
-                <Route path="/PerfilProdutor" element={<PerfilProdutorPage />} />
+                <Route path="/PerfilProdutor" element={<PerfilProdutor />} />
             </Route>
 
             {/* Rotas privadas */}
