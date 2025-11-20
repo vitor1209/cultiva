@@ -3,18 +3,9 @@ import Typography from "@mui/joy/Typography";
 import * as styled from "./HeaderProdutor.styled";
 import { theme } from "../../lib/theme/theme";
 import { Button } from "../Button/Button";
+import type { ProdutorPrivado } from "../../pages/PerfilProdutor/PerfilProdutor.types";
 
-type HeaderProdutorProps = {
-  nome: string;
-  endereco: string;
-  telefone: string;
-  rating: number;
-  reviews: number;
-  descricao: string;
-  logo?: string;
-  desde?: string;
-  beditar?:boolean;
-};
+type HeaderProdutorProps = ProdutorPrivado;
 
 export function HeaderProdutor({
   nome,

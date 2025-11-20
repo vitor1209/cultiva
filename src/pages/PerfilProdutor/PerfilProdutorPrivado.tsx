@@ -2,9 +2,8 @@ import { Container, IconButton, Stack } from "@mui/material"
 import { Header } from "../../components/Header/Header.tsx"
 import { Button } from "../../components/Button/Button.tsx"
 import SearchBar from "../../components/barSearch/barSearch.tsx"
-import { UserRound } from "lucide-react";
+import { UserRound, ChevronRight, LogOut } from "lucide-react";
 import Typography from '@mui/joy/Typography';
-import { ChevronRight, LogOut } from "lucide-react";
 import ProductCard from "../../components/Card/Card.tsx";
 import { Footer } from "../../components/Footer/Footer.tsx";
 import * as Styled from "./PerfilProdutor.styled.ts";
@@ -16,7 +15,7 @@ export const ProdutorPrivatePage = () => {
 
     const handleLogout = () => {
         localStorage.removeItem("usuarioLogado");
-        navigate("/Login"); 
+        navigate("/Login");
     };
 
     return (
@@ -64,17 +63,73 @@ export const ProdutorPrivatePage = () => {
             />
 
             {/* Produtos */}
-            <Container maxWidth={"xl"} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', }}>
-                <Stack direction="row" justifyContent='space-between' width="90%" alignItems='center' marginBottom={2}>
-                    <Typography level="h4">Seus Produtos</Typography>
-                    <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho={"sm"}>Ver todos</Button>
+            <Container
+                maxWidth={"xl"}
+                sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}
+            >
+                <Stack
+                    direction="row"
+                    justifyContent='space-between'
+                    width="90%"
+                    alignItems='center'
+                    marginBottom={2}
+                >
+                    <Typography level="body-lg">Seus Produtos</Typography>
+                    <Button
+                        ladoIcon="direita"
+                        icon={ChevronRight}
+                        variante="ButtonLinkBlack"
+                        tamanho={"sm"}
+                    >
+                        Ver todos
+                    </Button>
                 </Stack>
-                <Stack direction={{ xs: "column", sm: "row" }} gap={2} flexWrap="wrap" justifyContent="space-evenly" alignItems="center" width="95%">
-                    {/* Aqui você pode mapear os produtos reais do banco */}
+
+                <Stack
+                    direction={{ xs: "column", sm: "row" }}
+                    gap={3}
+                    flexWrap="wrap"
+                    justifyContent="space-evenly"
+                    alignItems="center"
+                    width="95%"
+                >
+                    {/* Cards de exemplo — você pode substituir por dados reais */}
                     <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Alface Orgânica"}
-                        lugar={"Sítio Verde"}
+                        image="https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"
+                        name="Alface Orgânica"
+                        lugar="Sítio Verde"
+                        avaliacao={4.8}
+                        preco={'3.50'}
+                        tipoCard={'Produtor'}
+                    />
+                    <ProductCard
+                        image="https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"
+                        name="Alface Orgânica"
+                        lugar="Sítio Verde"
+                        avaliacao={4.8}
+                        preco={'3.50'}
+                        tipoCard={'Produtor'}
+                    />
+                    <ProductCard
+                        image="https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"
+                        name="Alface Orgânica"
+                        lugar="Sítio Verde"
+                        avaliacao={4.8}
+                        preco={'3.50'}
+                        tipoCard={'Produtor'}
+                    />
+                    <ProductCard
+                        image="https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"
+                        name="Alface Orgânica"
+                        lugar="Sítio Verde"
+                        avaliacao={4.8}
+                        preco={'3.50'}
+                        tipoCard={'Produtor'}
+                    />
+                    <ProductCard
+                        image="https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"
+                        name="Alface Orgânica"
+                        lugar="Sítio Verde"
                         avaliacao={4.8}
                         preco={'3.50'}
                         tipoCard={'Produtor'}
