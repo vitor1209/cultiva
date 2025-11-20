@@ -1,11 +1,9 @@
 import { Stack, styled } from "@mui/material"
 
-export const FormContainer = styled(Stack)<{ acao: string }>(({ theme, acao }) => ({
+export const FormContainer = styled(Stack)<{ acao: string }>(({ theme, acao,  }) => ({
     width: acao === "Cadastro" ? "65rem" : "28rem",
-    height: acao === "Token"
+    height: acao === "Token" || acao === "Cadastro"
   ? "40rem"
-  : acao === "Cadastro"
-  ? "32rem"
   : acao === "Reset"
   ? "20rem"
   : "28rem",

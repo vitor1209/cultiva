@@ -35,15 +35,21 @@ export default function ContainerForm({
     const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
         setTabIndex(newValue);
         setSearchParams({ Tab: tabs[newValue].label });
-
         if (onTabChange) onTabChange(tabs[newValue].value);
     };
 
+    // ✅ Define height dinamicamente
+    const height =
+        acao === "Token" || acao === "Cadastro"
+            ? "40rem"
+            : acao === "Reset"
+            ? "20rem"
+            : "28rem";
+
     const notCadastro = acao !== "Cadastro";
-    const isReset = acao === "Reset" || acao === 'Token';
-    const isToken = acao === 'Token';
+    const isReset = acao === "Reset" || acao === "Token";
+    const isToken = acao === "Token";
     const showTabs = !isReset;
-    const showLoginButtons = !isReset;
 
     return (
         <Stack>
@@ -51,7 +57,7 @@ export default function ContainerForm({
                 <img className="img" src={LogoCultiva} alt="Logo Cultiva" width={120} />
             </styled.ImgStack>
 
-            <styled.FormContainer acao={acao}>
+            <styled.FormContainer acao={acao} height={height} as={Stack}>
                 {notCadastro ? (
                     <>
                         <Stack padding="0 6%" alignSelf="start">
@@ -114,7 +120,7 @@ export default function ContainerForm({
                     </Stack>
                 )}
 
-                {showLoginButtons && (
+                {acao === 'Login' && (
                     <Stack
                         direction="row"
                         justifyContent="space-around"

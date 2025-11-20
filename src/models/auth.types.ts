@@ -43,3 +43,10 @@ export namespace LoginUser {
         token: string
     }
 }
+
+export type Horta = {
+  id: number;
+  nome_horta: string;
+  fk_usuario_id: number;
+  frete?: string;
+};

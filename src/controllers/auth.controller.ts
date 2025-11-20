@@ -55,3 +55,13 @@ export const useResetPassword = () => {
     },
   });
 };
+
+
+export const useHorta = () => {
+  return useMutation({
+    mutationFn: async (payload: { nome_horta: string; fk_usuario_id: number; frete?: string }) => {
+      const { data } = await api.post("/hortas", payload);
+      return data;
+    },
+  });
+};
