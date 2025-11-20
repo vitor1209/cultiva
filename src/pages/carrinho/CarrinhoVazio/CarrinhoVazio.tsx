@@ -59,7 +59,7 @@ export function CarrinhoVazioPage(){
                         Adicione produtos ao carrinho para continuar
                     </Typography>
 
-                    <Button tamanho="md" to="/produtos" 
+                    <Button tamanho="md" to="/HomeConsumidor" 
                     sx={{
                         width: "250px",
                         marginTop: "0.5rem"
