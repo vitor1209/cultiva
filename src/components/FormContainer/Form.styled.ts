@@ -1,8 +1,15 @@
 import { Stack, styled } from "@mui/material"
 
 export const FormContainer = styled(Stack)<{ acao: string }>(({ theme, acao }) => ({
-    width: acao === "Login" ? "28rem" : "65rem",
-    height: acao === "Login" ? "28rem" : "32rem",
+    width: acao === "Cadastro" ? "65rem" : "28rem",
+    height: acao === "Token"
+  ? "40rem"
+  : acao === "Cadastro"
+  ? "32rem"
+  : acao === "Reset"
+  ? "20rem"
+  : "28rem",
+
     boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
     borderBottomLeftRadius: "30px",
     borderBottomRightRadius: "30px",
@@ -18,8 +25,8 @@ export const FormContainer = styled(Stack)<{ acao: string }>(({ theme, acao }) =
     transition: "all 0.3s ease",
 
     [theme.breakpoints.down("md")]: {
-        width: acao === "Login" ? "22rem" : "90%",
-        height: acao === "Login" ? "auto" : "auto",
+        width: acao === "Cadastro" ? "90%" : "22rem",
+        height: "auto",
         flexDirection: "column",
     },
 
@@ -35,7 +42,7 @@ export const FormContainer = styled(Stack)<{ acao: string }>(({ theme, acao }) =
 export const ImgStack = styled(Stack)<{ acao: string }>(({ theme, acao }) => ({
     width: "96%",
     padding: "0 0 0 4%",
-    alignItems: acao === "Login" ? "center" : "start",
+    alignItems: acao === "Cadastro" ? "start" : "center",
     justifyContent: "center",
     height: "3.5rem",
     backgroundColor: "#cac5c1ff",
@@ -47,12 +54,12 @@ export const ImgStack = styled(Stack)<{ acao: string }>(({ theme, acao }) => ({
     [theme.breakpoints.down("md")]: {
         justifyContent: "center",
         alignItems: "center",
-        width: acao === "Login" ? "96%" : "86%",
+        width: acao === "Cadastro" ? "86%" : "96%",
     },
 
     [theme.breakpoints.down("sm")]: {
         alignItems: "center",
-        width: acao === "Login" ? "96%" : "97%",
+        width: acao === "Cadastro" ? "97%" : "96%",
         height: "3rem",
         margin: "3rem 0 0 0 ",
 

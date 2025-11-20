@@ -1,7 +1,7 @@
+// auth.hooks.ts
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { AuthQueryKey } from "../models/auth.types"
 import type { RegisterUser, LoginUser } from "../models/auth.types"
-
 import { api } from "../lib/api/api"
 
 // REGISTER
@@ -36,3 +36,22 @@ export const useUser = () => {
         },
     })
 }
+
+export const useSendResetLink = () => {
+  return useMutation({
+    mutationFn: async (email: { email: string }) => {
+      const { data } = await api.post("/forgot_password", email);
+      return data;
+    },
+  });
+};
+
+
+export const useResetPassword = () => {
+  return useMutation({
+    mutationFn: async (payload: { email: string; password: string; password_confirmation: string; token: string }) => {
+      const { data } = await api.post("/password/reset", payload);
+      return data;
+    },
+  });
+};
