@@ -2,6 +2,11 @@ import z from "zod"
 
 export const cadastroProduto = z
     .object({
+        imagem: z
+            .instanceof(File)
+            .or(z.string())
+            .optional(),
+
         nome: z
             .string()
             .min(1, "Nome do Produto é obrigatório")

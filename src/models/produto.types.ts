@@ -1,4 +1,3 @@
-// models/produto.types.ts
 export enum ProdutoQueryKey {
     CREATE = "CREATE_PRODUCT",
     LIST = "LIST_PRODUCTS",
@@ -9,18 +8,6 @@ export enum ProdutoQueryKey {
 
 // CREATE
 export namespace CreateProduto {
-    export type Request = {
-        nome: string;
-        descricao?: string;
-        preco: number;
-        unidadeMedida: string;
-        quantidadeEstoque: number;
-        quantidadeMedida: number;
-        dataColheita: string; // yyyy-mm-dd
-        dataValidade?: string; // opcional, se usar
-        imagem?: string;       // URL ou base64
-    };
-
     export type Response = {
         id: number;
         nome: string;
@@ -31,26 +18,13 @@ export namespace CreateProduto {
         quantidadeMedida: number;
         dataColheita: string;
         dataValidade?: string;
-        imagem?: string;
+        imagem?: Blob; 
         created_at: string;
     };
 }
 
 // UPDATE
 export namespace UpdateProduto {
-    export type Request = {
-        id: number; // ID do produto que será atualizado
-        nome?: string;
-        descricao?: string;
-        preco?: number;
-        unidadeMedida?: string;
-        quantidadeEstoque?: number;
-        quantidadeMedida?: number;
-        dataColheita?: string;
-        dataValidade?: string;
-        imagem?: string;
-    };
-
     export type Response = {
         id: number;
         nome: string;

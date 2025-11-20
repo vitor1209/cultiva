@@ -58,7 +58,7 @@ export function CadastrarProdutoPage() {
                     <styled.ContainerInputs>
                         <styled.BoxFoto>
                             <InputImagem
-                                name="ImagemProduto"
+                                name="imagem"
                                 label="Cadastrar Novo Produto:"
                                 height={40}
                                 width={45}

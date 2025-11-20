@@ -28,7 +28,12 @@ export const useLoginForm = () => {
             onSuccess: ({ token, user }) => {
                 localStorage.setItem("token", token);
                 localStorage.setItem("usuarioLogado", JSON.stringify(user));
-                window.location.href = "/HomeProdutor";
+
+                if (user.Tipo_usuario === "consumidor") {
+                    window.location.href = "/HomeConsumidor";
+                } else {
+                    window.location.href = "/HomeProdutor";
+                }
             },
             onError: (error: unknown) => {
                 if (error instanceof AxiosError) {

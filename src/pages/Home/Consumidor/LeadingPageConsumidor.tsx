@@ -25,9 +25,9 @@ export function HomeConsumidorPage(){
                         <IconButton aria-label="delete" size="large">
                             <ShoppingCart />
                         </IconButton>
-                        <IconButton aria-label="delete" size="large">
-                            <UserRound />
-                        </IconButton>
+                        <IconButton href="/PerfilProdutorPage" aria-label="perfil" size="large">
+                        <UserRound />
+                    </IconButton>
                     </Stack>
                 }
                 start={

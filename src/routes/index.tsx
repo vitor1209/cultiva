@@ -7,15 +7,16 @@ import {
     HomePageProdutor,
     PedidosPage,
     PedidoDetalhe,
-    CadastrarProdutoPage,
+    // CadastrarProdutoPage,
     ProdutoDetalhePage,
     FinalizarCarrinhoPage,
     FinalizarEnderecoPage,
     ProdutorPrivatePage,
     PerfilProdutorPage,
-    EditarProdutoPage,
+    // EditarProdutoPage,
     ResetSenhaPage,
     ResetTokenPage,
+    HomeConsumidorPage,
 } from "./pages";
 
 export default function AppRoutes() {
@@ -24,7 +25,7 @@ export default function AppRoutes() {
             {/* Rotas públicas */}
             <Route element={<PublicRoute />}>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/Home" element={<HomePage />} />
+                <Route path="/HomeConsumidor" element={<HomeConsumidorPage />} />
                 <Route path="/Login" element={<LoginPage />} />
                 <Route path="/ResetSenha" element={<ResetSenhaPage />} />
                 <Route path="/Cadastro" element={<CadastroPage />} />
@@ -41,9 +42,9 @@ export default function AppRoutes() {
                 <Route path="/HomeProdutor" element={<HomePageProdutor />} />
                 <Route path="/Pedidos" element={<PedidosPage />} />
                 <Route path="/Pedidos/:id" element={<PedidoDetalhe />} />
-                <Route path="/Cadastrar" element={<CadastrarProdutoPage />} />
+                {/* <Route path="/Cadastrar" element={<CadastrarProdutoPage />} /> */}
                 <Route path="/ProdutorPrivatePage" element={<ProdutorPrivatePage />} />
-                <Route path="/EditarProdutoPage/:id" element={<EditarProdutoPage />} />
+                {/* <Route path="/EditarProdutoPage/:id" element={<EditarProdutoPage />} /> */}
             </Route>
         </Routes>
     );

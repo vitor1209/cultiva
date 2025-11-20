@@ -1,63 +1,35 @@
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { cadastroProduto, type CadastroProdutoType } from "./CadastrarProduto.schemas"
-import { useCreateProduto } from "../../controllers/produto.controller"
-import { useNavigate } from "react-router-dom"
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useCreateProduto } from "../../controllers/produto.controller";
+import { cadastroProduto, type CadastroProdutoType } from "./CadastrarProduto.schemas";
 
 export const useProduto = () => {
-    const createProduto = useCreateProduto()
-    const navigate = useNavigate() // ← useNavigate
-
-    const { control, handleSubmit, reset } = useForm<CadastroProdutoType>({
+    const form = useForm<CadastroProdutoType>({
         resolver: zodResolver(cadastroProduto),
-    })
+        mode: "onChange",
+    });
 
-    const formatarData = (data: string) => {
-        const [dia, mes, ano] = data.split("/")
-        return `${ano}-${mes}-${dia}`
-    }
+    const createMutation = useCreateProduto();
 
-    const converterPreco = (valor: string): number => {
-        return Number(
-            valor
-                .replace("R$", "")
-                .replace(/\./g, "")
-                .replace(",", ".")
-                .trim()
-        )
-    }
+    const onSubmit = form.handleSubmit((data) => {
+        const formData = new FormData();
 
-    const onSubmit = handleSubmit((data) => {
-        const payload = {
-            nome: data.nome,
-            descricao: data.descricao ?? undefined,
-            preco: converterPreco(data.preco),
-            unidadeMedida: data.unidadeMedida,
-            quantidadeEstoque: Number(data.quantidadeEstoque),
-            quantidadeMedida: Number(data.quantidadeMedida),
-            dataColheita: formatarData(data.dataColheita),
-            dataValidade: formatarData(data.dataValidade),
-        }
+        Object.entries(data).forEach(([key, value]) => {
+            if (key === "imagem") {
+                if (value instanceof File) {
+                    formData.append("imagem", value); 
+                }
+            } else {
+                formData.append(key, String(value)); 
+            }
+        });
 
-        console.log("Payload final:", payload)
-
-        createProduto.mutate(payload, {
-            onSuccess: () => {
-                alert("Produto cadastrado com sucesso!")
-                reset()
-                navigate("/HomeProdutor") 
-            },
-            onError: () => {
-                alert("Erro ao cadastrar produto")
-            },
-        })
-    })
+        createMutation.mutate(formData);
+    });
 
     return {
-        control,
-        handleSubmit,
+        ...form,
         onSubmit,
-        isLoading: createProduto.isPending,
-        MEDIDAS: ["mg", "kg", "ml"] as const,
-    }
-}
+        isLoading: createMutation.isPending,
+    };
+};
