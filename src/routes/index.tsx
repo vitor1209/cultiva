@@ -1,6 +1,22 @@
 import { Routes, Route } from "react-router-dom";
 import { PublicRoute, PrivateRoute } from "./utils";
-import { HomePage, CadastrarProdutoPage, CadastroPage, FinalizarCarrinhoPage, FinalizarEnderecoPage, HomePageProdutor, LoginPage, PedidoDetalhe, PedidosPage, ProdutoDetalhePage, PerfilProdutorPage, ProdutorPrivatePage, CarrinhoVazioPage, HomeConsumidorPage } from "./pages";
+import {
+    HomePage,
+    LoginPage,
+    CadastroPage,
+    HomePageProdutor,
+    PedidosPage,
+    PedidoDetalhe,
+    CadastrarProdutoPage,
+    ProdutoDetalhePage,
+    FinalizarCarrinhoPage,
+    FinalizarEnderecoPage,
+    ProdutorPrivatePage,
+    PerfilProdutorPage,
+    EditarProdutoPage,
+    ResetSenhaPage,
+    ResetTokenPage,
+} from "./pages";
 
 export default function AppRoutes() {
     return (
@@ -10,13 +26,14 @@ export default function AppRoutes() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/Home" element={<HomePage />} />
                 <Route path="/Login" element={<LoginPage />} />
+                <Route path="/ResetSenha" element={<ResetSenhaPage />} />
                 <Route path="/Cadastro" element={<CadastroPage />} />
                 <Route path="/ProdutoDetalhe" element={<ProdutoDetalhePage />} />
                 <Route path="/FinalizarCarrinho" element={<FinalizarCarrinhoPage />} />
                 <Route path="/FinalizarEndereco" element={<FinalizarEnderecoPage />} />
-                <Route path="/Perfil" element={<PerfilProdutorPage />} />
-                <Route path="/CarrinhoVazio" element={<CarrinhoVazioPage />} />
-                <Route path="/HomeConsumidor" element={<HomeConsumidorPage />} />
+                <Route path="/PerfilProdutorPage" element={<PerfilProdutorPage />} />
+                <Route path="/ResetTokenPage" element={<ResetTokenPage />} />
+                
             </Route>
 
             {/* Rotas privadas */}
@@ -25,10 +42,9 @@ export default function AppRoutes() {
                 <Route path="/Pedidos" element={<PedidosPage />} />
                 <Route path="/Pedidos/:id" element={<PedidoDetalhe />} />
                 <Route path="/Cadastrar" element={<CadastrarProdutoPage />} />
-                <Route path="/PerfilProdutor" element={<ProdutorPrivatePage />} />
-
+                <Route path="/ProdutorPrivatePage" element={<ProdutorPrivatePage />} />
+                <Route path="/EditarProdutoPage/:id" element={<EditarProdutoPage />} />
             </Route>
-        
         </Routes>
     );
 }
