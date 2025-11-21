@@ -15,7 +15,7 @@ export const Footer = () => {
 
                 <Stack>
                     <Typography variant="subtitle1">Contato</Typography>
-                    <Typography variant="body2" color="text.secondary" >Email: cultivamais@gmail.com</Typography>
+                    <Typography variant="body2" color="text.secondary" >Email cultivahortas@gmail.com</Typography>
                     <Typography variant="body2" color="text.secondary" >Telefone: (19) 3456-7890</Typography>
                 </Stack>
 

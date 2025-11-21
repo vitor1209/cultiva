@@ -58,9 +58,14 @@ export function CadastrarProdutoPage() {
                                 <Stack sx={{ width: { md: "90%", lg: "35%" } }}>
                                     <Typography variant="subtitle1" fontWeight={500} color="#0A0A0A">Unidade de medida:</Typography>
                                     <SelectControlado control={control} name="unidadeMedida" placeholder="Selecione uma opção">
-                                        <MenuItem value="mg">mg</MenuItem>
                                         <MenuItem value="kg">kg</MenuItem>
                                         <MenuItem value="ml">ml</MenuItem>
+                                        <MenuItem value="mg">gr</MenuItem>
+                                        <MenuItem value="kg">l</MenuItem>
+                                        <MenuItem value="ml">dz</MenuItem>
+                                        <MenuItem value="ml">und</MenuItem>
+                                        <MenuItem value="ml">cm</MenuItem>
+
                                     </SelectControlado>
                                 </Stack>
                             </styled.InputRow>

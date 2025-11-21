@@ -32,7 +32,7 @@ export const cadastroProduto = z
                 return !isNaN(numero) && numero >= 0;
             }, "Preço inválido"),
 
-        unidadeMedida: z.enum(["mg", "kg", "ml"], {
+        unidadeMedida: z.enum(["kg", "gr", "l", "ml", "und", "dz", "cm"], {
             message: "Selecione uma unidade de medida válida",
         }),
 

@@ -37,7 +37,7 @@ export function HomeConsumidorPage(){
                 }
             >
                 <>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Início</Button>
+                    <Button variante="ButtonLinkBlack" tamanho="sm" to="/HomeConsumidor">Início</Button>
                     <Button variante="ButtonLinkBlack" tamanho="sm">Produtores</Button>
                     <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">Produtos</Button>
                     <Button variante="ButtonLinkBlack" tamanho="sm">Como Funciona</Button>

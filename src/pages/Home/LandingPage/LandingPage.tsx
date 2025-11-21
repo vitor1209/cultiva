@@ -8,13 +8,6 @@ import { Button } from "../../../components/Button/Button.tsx";
 import ProductCard from "../../../components/Card/Card.tsx";
 import { Footer } from "../../../components/Footer/Footer.tsx";
 
-const scrollToSection = (id: string) => {
-  const el = document.getElementById(id);
-  if (el) {
-    el.scrollIntoView({ behavior: "smooth" });
-  }
-};
-
 export function HomePage() {
     return (
         <Container
@@ -35,10 +28,25 @@ export function HomePage() {
                 }
             >
                 <>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Início</Button>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Produtores</Button>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Produtos</Button>
-                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('ComoFunciona')} tamanho="sm">Como Funciona</Button>
+                    <Button variante="ButtonLinkBlack" tamanho="sm" onClick={() => {
+                        const section = document.getElementById("inicio");
+                        if (section) {
+                            const yOffset = -100;
+                            const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                            window.scrollTo({ top: y, behavior: "smooth" });
+                        }
+                    }}
+                    >Início</Button>
+
+
+                    <Button to="" variante="ButtonLinkBlack" tamanho="sm" onClick={() => {
+                        const section = document.getElementById("sobre");
+                        if (section) {
+                            const yOffset = -100;
+                            const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                            window.scrollTo({ top: y, behavior: "smooth" });
+                        }
+                    }}>Sobre</Button>
                 </>
             </Header>
 
@@ -50,28 +58,10 @@ export function HomePage() {
             </CarouselFullScreen>
             <Styled.Division />
 
-            <Styled.ContainerFull>
-                <Styled.Session id='ComoFunciona'>
-                    <h1>Conectando quem planta com quem consome</h1>
-                    <p>
-                        Encontre produtos frescos diretamente dos produtores da sua região. Apoie a agricultura local e tenha acesso a hortaliças de qualidade superior.
-                    </p>
-                    <Button
-                        variante="ButtonGreen"
-                        espacamento={15}
-                        tamanho="md"
-                        ladoIcon="direita"
-                        icon={ChevronRight}
-                    >
-                        Saiba Mais
-                    </Button>
-                </Styled.Session>
-            </Styled.ContainerFull>
-
-            <Styled.Division />
 
 
-            <Container maxWidth={"xl"} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', }}>
+
+            <Container id="inicio" maxWidth={"xl"} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', }}>
                 <Stack direction="row" justifyContent='space-between' width="90%" alignItems='center' marginBottom={2}>
                     <Typography level="h4">Mais Vendidos</Typography>
                     <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho={"sm"}>Ver todos</Button>
@@ -150,7 +140,59 @@ export function HomePage() {
                     />
                 </Stack>
             </Container>
+
+
             <Styled.Division />
+
+
+            <Styled.ContainerFull id="sobre">
+                <Styled.Session>
+
+                    <Typography level="h2">Sobre Cultiva+</Typography>
+                    <Typography level="body-md">
+                        O Cultiva+ é uma plataforma dedicada a conectar pequenos produtores locais a consumidores que buscam produtos naturais, frescos e de qualidade. Nosso objetivo é facilitar o comércio direto, promovendo uma relação mais próxima entre quem produz e quem consome, incentivando hábitos de consumo sustentáveis e conscientes.
+
+                    </Typography>
+
+                    <Typography level="body-md">
+
+                        Com o Cultiva+, os consumidores podem navegar facilmente pelo catálogo de produtos, visualizar detalhes como fotos, preço, validade, adicionar itens ao carrinho e finalizar suas compras de forma prática.
+                    </Typography>
+
+                    <Typography level="body-md">
+
+                        Para os produtores, o Cultiva+ oferece um painel completo de gestão, permitindo cadastrar e gerenciar produtos. A plataforma proporciona mais praticidade e eficiência, tornando o processo de venda mais lucrativo e organizado.
+
+                        Nosso compromisso é criar uma comunidade que valoriza a produção local, a transparência e o consumo consciente, conectando pessoas e fortalecendo a economia sustentável.
+                    </Typography>
+
+                </Styled.Session>
+            </Styled.ContainerFull>
+            <Styled.Division />
+
+
+            {/* <Container maxWidth={"xl"} sx={{ width: '95%', padding: '3% 0 4% 0 ', p: { xs: 2, md: 4 }, borderRadius: '25px', backgroundColor: '#d9d3d0', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', }}>
+                    <Styled.Session>
+
+                        <Typography level="h2">Contato</Typography>
+                        <Typography level="body-md">
+                            Caso tenha dúvidas entre em contato em:
+
+                        </Typography>
+
+                        <Typography level="h1">
+
+                            cultivahortas@gmail.com
+                        </Typography>
+
+
+                    </Styled.Session>
+
+            </Container>
+
+
+            <Styled.Division /> */}
+
             <Footer />
         </Container>
     );
