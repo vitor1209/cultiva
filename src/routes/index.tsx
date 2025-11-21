@@ -17,6 +17,7 @@ import {
     ResetSenhaPage,
     ResetTokenPage,
     HomeConsumidorPage,
+    CarrinhoVazioPage,
 } from "./pages";
 
 
@@ -35,6 +36,7 @@ export default function AppRoutes() {
                 <Route path="/FinalizarEndereco" element={<FinalizarEnderecoPage />} />
                 <Route path="/PerfilProdutorPage" element={<PerfilProdutorPage />} />
                 <Route path="/ResetTokenPage" element={<ResetTokenPage />} />
+                <Route path="/CarrinhoVazioPage" element={<CarrinhoVazioPage />} />        
                 
             </Route>
 

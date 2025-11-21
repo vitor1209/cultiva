@@ -6,7 +6,6 @@ import SearchBar from "../../../components/barSearch/barSearch";
 import { Button } from "../../../components/Button/Button";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
-
 export function CarrinhoVazioPage(){
     return(
         <Container
@@ -38,6 +37,7 @@ export function CarrinhoVazioPage(){
                     <Button variante="ButtonLinkBlack" tamanho="sm">Como Funciona</Button>
                 </>
             </Header>
+            <Stack p={"5% 0"} />
 
             <Stack                
                 sx={{
@@ -71,8 +71,7 @@ export function CarrinhoVazioPage(){
                 
             </Stack>
 
-
-            <Stack p={"3% 0"} />
+            <Stack p={"5% 0"} />
             <Footer />
         </Container>
     );

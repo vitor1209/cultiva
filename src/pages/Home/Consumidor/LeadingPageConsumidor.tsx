@@ -1,4 +1,4 @@
-import { Container, IconButton, Stack, Box, Link } from "@mui/material";
+import { Container, IconButton, Stack, Box } from "@mui/material";
 import { ShoppingCart, UserRound, ChevronRight } from "lucide-react";
 import { Header } from "../../../components/Header/Header.tsx";
 import { Footer } from "../../../components/Footer/Footer.tsx";
@@ -7,8 +7,10 @@ import { Button } from "../../../components/Button/Button.tsx";
 import Typography from '@mui/joy/Typography';
 import { CarouselFullScreen } from "../../../components/Carousel/Carousel.tsx";
 import * as Styled from "../LandingPage.styled.ts";
-import ProductCard from "../../../components/Card/Card.tsx";
 import { CardPedidos } from "../../../components/CardPedidos/CardPedidos.tsx";
+import { useGetProdutosGeral } from "../../../controllers/produto.controller.ts";
+import { useState } from "react";
+import ProductCard from "../../../components/Card/Card.tsx";
 
 const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -20,7 +22,24 @@ const scrollToSection = (id: string) => {
     }
 };
 
+
 export function HomeConsumidorPage() {
+
+    const [mostrarTodos, setMostrarTodos] = useState(false);
+
+    const {
+        data: produtos,
+        isLoading,
+        error,
+    } = useGetProdutosGeral();
+
+        const produtosExibidos = mostrarTodos
+        ? produtos
+        : produtos?.slice(0, 8);
+
+    const usuario = localStorage.getItem("usuarioLogado")
+        ? JSON.parse(localStorage.getItem("usuarioLogado")!)
+        : null;
 
     return (
         <Container
@@ -31,10 +50,10 @@ export function HomeConsumidorPage() {
             <Header
                 end={
                     <Stack direction={'row'} gap={3}>
-                        <IconButton aria-label="delete" size="large">
+                        <IconButton href="/CarrinhoVazioPage" aria-label="delete" size="large">
                             <ShoppingCart />
                         </IconButton>
-                        <IconButton href="/" aria-label="perfil" size="large">
+                        <IconButton href="/CarrinhoVazioPage" aria-label="perfil" size="large">
                             <UserRound />
                         </IconButton>
                     </Stack>
@@ -54,27 +73,14 @@ export function HomeConsumidorPage() {
                 </>
             </Header>
 
-            <Box
-                sx={{
-                    // width: "100%",
-                    background: " #00a63e",
-                    color: "white",
-                    padding: " 1.5rem 3% 1.5rem 3% ",
-                    textAlign: "Left",
-
-                }}
-            >
-                <Typography sx={{ color: "white" }} fontSize={15}>Olá, Usuário Exemplo</Typography>
-                <Typography sx={{ color: "white" }} fontSize={15} mt={0}>
-                    Veja as hortaliças frescas disponíveis na sua região
+            <Styled.boxName>
+                <Typography p={'0 3%'} level="inherit" sx={{ color: '#fff' }}>
+                    Olá, {usuario?.nome ?? "Usuário"}
                 </Typography>
-                <Typography sx={{ color: "white" }} fontSize={15} mt={1}>Baseado no seu CEP:</Typography>
-
-                <Box mt={0} display="flex" alignItems="center" gap={10}>
-                    <Typography sx={{ color: "white" }} fontSize={14}>13054-230</Typography>
-                    <Link href="/nâoExisteAinda:(" underline="hover" color="#a0ff97ff" fontSize={14} fontFamily={"Arimo"}>Alterar</Link>
-                </Box>
-            </Box>
+                <Typography p={'0 3%'} level="inherit" sx={{ color: '#fff' }}>
+                    Selecione produtos para comprar
+                </Typography>
+            </Styled.boxName>
 
             <Styled.Division />
 
@@ -94,73 +100,36 @@ export function HomeConsumidorPage() {
             <Container id="produtos" maxWidth={"xl"} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', }}>
                 <Stack direction="row" justifyContent='space-between' width="90%" alignItems='center' marginBottom={2}>
                     <Typography level="h4">Para você</Typography>
-                    <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho={"sm"}>Ver todos</Button>
+                    <Button
+                        ladoIcon="direita"
+                        icon={ChevronRight}
+                        variante="ButtonLinkBlack"
+                        tamanho="sm"
+                        onClick={() => setMostrarTodos(true)}
+                    >
+                        Ver todos
+                    </Button>
                 </Stack>
-                <Stack direction={{ xs: "column", sm: "row" }} gap={2} flexWrap="wrap" justifyContent="space-evenly" alignItems="center" width="95%"    >
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Alface Orgânica"}
-                        lugar={"Sítio Verde"}
-                        avaliacao={4.8}
-                        preco={'3.50'}
-                        tipoCard={'Produto'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Alface Orgânica"}
-                        lugar={"Sítio Verde"}
-                        avaliacao={4.8}
-                        preco={'3.50'}
-                        tipoCard={'Produto'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Alface Orgânica"}
-                        lugar={"Sítio Verde"}
-                        avaliacao={4.8}
-                        preco={'3.50'}
-                        tipoCard={'Produto'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Alface Orgânica"}
-                        lugar={"Sítio Verde"}
-                        avaliacao={4.8}
-                        preco={'3.50'}
-                        tipoCard={'Produto'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Alface Orgânica"}
-                        lugar={"Sítio Verde"}
-                        avaliacao={4.8}
-                        preco={'3.50'}
-                        tipoCard={'Produto'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Alface Orgânica"}
-                        lugar={"Sítio Verde"}
-                        avaliacao={4.8}
-                        preco={'3.50'}
-                        tipoCard={'Produto'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Alface Orgânica"}
-                        lugar={"Sítio Verde"}
-                        avaliacao={4.8}
-                        preco={'3.50'}
-                        tipoCard={'Produto'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Alface Orgânica"}
-                        lugar={"Sítio Verde"}
-                        avaliacao={4.8}
-                        preco={'3.50'}
-                        tipoCard={'Produto'}
-                    />
+                <Stack direction={{ xs: "column", sm: "row" }} gap={4} flexWrap="wrap" justifyContent="space-evenly" alignItems="center" width="95%"    >
+                  {isLoading && <Typography>Carregando produtos...</Typography>}
+                    {error && <Typography>Erro ao carregar produtos</Typography>}
+
+                    {produtosExibidos && produtosExibidos.length > 0 ? (
+                        produtosExibidos.map(produto =>
+                            <ProductCard
+                                key={produto.id}
+                                id={produto.id} 
+                                image={produto.imagem ?? "https://veja.abril.com.br/wp-content/uploads/2016/12/maconha.jpg?crop=1&resize=1212,909"}
+                                name={produto.nome}
+                                lugar={usuario?.nome}
+                                descricao={produto.descricao}
+                                preco={produto.preco_unit.toFixed(2)}
+                                tipoCard="Produto"
+                            />
+                        )
+                    ) : (
+                        !isLoading && <Typography>Nenhum produto cadastrado</Typography>
+                    )}
                 </Stack>
             </Container>
 
@@ -172,34 +141,7 @@ export function HomeConsumidorPage() {
                     <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho={"sm"}>Ver todos</Button>
                 </Stack>
                 <Stack direction={{ xs: "column", sm: "row" }} flexWrap="wrap" gap={2.5}>
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Sítio Verde"}
-                        lugar={"Campinas, SP"}
-                        avaliacao={4.8}
-                        tipoCard={'Horta'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Sítio Verde"}
-                        lugar={"Campinas, SP"}
-                        avaliacao={4.8}
-                        tipoCard={'Horta'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Sítio Verde"}
-                        lugar={"Campinas, SP"}
-                        avaliacao={4.8}
-                        tipoCard={'Horta'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Sítio Verde"}
-                        lugar={"Campinas, SP"}
-                        avaliacao={4.8}
-                        tipoCard={'Horta'}
-                    />
+                  
                 </Stack>
             </Container>
 

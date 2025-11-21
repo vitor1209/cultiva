@@ -14,3 +14,4 @@ export {EditarProdutoPage} from "../pages/produtoCRUD/editar/EditarProdutoPage.t
 export {ResetSenhaPage} from "../pages/Auth/resetSenha/resetSenha.tsx"
 export {ResetTokenPage} from "../pages/Auth/resetToken/resetSenhaToken.tsx"
 export {HomeConsumidorPage} from "../pages/Home/Consumidor/LeadingPageConsumidor.tsx"
+export {CarrinhoVazioPage} from "../pages/carrinho/CarrinhoVazio/CarrinhoVazio.tsx"

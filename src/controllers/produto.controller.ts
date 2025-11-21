@@ -35,6 +35,18 @@ export const useGetProdutos = (fk_horta_id?: number) => {
   });
 };
 
+export const useGetProdutosGeral = () => {
+  return useQuery<GetProduto.Response[]>({
+    queryKey: [ProdutoQueryKey.GET],
+
+    queryFn: async () => {
+      const response = await api.get("/produtos");
+
+      return response.data.data;
+    },
+  });
+};
+
 
 export const useDeleteProduto = () => {
   const queryClient = useQueryClient();

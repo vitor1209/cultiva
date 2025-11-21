@@ -24,6 +24,7 @@ export function EditarProdutoPage() {
 
     useEffect(() => {
         if (id) carregarProduto(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
 
     const unidadeMedidaMap: Record<number, "kg" | "gr" | "l" | "ml" | "und" | "dz" | "cm"> = {
@@ -50,6 +51,7 @@ export function EditarProdutoPage() {
                 dataColheita: ""
             });
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [produto, reset]);
 
 
