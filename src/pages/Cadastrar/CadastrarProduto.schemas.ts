@@ -1,6 +1,6 @@
 import z from "zod"
 
-export const cadastroProduto = z
+export const Produto = z
     .object({
         imagem: z
             .instanceof(File)
@@ -14,9 +14,7 @@ export const cadastroProduto = z
 
         descricao: z
             .string()
-            .max(2000, "Esse campo pode ter até 2000 caracteres")
-            .optional(),
-
+            .max(2000, "Esse campo pode ter até 2000 caracteres"),
         preco: z
             .string()
             .min(1, "Preço é obrigatório")
@@ -72,4 +70,4 @@ export const cadastroProduto = z
         path: ["dataValidade"],
     });
 
-export type CadastroProdutoType = z.infer<typeof cadastroProduto>;
+export type CadastroProdutoType = z.infer<typeof Produto>;
