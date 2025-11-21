@@ -9,6 +9,7 @@ import Typography from "@mui/joy/Typography";
 import * as styled from "../Pedidos.styled";
 import { FilterBar } from "../../../components/FilterBar/FilterBar";
 import { CardPedido } from "../../../components/CardPedido/CardPedido";
+import { Link } from "react-router-dom";
 
 
 export function PedidosPage() {
@@ -24,7 +25,7 @@ export function PedidosPage() {
         >
             <Header
                 end={
-                    <IconButton aria-label="delete" size="large">
+                    <IconButton component={Link} to="/ProdutorPrivatePage" aria-label="delete" size="large">
                         <UserRound />
                     </IconButton>
                 }
@@ -35,10 +36,10 @@ export function PedidosPage() {
                 }
             >
                 <>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Início</Button>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Seus Produtos</Button>
+                    <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">Início</Button>
+                    <Button variante="ButtonLinkBlack" to="/HomeProdutor#produtos" tamanho="sm">Seus Produtos</Button>
                     <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">Pedidos</Button>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Como Funciona</Button>
+                    <Button variante="ButtonLinkBlack" to="/HomeProdutor#sobre"tamanho="sm">Sobre</Button>
                 </>
             </Header>
 
