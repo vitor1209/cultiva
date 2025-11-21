@@ -9,7 +9,6 @@ import ProductCard from "../../../components/Card/Card.tsx";
 import { Footer } from "../../../components/Footer/Footer.tsx";
 
 
-
 const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
 
@@ -47,15 +46,104 @@ export function HomePage() {
                     <Button to="" variante="ButtonLinkBlack" onClick={() => scrollToSection('sobre')} tamanho="sm">Sobre</Button>
                 </>
             </Header>
-{/* 
 
-            <Styled.Hero>
-                <Typography level="h1">Conectando você ao produtor local</Typography>
-                <Typography level="body-lg">
-                    Produtos frescos, naturais e direto da horta para sua casa.
-                </Typography>
-                <Button variante="ButtonGreen" tamanho="md" to="/Cadastro">Começar Agora</Button>
-            </Styled.Hero> */}
+            <Styled.HeroContainer>
+                <Stack
+                    direction={{ xs: "column-reverse", md: "row" }}
+                    spacing={{ xs: 6, md: 10 }}
+                    alignItems="center"
+                    justifyContent="space-between"
+                    sx={{ width: "100%", maxWidth: 1200, mx: "auto" }}
+                >
+                    {/* ===== COLUNA TEXTO ===== */}
+                    <Box
+                        sx={{
+                            flex: 1,
+                            textAlign: "left",
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            maxWidth: 520, // Mantém tudo alinhado e bonito
+                            width: "100%",
+                        }}
+                    >
+                        <Typography
+                            level="h1"
+                            sx={{
+                                fontWeight: 700,
+                                fontSize: { xs: "2rem", md: "3rem" },
+                                color: "#1B3A28",
+                                lineHeight: 1.2,
+                            }}
+                        >
+                            Conectando você ao Produtor Local
+                        </Typography>
+
+                        <Typography
+                            level="body-lg"
+                            sx={{
+                                mt: 2,
+                                color: "#3A4D3D",
+                                fontSize: "1.15rem",
+                            }}
+                        >
+                            Produtos frescos, naturais e direto da terra para sua casa,
+                            com qualidade e transparência.
+                        </Typography>
+
+                        <Stack
+                            direction="row"
+                            spacing={3}
+                            sx={{ mt: 6 }}
+                        >
+                            <Button variante="ButtonGreen" tamanho="xl" to="/Cadastro" espacamento={14}>
+                                Começar Agora
+                            </Button>
+
+                            <Button variante="ButtonLinkBlack" tamanho="xl" to="/Sobre">
+                                Veja Como Funciona
+                            </Button>
+                        </Stack>
+
+                        {/* ÍCONES ALINHADOS */}
+                        <Stack
+                        direction={"row"}
+                        gap={4}
+                        justifyContent={"space-evenly"}
+                        flexWrap={"wrap"}
+                        mt={8}
+                        >
+                            <Stack alignItems="center" spacing={1}>
+                                <img src="/natural.png" width={80} height={80} />
+                                <Typography level="body-sm">Natural</Typography>
+                            </Stack>
+
+                            <Stack alignItems="center" spacing={1}>
+                                <img src="/horta.png" width={80} height={80} />
+                                <Typography level="body-sm">Direto da Horta</Typography>
+                            </Stack>
+
+                            <Stack alignItems="center" spacing={1}>
+                                <img src="/entrega.png" width={80} height={80} />
+                                <Typography level="body-sm">Entrega Segura</Typography>
+                            </Stack>
+                        </Stack>
+                    </Box>
+
+                    <Box
+                        sx={{
+                            width: { xs: "100%", md: 600 },
+                            height: { xs: 240, md: 350 },
+                            backgroundImage: "url('/logog.png')",
+                            backgroundSize: "contain",
+                            backgroundRepeat: "no-repeat",
+                            backgroundPosition: "center",
+                        }}
+                    />
+                </Stack>
+            </Styled.HeroContainer>
+
+
 
             <Styled.Division />
             <CarouselFullScreen tamanho={"full"}>
@@ -74,38 +162,7 @@ export function HomePage() {
                     <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho={"sm"}>Ver todos</Button>
                 </Stack>
                 <Stack direction={{ xs: "column", sm: "row" }} gap={2} flexWrap="wrap" justifyContent="space-evenly" alignItems="center" width="95%"    >
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Alface Orgânica"}
-                        lugar={"Sítio Verde"}
-                        avaliacao={4.8}
-                        preco={'3.50'}
-                        tipoCard={'Produto'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Alface Orgânica"}
-                        lugar={"Sítio Verde"}
-                        avaliacao={4.8}
-                        preco={'3.50'}
-                        tipoCard={'Produto'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Alface Orgânica"}
-                        lugar={"Sítio Verde"}
-                        avaliacao={4.8}
-                        preco={'3.50'}
-                        tipoCard={'Produto'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Alface Orgânica"}
-                        lugar={"Sítio Verde"}
-                        avaliacao={4.8}
-                        preco={'3.50'}
-                        tipoCard={'Produto'}
-                    />
+                    
                 </Stack>
             </Container>
 
@@ -117,34 +174,7 @@ export function HomePage() {
                     <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho={"sm"}>Ver todos</Button>
                 </Stack>
                 <Stack direction={{ xs: "column", sm: "row" }} flexWrap="wrap" gap={2.5}>
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Sítio Verde"}
-                        lugar={"Campinas, SP"}
-                        avaliacao={4.8}
-                        tipoCard={'Horta'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Sítio Verde"}
-                        lugar={"Campinas, SP"}
-                        avaliacao={4.8}
-                        tipoCard={'Horta'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Sítio Verde"}
-                        lugar={"Campinas, SP"}
-                        avaliacao={4.8}
-                        tipoCard={'Horta'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Sítio Verde"}
-                        lugar={"Campinas, SP"}
-                        avaliacao={4.8}
-                        tipoCard={'Horta'}
-                    />
+
                 </Stack>
             </Container>
 
@@ -180,39 +210,19 @@ export function HomePage() {
             <Styled.CTABox>
                 <Typography level="h2">Pronto para apoiar produtores locais?</Typography>
                 <Button
-                        to="/Login"
-                        variante="ButtonGreen"
-                        espacamento={14}
-                        tamanho="md"
-                    >
-                        Login
-                    </Button>
+                    to="/Login"
+                    variante="ButtonGreen"
+                    espacamento={14}
+                    tamanho="md"
+                >
+                    Login
+                </Button>
 
             </Styled.CTABox>
 
             <Styled.Division />
 
-            {/* <Container maxWidth={"xl"} sx={{ width: '95%', padding: '3% 0 4% 0 ', p: { xs: 2, md: 4 }, borderRadius: '25px', backgroundColor: '#d9d3d0', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', }}>
-                    <Styled.Session>
 
-                        <Typography level="h2">Contato</Typography>
-                        <Typography level="body-md">
-                            Caso tenha dúvidas entre em contato em:
-
-                        </Typography>
-
-                        <Typography level="h1">
-
-                            cultivahortas@gmail.com
-                        </Typography>
-
-
-                    </Styled.Session>
-
-            </Container>
-
-
-            <Styled.Division /> */}
 
             <Footer />
         </Container>

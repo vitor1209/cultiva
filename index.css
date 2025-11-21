@@ -30,3 +30,14 @@ body::-webkit-scrollbar-thumb {
     border: 3px solid #ccd4b5f3;
     /* criar um espaco em volta do scroll */
 }
+
+body {
+  cursor: url('/mouse.png') 16 16, auto;
+}
+
+button {
+  cursor: url('/pointer.png') 16 16, pointer !important;
+}
+button:active {
+  cursor: url('/pointer.png') 16 16, pointer;
+}
