@@ -8,6 +8,18 @@ import { Button } from "../../../components/Button/Button.tsx";
 import ProductCard from "../../../components/Card/Card.tsx";
 import { Footer } from "../../../components/Footer/Footer.tsx";
 
+
+
+const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+
+    if (section) {
+        const yOffset = -100;
+        const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+    }
+};
+
 export function HomePage() {
     return (
         <Container
@@ -28,27 +40,22 @@ export function HomePage() {
                 }
             >
                 <>
-                    <Button variante="ButtonLinkBlack" tamanho="sm" onClick={() => {
-                        const section = document.getElementById("inicio");
-                        if (section) {
-                            const yOffset = -100;
-                            const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                            window.scrollTo({ top: y, behavior: "smooth" });
-                        }
-                    }}
+                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('inicio')} tamanho="sm"
                     >Início</Button>
 
 
-                    <Button to="" variante="ButtonLinkBlack" tamanho="sm" onClick={() => {
-                        const section = document.getElementById("sobre");
-                        if (section) {
-                            const yOffset = -100;
-                            const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                            window.scrollTo({ top: y, behavior: "smooth" });
-                        }
-                    }}>Sobre</Button>
+                    <Button to="" variante="ButtonLinkBlack" onClick={() => scrollToSection('sobre')} tamanho="sm">Sobre</Button>
                 </>
             </Header>
+{/* 
+
+            <Styled.Hero>
+                <Typography level="h1">Conectando você ao produtor local</Typography>
+                <Typography level="body-lg">
+                    Produtos frescos, naturais e direto da horta para sua casa.
+                </Typography>
+                <Button variante="ButtonGreen" tamanho="md" to="/Cadastro">Começar Agora</Button>
+            </Styled.Hero> */}
 
             <Styled.Division />
             <CarouselFullScreen tamanho={"full"}>
@@ -170,6 +177,20 @@ export function HomePage() {
             </Styled.ContainerFull>
             <Styled.Division />
 
+            <Styled.CTABox>
+                <Typography level="h2">Pronto para apoiar produtores locais?</Typography>
+                <Button
+                        to="/Login"
+                        variante="ButtonGreen"
+                        espacamento={14}
+                        tamanho="md"
+                    >
+                        Login
+                    </Button>
+
+            </Styled.CTABox>
+
+            <Styled.Division />
 
             {/* <Container maxWidth={"xl"} sx={{ width: '95%', padding: '3% 0 4% 0 ', p: { xs: 2, md: 4 }, borderRadius: '25px', backgroundColor: '#d9d3d0', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', }}>
                     <Styled.Session>

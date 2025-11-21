@@ -1,4 +1,4 @@
-import { Container, IconButton, Stack, Box, Link} from "@mui/material";
+import { Container, IconButton, Stack, Box, Link } from "@mui/material";
 import { ShoppingCart, UserRound, ChevronRight } from "lucide-react";
 import { Header } from "../../../components/Header/Header.tsx";
 import { Footer } from "../../../components/Footer/Footer.tsx";
@@ -10,14 +10,23 @@ import * as Styled from "../LandingPage.styled.ts";
 import ProductCard from "../../../components/Card/Card.tsx";
 import { CardPedidos } from "../../../components/CardPedidos/CardPedidos.tsx";
 
+const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
 
-export function HomeConsumidorPage(){
-    
-    return(
+    if (section) {
+        const yOffset = -100;
+        const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+    }
+};
+
+export function HomeConsumidorPage() {
+
+    return (
         <Container
             disableGutters
             maxWidth={false}
-            sx={{ backgroundColor: "#fff8f0", textAlign: "center", marginTop: 8, padding: 0 }}
+            sx={{ backgroundColor: "", textAlign: "center", marginTop: 8, padding: 0 }}
         >
             <Header
                 end={
@@ -25,9 +34,9 @@ export function HomeConsumidorPage(){
                         <IconButton aria-label="delete" size="large">
                             <ShoppingCart />
                         </IconButton>
-                        <IconButton href="/PerfilProdutorPage" aria-label="perfil" size="large">
-                        <UserRound />
-                    </IconButton>
+                        <IconButton href="/" aria-label="perfil" size="large">
+                            <UserRound />
+                        </IconButton>
                     </Stack>
                 }
                 start={
@@ -38,31 +47,32 @@ export function HomeConsumidorPage(){
             >
                 <>
                     <Button variante="ButtonLinkBlack" tamanho="sm" to="/HomeConsumidor">Início</Button>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Produtores</Button>
-                    <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">Produtos</Button>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Como Funciona</Button>
+                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('produtos')} tamanho="sm">Produtos</Button>
+
+                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('produtores')}  tamanho="sm">Produtores</Button>
+                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('sobre')}  tamanho="sm">Sobre</Button>
                 </>
             </Header>
 
             <Box
                 sx={{
-                width: "100%",
-                background: " #00a63e",
-                color: "white",
-                padding: " 1.5% 3% 1.5% 3% ",                
-                textAlign: "Left",
-                
+                    // width: "100%",
+                    background: " #00a63e",
+                    color: "white",
+                    padding: " 1.5rem 3% 1.5rem 3% ",
+                    textAlign: "Left",
+
                 }}
             >
-                <Typography sx={{color: "white"}} fontSize={15}>Olá, Usuário Exemplo</Typography>
-                <Typography sx={{color: "white"}}  fontSize={15} mt={0}>
+                <Typography sx={{ color: "white" }} fontSize={15}>Olá, Usuário Exemplo</Typography>
+                <Typography sx={{ color: "white" }} fontSize={15} mt={0}>
                     Veja as hortaliças frescas disponíveis na sua região
                 </Typography>
-                <Typography sx={{color: "white"}}  fontSize={15} mt={1}>Baseado no seu CEP:</Typography>
+                <Typography sx={{ color: "white" }} fontSize={15} mt={1}>Baseado no seu CEP:</Typography>
 
                 <Box mt={0} display="flex" alignItems="center" gap={10}>
-                    <Typography sx={{color: "white"}}  fontSize={14}>13054-230</Typography>
-                    <Link href="/nâoExisteAinda:(" underline="hover" color="#a0ff97ff" fontSize={14}>Alterar</Link>
+                    <Typography sx={{ color: "white" }} fontSize={14}>13054-230</Typography>
+                    <Link href="/nâoExisteAinda:(" underline="hover" color="#a0ff97ff" fontSize={14} fontFamily={"Arimo"}>Alterar</Link>
                 </Box>
             </Box>
 
@@ -75,13 +85,13 @@ export function HomeConsumidorPage(){
                     <Box sx={{ background: "#2e7d32", height: { xs: '10rem', sm: '20.25rem' }, borderRadius: '30px' }}></Box>
                 </CarouselFullScreen>
             </Stack>
-       
+
 
             <Styled.Division />
 
             {/* <FilterBar onFilterChange={handleFilterChange} /> */}
 
-            <Container maxWidth={"xl"} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', }}>
+            <Container id="produtos" maxWidth={"xl"} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', }}>
                 <Stack direction="row" justifyContent='space-between' width="90%" alignItems='center' marginBottom={2}>
                     <Typography level="h4">Para você</Typography>
                     <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho={"sm"}>Ver todos</Button>
@@ -156,7 +166,7 @@ export function HomeConsumidorPage(){
 
             <Styled.Division />
 
-            <Container maxWidth={"xl"} sx={{ width: '95%', padding: '3% 0 4% 0 ', p: { xs: 2, md: 4 }, borderRadius: '25px', backgroundColor: '#d9d3d0', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', }}>
+            <Container id="produtores" maxWidth={"xl"} sx={{ width: '95%', padding: '3% 0 4% 0 ', p: { xs: 2, md: 4 }, borderRadius: '25px', backgroundColor: '#d9d3d0', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', }}>
                 <Stack direction="row" justifyContent='space-between' width="95%" alignItems='center' marginBottom={2}>
                     <Typography level="body-lg">Produtores em Destaque</Typography>
                     <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho={"sm"}>Ver todos</Button>
@@ -203,46 +213,72 @@ export function HomeConsumidorPage(){
 
                 <Box
                     sx={{
-                    display: "flex",
-                    gap: 3,
-                    flexWrap: "wrap",
-                    textAlign: "left"                    
+                        display: "flex",
+                        gap: 3,
+                        flexWrap: "wrap",
+                        textAlign: "left"
                     }}
                 >
                     <CardPedidos
-                    image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUDtoK4TI2r2dm0VcG6wJa8A1MEV1rXAYVCg&s"
-                    nome="Horta do Chico"
-                    data="19/10/2025"
-                    status="Disponível para retirada"
+                        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUDtoK4TI2r2dm0VcG6wJa8A1MEV1rXAYVCg&s"
+                        nome="Horta do Chico"
+                        data="19/10/2025"
+                        status="Disponível para retirada"
                     />
 
                     <CardPedidos
-                    image="https://ibassets.com.br/ib.image.general/e5c40f457a8841b0892f561ade78aa1c.png"
-                    nome="Casa Horta"
-                    data="19/10/2025"
-                    status="Preparando"
+                        image="https://ibassets.com.br/ib.image.general/e5c40f457a8841b0892f561ade78aa1c.png"
+                        nome="Casa Horta"
+                        data="19/10/2025"
+                        status="Preparando"
                     />
 
                     <CardPedidos
-                    image="https://rotarysantosboqueirao.com.br/wp-content/uploads/2019/10/HORTA-COMUNIT%C3%81RIA-3-2.jpg"
-                    nome="Bons Frutos"
-                    data="19/10/2025"
-                    status="Enviado"
+                        image="https://rotarysantosboqueirao.com.br/wp-content/uploads/2019/10/HORTA-COMUNIT%C3%81RIA-3-2.jpg"
+                        nome="Bons Frutos"
+                        data="19/10/2025"
+                        status="Enviado"
                     />
 
                     <CardPedidos
-                    image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHvw-wkffWPmdR-AcPX8pQENZm6vkSuNX6uQ&s"
-                    nome="da Horta pra Porta"
-                    data="19/10/2025"
-                    status="Finalizado"
+                        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHvw-wkffWPmdR-AcPX8pQENZm6vkSuNX6uQ&s"
+                        nome="da Horta pra Porta"
+                        data="19/10/2025"
+                        status="Finalizado"
                     />
                 </Box>
-            </Container>    
-            
+            </Container>
+
+                <Styled.Division />
+
+                <Styled.ContainerFull id="sobre">
+                    <Styled.Session>
+
+                        <Typography level="h2">Sobre Cultiva+</Typography>
+                        <Typography level="body-md">
+                            O Cultiva+ é uma plataforma dedicada a conectar pequenos produtores locais a consumidores que buscam produtos naturais, frescos e de qualidade. Nosso objetivo é facilitar o comércio direto, promovendo uma relação mais próxima entre quem produz e quem consome, incentivando hábitos de consumo sustentáveis e conscientes.
+
+                        </Typography>
+
+                        <Typography level="body-md">
+
+                            Com o Cultiva+, os consumidores podem navegar facilmente pelo catálogo de produtos, visualizar detalhes como fotos, preço, validade, adicionar itens ao carrinho e finalizar suas compras de forma prática.
+                        </Typography>
+
+                        <Typography level="body-md">
+
+                            Para os produtores, o Cultiva+ oferece um painel completo de gestão, permitindo cadastrar e gerenciar produtos. A plataforma proporciona mais praticidade e eficiência, tornando o processo de venda mais lucrativo e organizado.
+
+                            Nosso compromisso é criar uma comunidade que valoriza a produção local, a transparência e o consumo consciente, conectando pessoas e fortalecendo a economia sustentável.
+                        </Typography>
+
+                    </Styled.Session>
+                </Styled.ContainerFull>
+
 
             <Stack p={"3% 0"} />
             <Footer />
         </Container>
     );
 }
-    
+

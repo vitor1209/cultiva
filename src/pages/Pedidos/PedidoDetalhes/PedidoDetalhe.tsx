@@ -6,7 +6,7 @@ import { ArrowRight, CircleCheck, UserRound } from "lucide-react";
 import SearchBar from "../../../components/barSearch/barSearch";
 import * as styled from "../Pedidos.styled";
 import Typography from "@mui/joy/Typography";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { PadraoModal } from "../../../components/Modal/Modal";
@@ -104,7 +104,7 @@ export const PedidoDetalhe = () => {
         >
             <Header
                 end={
-                    <IconButton aria-label="delete" size="large">
+                    <IconButton  component={Link} to="/ProdutorPrivatePage" aria-label="delete" size="large">
                         <UserRound />
                     </IconButton>
                 }
@@ -115,10 +115,10 @@ export const PedidoDetalhe = () => {
                 }
             >
                 <>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Início</Button>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Seus Produtos</Button>
+                    <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">Início</Button>
+                    <Button variante="ButtonLinkBlack" to="/HomeProdutor#produtos" tamanho="sm">Seus Produtos</Button>
                     <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">Pedidos</Button>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Como Funciona</Button>
+                    <Button variante="ButtonLinkBlack" to="/HomeProdutor#sobre" tamanho="sm">Sobre</Button>
                 </>
             </Header>
 
