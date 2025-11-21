@@ -148,7 +148,7 @@ export function HomePageProdutor() {
                             <ProductCard
                                 key={produto.id}
                                 id={produto.id} 
-                                image={produto.imagem ?? "http://localhost:8000/storage/produtos/rmF2Bkgb7lQbGi1LoytTDe8O7kuxFzvUTt8iQBzw.jpg"}
+                                image={produto.imagem ?? "https://veja.abril.com.br/wp-content/uploads/2016/12/maconha.jpg?crop=1&resize=1212,909"}
                                 name={produto.nome}
                                 lugar={usuario?.nome}
                                 descricao={produto.descricao}

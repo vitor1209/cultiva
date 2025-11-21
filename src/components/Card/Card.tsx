@@ -11,6 +11,7 @@ import { Box, Stack } from '@mui/material';
 import { useDeleteProduto } from '../../controllers/produto.controller.ts';
 import { useState } from 'react';
 import { PadraoModal } from '../Modal/Modal.tsx';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProductCard({
     image,
@@ -22,6 +23,12 @@ export default function ProductCard({
     preco,
     tipoCard,
 }: CardProps) {
+    const navigate = useNavigate();
+
+
+    const handleEdit = () => {
+        navigate(`/EditarProdutoPage/${id}`);
+    };
 
     const [openModal, setOpenModal] = useState(false);
     const deleteMutation = useDeleteProduto();
@@ -59,7 +66,7 @@ export default function ProductCard({
             case "Produtor":
                 return (
                     <Box className="center" gap={1}>
-                        <Button variante="ButtonGreen" espacamento={60} tamanho="md" icon={Pencil}>
+                        <Button onClick={handleEdit} variante="ButtonGreen" espacamento={60} tamanho="md" icon={Pencil}>
                             Editar
                         </Button>
                         <Button

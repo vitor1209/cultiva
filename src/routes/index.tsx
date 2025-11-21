@@ -8,12 +8,12 @@ import {
     PedidosPage,
     PedidoDetalhe,
     CadastrarProdutoPage,
-    ProdutoDetalhePage,
+    // ProdutoDetalhePage,
     FinalizarCarrinhoPage,
     FinalizarEnderecoPage,
     ProdutorPrivatePage,
     PerfilProdutorPage,
-    // EditarProdutoPage,
+    EditarProdutoPage,
     ResetSenhaPage,
     ResetTokenPage,
     HomeConsumidorPage,
@@ -30,7 +30,7 @@ export default function AppRoutes() {
                 <Route path="/Login" element={<LoginPage />} />
                 <Route path="/ResetSenha" element={<ResetSenhaPage />} />
                 <Route path="/Cadastro" element={<CadastroPage />} />
-                <Route path="/ProdutoDetalhe" element={<ProdutoDetalhePage />} />
+                {/* <Route path="/ProdutoDetalhe" element={<ProdutoDetalhePage />} /> */}
                 <Route path="/FinalizarCarrinho" element={<FinalizarCarrinhoPage />} />
                 <Route path="/FinalizarEndereco" element={<FinalizarEnderecoPage />} />
                 <Route path="/PerfilProdutorPage" element={<PerfilProdutorPage />} />
@@ -45,7 +45,7 @@ export default function AppRoutes() {
                 <Route path="/Pedidos/:id" element={<PedidoDetalhe />} />
                 <Route path="/Cadastrar" element={<CadastrarProdutoPage />} />
                 <Route path="/ProdutorPrivatePage" element={<ProdutorPrivatePage />} />
-                {/* <Route path="/EditarProdutoPage/:id" element={<EditarProdutoPage />} /> */}
+                <Route path="/EditarProdutoPage/:id" element={<EditarProdutoPage />} />
             </Route>
         </Routes>
     );

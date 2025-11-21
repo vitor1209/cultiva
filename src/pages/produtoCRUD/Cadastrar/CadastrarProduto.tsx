@@ -1,18 +1,18 @@
 import { Container, IconButton, MenuItem, Stack, Typography } from "@mui/material";
 import { Alert } from "@mui/joy";
 import { Asterisk, UserRound } from "lucide-react";
-import { Header } from "../../components/Header/Header.tsx";
-import SearchBar from "../../components/barSearch/barSearch.tsx";
-import { Button } from "../../components/Button/Button.tsx";
-import { Footer } from "../../components/Footer/Footer.tsx";
-import { Input } from "../../components/Input/Input.tsx";
-import { MASCARAS } from "../../masks/index.ts";
-import * as styled from "./CadastrarProdutoPage.styled.ts";
-import { InputImagem } from "../../components/Input/BoxImg/BoxImg.tsx";
-import { SelectControlado } from "../../components/Input/Select/Select.tsx";
+import { Header } from "../../../components/Header/Header.tsx";
+import SearchBar from "../../../components/barSearch/barSearch.tsx";
+import { Button } from "../../../components/Button/Button.tsx";
+import { Footer } from "../../../components/Footer/Footer.tsx";
+import { Input } from "../../../components/Input/Input.tsx";
+import { MASCARAS } from "../../../masks/index.ts";
+import * as styled from "../CadastrarProdutoPage.styled.ts";
+import { InputImagem } from "../../../components/Input/BoxImg/BoxImg.tsx";
+import { SelectControlado } from "../../../components/Input/Select/Select.tsx";
 import { useCadastroProduto } from "./CadastrarProduto.hooks.ts";
 import { useForm } from "react-hook-form";
-import type { CadastroProdutoType } from "./CadastrarProduto.schemas.ts";
+import type { CadastroProdutoType } from "../CadastrarProduto.schemas.ts";
 
 export function CadastrarProdutoPage() {
     const { control, handleSubmit } = useForm<CadastroProdutoType>();
@@ -138,7 +138,7 @@ export function CadastrarProdutoPage() {
                             </styled.InputRow>
 
                             <Stack flexDirection="row" width="90%" justifyContent="space-between" mb="10%" mt="5%">
-                                <Button variante="ButtonGray" tamanho="md" type="button" sx={{ width: "48%" }}>Cancelar</Button>
+                                <Button variante="ButtonGray" to="/HomeProdutor" tamanho="md" type="button" sx={{ width: "48%" }}>Cancelar</Button>
                                 <Button tamanho="md" variante="ButtonGreen" sx={{ width: "48%" }} onClick={onSubmit} disabled={loading}>
                                     {loading ? "Salvando..." : "Salvar"}
                                 </Button>

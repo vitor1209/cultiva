@@ -1,6 +1,7 @@
 export enum ProdutoQueryKey {
     CREATE = "CREATE_PRODUCT",
     GET = "GET_PRODUCT",
+    UPDATE ="UPDATE_PRODUCT"
 }
 
 export namespace CreateProduto {
@@ -46,5 +47,33 @@ export namespace GetProduto {
         fk_unidade_medida_id: number;
         fk_horta_id: number;
         imagem?: string; 
+    };
+}
+
+export namespace UpdateProduto {
+    export type Request = {
+        id: number;
+        nome?: string;
+        descricao?: string;
+        preco_unit?: number;
+        quantidade_estoque?: number;
+        quant_unit_medida?: number;
+        validade?: string;
+        fk_unidade_medida_id?: number;
+        fk_horta_id?: number;
+        caminho?: File | null;
+    };
+
+    export type Response = {
+        id: number;
+        nome: string;
+        descricao?: string;
+        preco_unit: number;
+        quantidade_estoque: number;
+        quant_unit_medida: number;
+        validade?: string;
+        fk_unidade_medida_id: number;
+        fk_horta_id: number;
+        imagem?: string;
     };
 }
