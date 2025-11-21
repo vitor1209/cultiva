@@ -1,6 +1,6 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { api } from "../lib/api/api";
-import { ProdutoQueryKey, type CreateProduto } from "../models/produto.types";
+import { ProdutoQueryKey, type CreateProduto, type GetProduto } from "../models/produto.types";
 
 export const useCadastroProduto = () => {
   return useMutation<CreateProduto.Response, unknown, CreateProduto.Request>({
@@ -9,5 +9,19 @@ export const useCadastroProduto = () => {
       const { data } = await api.post("/produtos", payload);
       return data;
     },
+  });
+};
+
+export const useGetProdutos = (fk_horta_id?: number) => {
+  return useQuery<GetProduto.Response[]>({
+    queryKey: [ProdutoQueryKey.GET, fk_horta_id],
+    queryFn: async () => {
+      const response = await api.get("/produtos", {
+        params: { horta_id: fk_horta_id }
+      });
+
+      return response.data.data; 
+    },
+    enabled: !!fk_horta_id,
   });
 };

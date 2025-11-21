@@ -4,7 +4,7 @@ import {
     HomePage,
     LoginPage,
     CadastroPage,
-    // HomePageProdutor,
+    HomePageProdutor,
     PedidosPage,
     PedidoDetalhe,
     CadastrarProdutoPage,
@@ -39,7 +39,7 @@ export default function AppRoutes() {
 
             {/* Rotas privadas */}
             <Route element={<PrivateRoute />}>
-                {/* <Route path="/HomeProdutor" element={<HomePageProdutor />} /> */}
+                <Route path="/HomeProdutor" element={<HomePageProdutor />} />
                 <Route path="/Pedidos" element={<PedidosPage />} />
                 <Route path="/Pedidos/:id" element={<PedidoDetalhe />} />
                 <Route path="/Cadastrar" element={<CadastrarProdutoPage />} />

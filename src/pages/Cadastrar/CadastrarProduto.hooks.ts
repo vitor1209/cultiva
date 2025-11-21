@@ -21,7 +21,7 @@ export const useCadastroProduto = () => {
 
             setSuccessMessage("Produto cadastrado com sucesso!");
             await sleep(1000);
-            navigate('/');
+            navigate('/HomeProdutor');
         } catch (err: unknown) {
             if (axios.isAxiosError(err)) {
                 setErrorMessage(err.response?.data?.message || "Erro ao cadastrar produto");

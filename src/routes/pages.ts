@@ -1,7 +1,7 @@
 export { HomePage } from "../pages/Home/LandingPage/LandingPage"
 export { LoginPage } from "../pages/Auth/Login/Login"
 export { CadastroPage } from "../pages/Auth/Cadastro/Cadastro"
-// export { HomePageProdutor } from "../pages/Home/Produtor/LandingPageProdutor"
+export { HomePageProdutor } from "../pages/Home/Produtor/LandingPageProdutor"
 export { PedidosPage } from "../pages/Pedidos/PagePedidos/Pedidos"
 export { PedidoDetalhe } from "../pages/Pedidos/PedidoDetalhes/PedidoDetalhe.tsx"
 export { CadastrarProdutoPage } from "../pages/Cadastrar/CadastrarProduto.tsx"

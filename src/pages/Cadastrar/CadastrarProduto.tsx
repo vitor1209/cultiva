@@ -58,7 +58,6 @@ export function CadastrarProdutoPage() {
     formData.append("caminho", file);
   }
 
-  // 🔹 Log dos valores que vão para o backend
   console.log("Dados do produto antes do envio:");
   console.log({
     nome: data.nome,

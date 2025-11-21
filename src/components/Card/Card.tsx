@@ -5,24 +5,36 @@ import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import * as Styled from "./Card.styled.ts";
 import { Button } from "../../components/Button/Button";
-import { Star, ShoppingCart, MapPin, Trash2, Pencil } from 'lucide-react';
+import { ShoppingCart, MapPin, Trash2, Pencil } from 'lucide-react';
 import type { CardProps } from "./Card.types.ts";
 import { Box, Stack } from '@mui/material';
 
-export default function ProductCard({ image,
+export default function ProductCard({
+    image,
     name,
     lugar,
-    avaliacao,
+    descricao,
+    validade,
     preco,
     tipoCard,
 }: CardProps) {
+
+    // Limita descrição longa
+    const descCurta = descricao && descricao.length > 40
+        ? descricao.substring(0, 40) + "..."
+        : descricao;
 
     const renderByType = () => {
         switch (tipoCard) {
             case "Horta":
                 return (
                     <Box className="center">
-                        <Button variante="ButtonLinkBlack" espacamento={70} tamanho="sm" sx={{ border: '1px solid', borderColor: 'grey.300' }}>
+                        <Button
+                            variante="ButtonLinkBlack"
+                            espacamento={70}
+                            tamanho="sm"
+                            sx={{ border: '1px solid', borderColor: 'grey.300' }}
+                        >
                             Ver produtos
                         </Button>
                     </Box>
@@ -33,7 +45,7 @@ export default function ProductCard({ image,
                         <Button variante="ButtonGreen" espacamento={60} tamanho="md" icon={Pencil}>
                             Editar
                         </Button>
-                        <Button variante='ButtonLinkRed' icon={Trash2} tamanho={'xl'}></Button>
+                        <Button variante="ButtonLinkRed" icon={Trash2} tamanho={'xl'} />
                     </Box>
                 );
             case "Produto":
@@ -65,45 +77,50 @@ export default function ProductCard({ image,
                     />
                 </Stack>
             </CardOverflow>
+
             <CardContent className="cardContainer">
                 <div className="inline-item">
-                    <Link href="#product-card" color="neutral" textColor="text.primary" >
+                    <Link color="neutral" textColor="text.primary">
                         {name}
                     </Link>
                 </div>
 
-                {tipoCard === "Produto" || tipoCard === "Produtor" ?
-                    <div >
-                        <div className="inline-item">
-                            <Typography level="body-sm">{lugar}</Typography>
-                        </div>
+                <div>
+                    <div className="inline-item">
+                        <Typography startDecorator={<MapPin height={18} />} level="body-sm">
+                            {lugar}
+                        </Typography>
                     </div>
-                    : <div >
-                        <div className="inline-item">
-                            <Typography startDecorator={<MapPin height={18} />} level="body-sm">{lugar}</Typography>
-                        </div>
-                    </div>
-                }
-
-                <div className="inline-item">
-                    <Typography startDecorator={<Star color='#fcc600' fill="#fcc600" height={20} />} level="body-sm">
-                        {avaliacao}
-                    </Typography>
                 </div>
 
-                {tipoCard === "Produto" || tipoCard === "Produtor" ?
+                {/* Descrição curta */}
+                {descricao && (
                     <div className="inline-item">
-                        <Chip size='lg' color="success">
+                        <Typography level="body-sm">
+                            {descCurta}
+                        </Typography>
+                    </div>
+                )}
+
+                {/* Validade */}
+                {validade && (
+                    <div className="inline-item">
+                        <Typography level="body-xs" sx={{ opacity: 0.7 }}>
+                            Validade: {validade}
+                        </Typography>
+                    </div>
+                )}
+
+                {(tipoCard === "Produto" || tipoCard === "Produtor") && (
+                    <div className="inline-item">
+                        <Chip size="lg" color="success">
                             R${preco}
                         </Chip>
-                    </div> : <></>}
-
+                    </div>
+                )}
             </CardContent>
 
-            <>{renderByType()}</>
-
+            {renderByType()}
         </Styled.ProductCardStyled>
     );
 }
-
-
