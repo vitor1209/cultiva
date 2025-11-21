@@ -43,10 +43,10 @@ export const ProdutorPrivatePage = () => {
                 }
             >
                 <>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Início</Button>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Seus Produtos</Button>
+                    <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">Início</Button>
+                    <Button variante="ButtonLinkBlack" to="/HomeProdutor#produtos" tamanho="sm">Seus Produtos</Button>
                     <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">Pedidos</Button>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Como Funciona</Button>
+                    <Button variante="ButtonLinkBlack" to="/HomeProdutor#sobre" tamanho="sm">Sobre</Button>
                 </>
             </Header>
 

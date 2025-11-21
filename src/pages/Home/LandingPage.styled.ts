@@ -44,7 +44,7 @@ export const Session = styled(Stack)(() => ({
     justifyContent: "center",
     "& h2": {
         lineHeight: "1.5rem",
-        fontFamily: "Arimo",
+        fontFamily: "Anybody",
         color: "#0a0a0a",
         textAlign: "center",
         display: "inline-block",
@@ -60,3 +60,25 @@ export const Session = styled(Stack)(() => ({
 
     },
 }))
+
+
+export const Hero = styled(Stack)(() => ({
+    padding: "4rem 1rem",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "linear-gradient(135deg, #d6ffcb 0%, #a4e6b7 100%)",
+    textAlign: "center",
+    height: "25rem"
+}));
+
+
+export const CTABox = styled(Stack)(() => ({
+    padding: "4rem 1rem",
+    background: "linear-gradient(135deg, #deffd4ff 5%, #50b66dff 100%)",
+    color: "#fff",
+    textAlign: "center",
+    alignItems: "center",
+    justifyContent: "center",
+}));

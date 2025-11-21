@@ -41,9 +41,19 @@ export function HomePageProdutor() {
         error,
     } = useGetProdutos(fk_horta_id);
 
-        const produtosExibidos = mostrarTodos
+    const produtosExibidos = mostrarTodos
         ? produtos
         : produtos?.slice(0, 8);
+
+    const scrollToSection = (id: string) => {
+        const section = document.getElementById(id);
+
+        if (section) {
+            const yOffset = -100;
+            const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: "smooth" });
+        }
+    };
 
     return (
         <Container disableGutters maxWidth={false} sx={{ backgroundColor: "#fff8f0", textAlign: "center", marginTop: 8, padding: 0 }}>
@@ -63,13 +73,13 @@ export function HomePageProdutor() {
             >
                 <>
                     <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">Início</Button>
-                    <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">Seus Produtos</Button>
+                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('produtos')} tamanho="sm">Seus Produtos</Button>
                     <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">Pedidos</Button>
-                    <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">Como Funciona</Button>
+                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('sobre')} tamanho="sm">Sobre</Button>
                 </>
             </Header>
 
-            {/* Banner com nome */}
+            {/* Banner */}
             <Styled.boxName>
                 <Typography p={'0 3%'} level="inherit" sx={{ color: '#fff' }}>
                     Olá, {usuario?.nome ?? "Usuário"}
@@ -123,19 +133,12 @@ export function HomePageProdutor() {
             <Styled.Division />
 
             {/* Produtos */}
-            <Container maxWidth={"xl"} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Container id="produtos" maxWidth={"xl"} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Stack direction="row" justifyContent='space-between' width="90%" marginBottom={2}>
                     <Typography level="body-lg">Seus Produtos</Typography>
-                    <Button
-                        ladoIcon="direita"
-                        icon={ChevronRight}
-                        variante="ButtonLinkBlack"
-                        tamanho="sm"
-                        onClick={() => setMostrarTodos(true)}
-                    >
+                    <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho="sm" onClick={() => setMostrarTodos(true)}>
                         Ver todos
                     </Button>
-
                 </Stack>
 
                 <Stack direction={{ xs: "column", sm: "row" }} gap={3} flexWrap="wrap" justifyContent="space-evenly" width="95%">
@@ -147,7 +150,7 @@ export function HomePageProdutor() {
                         produtosExibidos.map(produto =>
                             <ProductCard
                                 key={produto.id}
-                                image={produto.imagem ?? "http://localhost:8000/storage/produtos/rmF2Bkgb7lQbGi1LoytTDe8O7kuxFzvUTt8iQBzw.jpg"}
+                                image={produto.imagem ?? ""}
                                 name={produto.nome}
                                 lugar={usuario?.nome}
                                 descricao={produto.descricao}
@@ -170,7 +173,7 @@ export function HomePageProdutor() {
                     <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho="sm">Ver todos</Button>
                 </Stack>
                 <Stack direction={{ xs: "column", sm: "row" }} flexWrap="wrap" gap={2.5}>
-                    {/* Futuro: lista de produtores */}
+                    {/* Futuro */}
                 </Stack>
             </Container>
 

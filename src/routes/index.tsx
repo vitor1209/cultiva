@@ -19,6 +19,7 @@ import {
     HomeConsumidorPage,
 } from "./pages";
 
+
 export default function AppRoutes() {
     return (
         <Routes>
