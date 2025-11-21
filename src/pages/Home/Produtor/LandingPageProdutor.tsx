@@ -147,6 +147,7 @@ export function HomePageProdutor() {
                         produtosExibidos.map(produto =>
                             <ProductCard
                                 key={produto.id}
+                                id={produto.id} 
                                 image={produto.imagem ?? "http://localhost:8000/storage/produtos/rmF2Bkgb7lQbGi1LoytTDe8O7kuxFzvUTt8iQBzw.jpg"}
                                 name={produto.nome}
                                 lugar={usuario?.nome}

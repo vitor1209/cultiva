@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "../lib/api/api";
 import { ProdutoQueryKey, type CreateProduto, type GetProduto } from "../models/produto.types";
 
@@ -23,5 +23,19 @@ export const useGetProdutos = (fk_horta_id?: number) => {
       return response.data.data; 
     },
     enabled: !!fk_horta_id,
+  });
+};
+
+export const useDeleteProduto = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (id: number) => {
+      const { data } = await api.delete(`/produtos/${id}`);
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["produtos"] });
+    }
   });
 };
