@@ -5,7 +5,6 @@ import { Header } from "../../../components/Header/Header.tsx";
 import { CarouselFullScreen } from "../../../components/Carousel/Carousel.tsx";
 import * as Styled from "../LandingPage.styled.ts";
 import { Button } from "../../../components/Button/Button.tsx";
-import ProductCard from "../../../components/Card/Card.tsx";
 import { Footer } from "../../../components/Footer/Footer.tsx";
 
 
