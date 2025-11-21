@@ -1,4 +1,4 @@
-import { Stack, Box, styled } from "@mui/material"
+import { Stack, Box, styled, keyframes } from "@mui/material"
 
 export const boxName = styled(Box)(() => ({
     width: "100%",
@@ -39,23 +39,79 @@ export const ContainerFull = styled(Stack)(() => ({
 export const Session = styled(Stack)(() => ({
     width: "60%", // largura interna padrão
     display: "flex",
-    padding: "8% 0",
+    padding: "5% 0",
     alignItems: "center",
     justifyContent: "center",
-    "& h1": {
-        fontSize: "1rem",
+    "& h2": {
         lineHeight: "1.5rem",
-        fontFamily: "Arimo",
+        fontFamily: "Anybody",
         color: "#0a0a0a",
         textAlign: "center",
         display: "inline-block",
+        marginBottom: "2rem"
     },
     "& p": {
-        fontSize: "1rem",
         lineHeight: "1.5rem",
         fontFamily: "Arimo",
         color: "#717182",
         textAlign: "center",
         display: "inline-block",
+        marginBottom: "2rem"
+
     },
 }))
+
+
+// export const Hero = styled(Stack)(() => ({
+//     padding: "4rem 1rem",
+//     display: "flex",
+//     flexDirection: "column",
+//     justifyContent: "center",
+//     alignItems: "center",
+//     background: "linear-gradient(135deg, #d6ffcb 0%, #a4e6b7 100%)",
+//     textAlign: "center",
+//     height: "25rem"
+// }));
+
+const moverGradiente = keyframes`
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+`;
+
+export const CTABox = styled(Stack)(() => ({
+    padding: "4rem 1rem",
+    background: "linear-gradient(135deg, #E8F5E9 0%, #bde6aaff 50%, #daffa3ff 100%)",
+    backgroundSize: "300% 300%",
+    animation: `${moverGradiente} 4s ease infinite`,
+    color: "#fff",
+    textAlign: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    "& h2": {
+
+        marginBottom: "2rem"
+    }
+
+}));
+
+
+export const HeroContainer = styled(Box)(() => ({
+    padding: "6rem 2rem",
+    background: "linear-gradient(135deg, #E8F5E9 0%, #bde6aaff 50%, #daffa3ff 100%)",
+    backgroundSize: "300% 300%",
+    animation: `${moverGradiente} 5s ease infinite`,
+    display: "flex",
+    justifyContent: "center",
+    height: "auto",
+
+    "@media (min-width: 900px)": {
+        height: "40rem"
+    }
+}));

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Container, Stack, IconButton, Box } from "@mui/material";
 import Typography from "@mui/joy/Typography";
 import { ChevronRight, UserRound, ShoppingBag, TrendingUp, Package, Star, Plus, ChartColumn } from "lucide-react";
@@ -11,39 +10,44 @@ import { Footer } from "../../../components/Footer/Footer.tsx";
 import SearchBar from "../../../components/barSearch/barSearch.tsx";
 import CardInfo from "../../../components/cardInfo/CardInfo.tsx";
 import { Link } from "react-router-dom";
-import { getProdutosByProdutor } from "../../../controllers/produto.controller";
-
-type Produto = {
-    id: number;
-    nome: string;
-    descricao?: string;
-    preco: number;
-    imagem?: string;
-    unidadeMedida: string;
-    quantidadeEstoque: number;
-    quantidadeMedida: number;
-    dataColheita: string;
-    dataValidade: string;
-    avaliacao?: number;
-    horta?: { id: number; nome: string };
-};
+import { useGetProdutos } from "../../../controllers/produto.controller.ts";
+import { useState } from "react";
 
 export function HomePageProdutor() {
-    const [produtos, setProdutos] = useState<Produto[]>([]);
+
+    const [mostrarTodos, setMostrarTodos] = useState(false);
+
     const usuario = localStorage.getItem("usuarioLogado")
         ? JSON.parse(localStorage.getItem("usuarioLogado")!)
         : null;
 
-    useEffect(() => {
-        if (usuario) {
-            getProdutosByProdutor(usuario.id)
-                .then((res) => setProdutos(res))
-                .catch((err) => console.error(err));
+    const usuarioLogado = localStorage.getItem("usuarioLogado");
+    let fkHortaId = 5;
+
+    if (usuarioLogado) {
+        try {
+            const userObj = JSON.parse(usuarioLogado);
+            fkHortaId = userObj.id || 5;
+        } catch (err) {
+            console.warn("Não foi possível ler o usuário logado:", err);
         }
-    }, [usuario]);
+    }
+
+    const fk_horta_id = fkHortaId;
+
+    const {
+        data: produtos,
+        isLoading,
+        error,
+    } = useGetProdutos(fk_horta_id);
+
+        const produtosExibidos = mostrarTodos
+        ? produtos
+        : produtos?.slice(0, 8);
 
     return (
         <Container disableGutters maxWidth={false} sx={{ backgroundColor: "#fff8f0", textAlign: "center", marginTop: 8, padding: 0 }}>
+
             {/* Header */}
             <Header
                 end={
@@ -65,7 +69,7 @@ export function HomePageProdutor() {
                 </>
             </Header>
 
-            {/* Banner com nome do usuário */}
+            {/* Banner com nome */}
             <Styled.boxName>
                 <Typography p={'0 3%'} level="inherit" sx={{ color: '#fff' }}>
                     Olá, {usuario?.nome ?? "Usuário"}
@@ -77,7 +81,7 @@ export function HomePageProdutor() {
 
             <Styled.Division />
 
-            {/* Resumo de desempenho */}
+            {/* Resumo */}
             <Container maxWidth={"xl"} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Stack direction="row" justifyContent='space-between' width="94%" marginBottom={2}>
                     <Typography level="body-lg">Resumo de desempenho</Typography>
@@ -118,27 +122,42 @@ export function HomePageProdutor() {
 
             <Styled.Division />
 
-            {/* Produtos do produtor */}
+            {/* Produtos */}
             <Container maxWidth={"xl"} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Stack direction="row" justifyContent='space-between' width="90%" marginBottom={2}>
                     <Typography level="body-lg">Seus Produtos</Typography>
-                    <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho={"sm"}>Ver todos</Button>
+                    <Button
+                        ladoIcon="direita"
+                        icon={ChevronRight}
+                        variante="ButtonLinkBlack"
+                        tamanho="sm"
+                        onClick={() => setMostrarTodos(true)}
+                    >
+                        Ver todos
+                    </Button>
+
                 </Stack>
-                <Stack direction={{ xs: "column", sm: "row" }} gap={3} flexWrap="wrap" justifyContent="space-evenly" alignItems="center" width="95%">
-                    {produtos.length > 0 ? (
-                        produtos.map((produto) => (
+
+                <Stack direction={{ xs: "column", sm: "row" }} gap={3} flexWrap="wrap" justifyContent="space-evenly" width="95%">
+
+                    {isLoading && <Typography>Carregando produtos...</Typography>}
+                    {error && <Typography>Erro ao carregar produtos</Typography>}
+
+                    {produtosExibidos && produtosExibidos.length > 0 ? (
+                        produtosExibidos.map(produto =>
                             <ProductCard
                                 key={produto.id}
-                                image={produto.imagem ?? "https://via.placeholder.com/150"}
+                                id={produto.id} 
+                                image={produto.imagem ?? "https://veja.abril.com.br/wp-content/uploads/2016/12/maconha.jpg?crop=1&resize=1212,909"}
                                 name={produto.nome}
-                                lugar={produto.horta?.nome ?? "Horta do produtor"}
-                                avaliacao={produto.avaliacao ?? 0}
-                                preco={produto.preco.toFixed(2)}
-                                tipoCard={"Produtor"}
+                                lugar={usuario?.nome}
+                                descricao={produto.descricao}
+                                preco={produto.preco_unit.toFixed(2)}
+                                tipoCard="Produtor"
                             />
-                        ))
+                        )
                     ) : (
-                        <Typography>Nenhum produto cadastrado</Typography>
+                        !isLoading && <Typography>Nenhum produto cadastrado</Typography>
                     )}
                 </Stack>
             </Container>
@@ -149,10 +168,10 @@ export function HomePageProdutor() {
             <Container maxWidth={"xl"} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '3% 0' }}>
                 <Stack direction="row" justifyContent='space-between' width="95%" marginBottom={2}>
                     <Typography level="body-lg">Conferir outros Produtores</Typography>
-                    <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho={"sm"}>Ver todos</Button>
+                    <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho="sm">Ver todos</Button>
                 </Stack>
                 <Stack direction={{ xs: "column", sm: "row" }} flexWrap="wrap" gap={2.5}>
-                    {/* Aqui você pode mapear outros produtores caso tenha uma API */}
+                    {/* Futuro: lista de produtores */}
                 </Stack>
             </Container>
 

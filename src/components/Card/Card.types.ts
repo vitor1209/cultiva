@@ -1,8 +1,10 @@
 export interface CardProps {
-    tipoCard: "Produto" | "Horta" | "Produtor"
-    image: string
-    name: string
-    lugar: string
-    avaliacao: number
-    preco?: string
+    image: string;
+    id: number;
+    name: string;
+    lugar: string;
+    descricao?: string;
+    validade?: string;
+    preco?: string | number;
+    tipoCard: "Horta" | "Produtor" | "Produto";
 }

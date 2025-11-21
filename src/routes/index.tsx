@@ -1,7 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import { PublicRoute, PrivateRoute } from "./utils";
-import PerfilProdutor from "../pages/Produtor/PerfilProdutor"
-
 import {
     HomePage,
     LoginPage,
@@ -10,18 +8,18 @@ import {
     PedidosPage,
     PedidoDetalhe,
     CadastrarProdutoPage,
-    ProdutoDetalhePage,
+    // ProdutoDetalhePage,
     FinalizarCarrinhoPage,
     FinalizarEnderecoPage,
     ProdutorPrivatePage,
     PerfilProdutorPage,
+    EditarProdutoPage,
     ResetSenhaPage,
     ResetTokenPage,
     HomeConsumidorPage,
+    CarrinhoVazioPage,
 } from "./pages";
 
-// Caso queira manter sua página antiga (import de PerfilProdutor)
-// import PerfilProdutor from "../pages/Produtor/PerfilProdutor";
 
 export default function AppRoutes() {
     return (
@@ -30,23 +28,16 @@ export default function AppRoutes() {
             <Route element={<PublicRoute />}>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/HomeConsumidor" element={<HomeConsumidorPage />} />
-
                 <Route path="/Login" element={<LoginPage />} />
                 <Route path="/ResetSenha" element={<ResetSenhaPage />} />
-                <Route path="/ResetTokenPage" element={<ResetTokenPage />} />
-
                 <Route path="/Cadastro" element={<CadastroPage />} />
-
-                <Route path="/ProdutoDetalhe" element={<ProdutoDetalhePage />} />
+                {/* <Route path="/ProdutoDetalhe" element={<ProdutoDetalhePage />} /> */}
                 <Route path="/FinalizarCarrinho" element={<FinalizarCarrinhoPage />} />
                 <Route path="/FinalizarEndereco" element={<FinalizarEnderecoPage />} />
-
-                {/* Rotas de perfil público do produtor */}
                 <Route path="/PerfilProdutorPage" element={<PerfilProdutorPage />} />
-
-                {/* Compatibilidade com sua rota antiga */}
-                {/* <Route path="/PerfilProdutor" element={<PerfilProdutor />} /> */}
-                <Route path="/PerfilProdutor" element={<PerfilProdutor />} />
+                <Route path="/ResetTokenPage" element={<ResetTokenPage />} />
+                <Route path="/CarrinhoVazioPage" element={<CarrinhoVazioPage />} />        
+                
             </Route>
 
             {/* Rotas privadas */}
@@ -56,6 +47,7 @@ export default function AppRoutes() {
                 <Route path="/Pedidos/:id" element={<PedidoDetalhe />} />
                 <Route path="/Cadastrar" element={<CadastrarProdutoPage />} />
                 <Route path="/ProdutorPrivatePage" element={<ProdutorPrivatePage />} />
+                <Route path="/EditarProdutoPage/:id" element={<EditarProdutoPage />} />
             </Route>
         </Routes>
     );

@@ -16,6 +16,7 @@ export const PadraoModal: React.FC<ModalProps> = ({
     buttonTextTwo = 'Cancelar Venda',
     Icon = CheckCircle,
     color = "#16a34a",
+    to = "/Pedidos",
     btnTwo = false
 }) => {
     return (
@@ -39,7 +40,10 @@ export const PadraoModal: React.FC<ModalProps> = ({
                         <Button onClick={onClose} espacamento={100} tamanho="md">{buttonText}</Button>
                     </Stack>
                     :
-                    <Button to="/Pedidos" espacamento={70} onClick={onConfirm || onClose} tamanho="md">{buttonText}</Button>
+                    <Button to={to} espacamento={70} onClick={() => {
+                        if (to) window.location.href = to; 
+                        else onConfirm?.();
+                    }} tamanho="md">{buttonText}</Button>
                 }
 
             </styled.Container>

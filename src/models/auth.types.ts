@@ -29,6 +29,7 @@ export namespace RegisterUser {
     export type Response = {
         user: user
         token: string
+        horta?: Horta 
     }
 }
 

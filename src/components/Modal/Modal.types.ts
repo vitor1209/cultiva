@@ -11,4 +11,5 @@ export interface ModalProps {
     Icon?: LucideIcon
     color?: string
     btnTwo?: boolean
+    to?: string 
 }

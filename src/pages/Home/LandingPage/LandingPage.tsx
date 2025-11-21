@@ -8,11 +8,15 @@ import { Button } from "../../../components/Button/Button.tsx";
 import ProductCard from "../../../components/Card/Card.tsx";
 import { Footer } from "../../../components/Footer/Footer.tsx";
 
+
 const scrollToSection = (id: string) => {
-  const el = document.getElementById(id);
-  if (el) {
-    el.scrollIntoView({ behavior: "smooth" });
-  }
+    const section = document.getElementById(id);
+
+    if (section) {
+        const yOffset = -100;
+        const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+    }
 };
 
 export function HomePage() {
@@ -35,12 +39,111 @@ export function HomePage() {
                 }
             >
                 <>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Início</Button>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Produtores</Button>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Produtos</Button>
-                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('ComoFunciona')} tamanho="sm">Como Funciona</Button>
+                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('inicio')} tamanho="sm"
+                    >Início</Button>
+
+
+                    <Button to="" variante="ButtonLinkBlack" onClick={() => scrollToSection('sobre')} tamanho="sm">Sobre</Button>
                 </>
             </Header>
+
+            <Styled.HeroContainer>
+                <Stack
+                    direction={{ xs: "column-reverse", md: "row" }}
+                    spacing={{ xs: 6, md: 10 }}
+                    alignItems="center"
+                    justifyContent="space-between"
+                    sx={{ width: "100%", maxWidth: 1200, mx: "auto" }}
+                >
+                    {/* ===== COLUNA TEXTO ===== */}
+                    <Box
+                        sx={{
+                            flex: 1,
+                            textAlign: "left",
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            maxWidth: 520, // Mantém tudo alinhado e bonito
+                            width: "100%",
+                        }}
+                    >
+                        <Typography
+                            level="h1"
+                            sx={{
+                                fontWeight: 700,
+                                fontSize: { xs: "2rem", md: "3rem" },
+                                color: "#1B3A28",
+                                lineHeight: 1.2,
+                            }}
+                        >
+                            Conectando você ao Produtor Local
+                        </Typography>
+
+                        <Typography
+                            level="body-lg"
+                            sx={{
+                                mt: 2,
+                                color: "#3A4D3D",
+                                fontSize: "1.15rem",
+                            }}
+                        >
+                            Produtos frescos, naturais e direto da terra para sua casa,
+                            com qualidade e transparência.
+                        </Typography>
+
+                        <Stack
+                            direction="row"
+                            spacing={3}
+                            sx={{ mt: 6 }}
+                        >
+                            <Button variante="ButtonGreen" tamanho="xl" to="/Cadastro" espacamento={14}>
+                                Começar Agora
+                            </Button>
+
+                            <Button variante="ButtonLinkBlack" tamanho="xl" to="/Sobre">
+                                Veja Como Funciona
+                            </Button>
+                        </Stack>
+
+                        {/* ÍCONES ALINHADOS */}
+                        <Stack
+                        direction={"row"}
+                        gap={4}
+                        justifyContent={"space-evenly"}
+                        flexWrap={"wrap"}
+                        mt={8}
+                        >
+                            <Stack alignItems="center" spacing={1}>
+                                <img src="/natural.png" width={80} height={80} />
+                                <Typography level="body-sm">Natural</Typography>
+                            </Stack>
+
+                            <Stack alignItems="center" spacing={1}>
+                                <img src="/horta.png" width={80} height={80} />
+                                <Typography level="body-sm">Direto da Horta</Typography>
+                            </Stack>
+
+                            <Stack alignItems="center" spacing={1}>
+                                <img src="/entrega.png" width={80} height={80} />
+                                <Typography level="body-sm">Entrega Segura</Typography>
+                            </Stack>
+                        </Stack>
+                    </Box>
+
+                    <Box
+                        sx={{
+                            width: { xs: "100%", md: 600 },
+                            height: { xs: 240, md: 350 },
+                            backgroundImage: "url('/logog.png')",
+                            backgroundSize: "contain",
+                            backgroundRepeat: "no-repeat",
+                            backgroundPosition: "center",
+                        }}
+                    />
+                </Stack>
+            </Styled.HeroContainer>
+
+
 
             <Styled.Division />
             <CarouselFullScreen tamanho={"full"}>
@@ -50,65 +153,16 @@ export function HomePage() {
             </CarouselFullScreen>
             <Styled.Division />
 
-            <Styled.ContainerFull>
-                <Styled.Session id='ComoFunciona'>
-                    <h1>Conectando quem planta com quem consome</h1>
-                    <p>
-                        Encontre produtos frescos diretamente dos produtores da sua região. Apoie a agricultura local e tenha acesso a hortaliças de qualidade superior.
-                    </p>
-                    <Button
-                        variante="ButtonGreen"
-                        espacamento={15}
-                        tamanho="md"
-                        ladoIcon="direita"
-                        icon={ChevronRight}
-                    >
-                        Saiba Mais
-                    </Button>
-                </Styled.Session>
-            </Styled.ContainerFull>
-
-            <Styled.Division />
 
 
-            <Container maxWidth={"xl"} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', }}>
+
+            <Container id="inicio" maxWidth={"xl"} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', }}>
                 <Stack direction="row" justifyContent='space-between' width="90%" alignItems='center' marginBottom={2}>
                     <Typography level="h4">Mais Vendidos</Typography>
                     <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho={"sm"}>Ver todos</Button>
                 </Stack>
                 <Stack direction={{ xs: "column", sm: "row" }} gap={2} flexWrap="wrap" justifyContent="space-evenly" alignItems="center" width="95%"    >
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Alface Orgânica"}
-                        lugar={"Sítio Verde"}
-                        avaliacao={4.8}
-                        preco={'3.50'}
-                        tipoCard={'Produto'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Alface Orgânica"}
-                        lugar={"Sítio Verde"}
-                        avaliacao={4.8}
-                        preco={'3.50'}
-                        tipoCard={'Produto'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Alface Orgânica"}
-                        lugar={"Sítio Verde"}
-                        avaliacao={4.8}
-                        preco={'3.50'}
-                        tipoCard={'Produto'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Alface Orgânica"}
-                        lugar={"Sítio Verde"}
-                        avaliacao={4.8}
-                        preco={'3.50'}
-                        tipoCard={'Produto'}
-                    />
+                    
                 </Stack>
             </Container>
 
@@ -120,37 +174,56 @@ export function HomePage() {
                     <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho={"sm"}>Ver todos</Button>
                 </Stack>
                 <Stack direction={{ xs: "column", sm: "row" }} flexWrap="wrap" gap={2.5}>
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Sítio Verde"}
-                        lugar={"Campinas, SP"}
-                        avaliacao={4.8}
-                        tipoCard={'Horta'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Sítio Verde"}
-                        lugar={"Campinas, SP"}
-                        avaliacao={4.8}
-                        tipoCard={'Horta'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Sítio Verde"}
-                        lugar={"Campinas, SP"}
-                        avaliacao={4.8}
-                        tipoCard={'Horta'}
-                    />
-                    <ProductCard
-                        image={"https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"}
-                        name={"Sítio Verde"}
-                        lugar={"Campinas, SP"}
-                        avaliacao={4.8}
-                        tipoCard={'Horta'}
-                    />
+
                 </Stack>
             </Container>
+
+
             <Styled.Division />
+
+
+            <Styled.ContainerFull id="sobre">
+                <Styled.Session>
+
+                    <Typography level="h2">Sobre Cultiva+</Typography>
+                    <Typography level="body-md">
+                        O Cultiva+ é uma plataforma dedicada a conectar pequenos produtores locais a consumidores que buscam produtos naturais, frescos e de qualidade. Nosso objetivo é facilitar o comércio direto, promovendo uma relação mais próxima entre quem produz e quem consome, incentivando hábitos de consumo sustentáveis e conscientes.
+
+                    </Typography>
+
+                    <Typography level="body-md">
+
+                        Com o Cultiva+, os consumidores podem navegar facilmente pelo catálogo de produtos, visualizar detalhes como fotos, preço, validade, adicionar itens ao carrinho e finalizar suas compras de forma prática.
+                    </Typography>
+
+                    <Typography level="body-md">
+
+                        Para os produtores, o Cultiva+ oferece um painel completo de gestão, permitindo cadastrar e gerenciar produtos. A plataforma proporciona mais praticidade e eficiência, tornando o processo de venda mais lucrativo e organizado.
+
+                        Nosso compromisso é criar uma comunidade que valoriza a produção local, a transparência e o consumo consciente, conectando pessoas e fortalecendo a economia sustentável.
+                    </Typography>
+
+                </Styled.Session>
+            </Styled.ContainerFull>
+            <Styled.Division />
+
+            <Styled.CTABox>
+                <Typography level="h2">Pronto para apoiar produtores locais?</Typography>
+                <Button
+                    to="/Login"
+                    variante="ButtonGreen"
+                    espacamento={14}
+                    tamanho="md"
+                >
+                    Login
+                </Button>
+
+            </Styled.CTABox>
+
+            <Styled.Division />
+
+
+
             <Footer />
         </Container>
     );

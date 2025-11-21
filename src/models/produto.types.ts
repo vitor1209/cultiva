@@ -1,64 +1,79 @@
 export enum ProdutoQueryKey {
     CREATE = "CREATE_PRODUCT",
-    LIST = "LIST_PRODUCTS",
-    SHOW = "GET_PRODUCT",
-    UPDATE = "UPDATE_PRODUCT",
-    DELETE = "DELETE_PRODUCT",
+    GET = "GET_PRODUCT",
+    UPDATE ="UPDATE_PRODUCT"
 }
 
-// CREATE
 export namespace CreateProduto {
+    export type Request = {
+        nome: string;
+        descricao?: string;
+        preco_unit: number;
+        quantidade_estoque: number;
+        quant_unit_medida: number;
+        validade?: string;
+        fk_unidade_medida_id: number;
+        fk_horta_id: number;
+        caminho?: File; 
+    };
+
     export type Response = {
         id: number;
         nome: string;
         descricao?: string;
-        preco: number;
-        unidadeMedida: string;
-        quantidadeEstoque: number;
-        quantidadeMedida: number;
-        dataColheita: string;
-        dataValidade?: string;
-        caminho?: Blob; 
-        created_at: string;
+        preco_unit: number;
+        quantidade_estoque: number;
+        quant_unit_medida: number;
+        validade?: string;
+        fk_unidade_medida_id: number;
+        fk_horta_id: number;
+        imagem?: string; 
     };
 }
 
-// UPDATE
+export namespace GetProduto {
+    export type Request = {
+        fk_horta_id?: number;
+    };
+
+    export type Response = {
+        id: number;
+        nome: string;
+        descricao?: string;
+        preco_unit: number;
+        quantidade_estoque: number;
+        quant_unit_medida: number;
+        validade?: string;
+        fk_unidade_medida_id: number;
+        fk_horta_id: number;
+        imagem?: string; 
+    };
+}
+
 export namespace UpdateProduto {
-    export type Response = {
+    export type Request = {
         id: number;
-        nome: string;
+        nome?: string;
         descricao?: string;
-        preco: number;
-        unidadeMedida: string;
-        quantidadeEstoque: number;
-        quantidadeMedida: number;
-        dataColheita: string;
-        dataValidade?: string;
-        imagem?: string;
-        updated_at: string;
+        preco_unit?: number;
+        quantidade_estoque?: number;
+        quant_unit_medida?: number;
+        validade?: string;
+        fk_unidade_medida_id?: number;
+        fk_horta_id?: number;
+        caminho?: File | null;
     };
-}
 
-// LIST / SHOW
-export namespace Produto {
     export type Response = {
         id: number;
         nome: string;
         descricao?: string;
-        preco: number;
-        unidadeMedida: string;
-        quantidadeEstoque: number;
-        quantidadeMedida: number;
-        dataColheita: string;
-        dataValidade?: string;
+        preco_unit: number;
+        quantidade_estoque: number;
+        quant_unit_medida: number;
+        validade?: string;
+        fk_unidade_medida_id: number;
+        fk_horta_id: number;
         imagem?: string;
-        avaliacao?: number;
-        horta?: {
-            id: number;
-            nome: string;
-        };
-        created_at: string;
-        updated_at?: string;
     };
 }

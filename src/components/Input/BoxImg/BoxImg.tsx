@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import { useController, type Control, type FieldValues, type Path } from "react-hook-form";
 
@@ -6,7 +6,7 @@ type InputIMGProps<FormType extends FieldValues> = {
     name: Path<FormType>;
     label?: string;
     control: Control<FormType>;
-    defaultImage?: string;
+    defaultImage?: string; // URL inicial só para preview
     readOnly?: boolean;
     width?: number;
     height?: number;
@@ -22,16 +22,33 @@ export function InputImagem<FormType extends FieldValues>({
     height = 31.563,
 }: InputIMGProps<FormType>) {
 
-    const { field } = useController({ name, control });
+    const { field } = useController({
+        name,
+        control,
+        defaultValue: undefined, // form recebe File | undefined
+    });
+
     const [preview, setPreview] = useState<string | null>(defaultImage || null);
+
+    useEffect(() => {
+    if (field.value && typeof field.value === "object" && "name" in field.value && "size" in field.value) {
+        // é um File
+        setPreview(URL.createObjectURL(field.value as File));
+    } else if (typeof field.value === "string") {
+        // é uma URL
+        setPreview(field.value);
+    } else {
+        setPreview(defaultImage ?? null);
+    }
+}, [field.value, defaultImage]);
+
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (readOnly) return;
 
         const file = event.target.files?.[0];
         if (file) {
-            setPreview(URL.createObjectURL(file));
-            field.onChange(file); // envia FILE para o useForm
+            field.onChange(file); // envia File para o form
         }
     };
 
