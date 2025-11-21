@@ -39,23 +39,24 @@ export const ContainerFull = styled(Stack)(() => ({
 export const Session = styled(Stack)(() => ({
     width: "60%", // largura interna padrão
     display: "flex",
-    padding: "8% 0",
+    padding: "5% 0",
     alignItems: "center",
     justifyContent: "center",
-    "& h1": {
-        fontSize: "1rem",
+    "& h2": {
         lineHeight: "1.5rem",
         fontFamily: "Arimo",
         color: "#0a0a0a",
         textAlign: "center",
         display: "inline-block",
+        marginBottom: "2rem"
     },
     "& p": {
-        fontSize: "1rem",
         lineHeight: "1.5rem",
         fontFamily: "Arimo",
         color: "#717182",
         textAlign: "center",
         display: "inline-block",
+        marginBottom: "2rem"
+
     },
 }))

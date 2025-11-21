@@ -2,12 +2,17 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCreateProduto } from "../../controllers/produto.controller";
 import { cadastroProduto, type CadastroProdutoType } from "./CadastrarProduto.schemas";
+import { useState } from "react";
+
+import axios from "axios";
+
 
 export const useProduto = () => {
     const form = useForm<CadastroProdutoType>({
         resolver: zodResolver(cadastroProduto),
         mode: "onChange",
     });
+
 
     const createMutation = useCreateProduto();
 
@@ -30,7 +35,7 @@ export const useProduto = () => {
 
         // fk_unidade_medida_id: mapear de acordo com backend
         formData.append("fk_unidade_medida_id", String(
-            data.unidadeMedida === "mg" ? 1 : data.unidadeMedida === "kg" ? 2 : 3
+            data.unidadeMedida === "kg" ? 1 : data.unidadeMedida === "gr" ? 2 : data.unidadeMedida === "l" ? 3 : data.unidadeMedida === "ml" ? 4 : data.unidadeMedida === "und" ? 5 : data.unidadeMedida === "dz" ? 6 : 7
         ));
 
         // fk_horta_id fixo ou dinâmico
@@ -46,7 +51,7 @@ export const useProduto = () => {
     return {
         ...form,
         onSubmit,
-        isLoading: createMutation.isPending,
+        isLoading, // : createMutation.isPending,
         control: form.control
     };
 };
