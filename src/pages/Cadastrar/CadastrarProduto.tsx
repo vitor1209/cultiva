@@ -18,46 +18,64 @@ export function CadastrarProdutoPage() {
     const { control, handleSubmit } = useForm<CadastroProdutoType>();
     const { cadastroProduto, successMessage, errorMessage, loading } = useCadastroProduto();
 
-    const onSubmit = handleSubmit((data) => {
-        // Pegar o usuário logado do localStorage
-        const usuarioLogado = localStorage.getItem("usuarioLogado");
-        let fkHortaId = 1;
+   const onSubmit = handleSubmit((data) => {
+  // Pegar o usuário logado
+  const usuarioLogado = localStorage.getItem("usuarioLogado");
+  let fkHortaId = 0; // valor padrão
 
-        if (usuarioLogado) {
-            try {
-                const userObj = JSON.parse(usuarioLogado);
-                if (userObj && typeof userObj.fk_horta_id === "number") {
-                    fkHortaId = userObj.fk_horta_id;
-                }
-            } catch (err) {
-                console.warn("Não foi possível ler o usuário logado:", err);
-            }
-        }
+  if (usuarioLogado) {
+    try {
+      const userObj = JSON.parse(usuarioLogado);
+      // Agora usamos o id do usuário como fk_horta_id
+      fkHortaId = userObj.id || 0;
+    } catch (err) {
+      console.warn("Não foi possível ler o usuário logado:", err);
+    }
+  }
 
-        // Criar FormData para envio
-        const formData = new FormData();
+  // FormData para envio
+  const formData = new FormData();
+  const precoFormatado = parseFloat(
+    data.preco.replace("R$", "").replace(/\./g, "").replace(",", ".")
+  );
 
-        formData.append("nome", data.nome);
-        formData.append("descricao", data.descricao || "");
-        formData.append(
-            "preco_unit",
-            String(data.preco.replace("R$", "").replace(/\./g, "").replace(",", "."))
-        );
-        formData.append("quantidade_estoque", String(Number(data.quantidadeEstoque)));
-        formData.append("quant_unit_medida", String(Number(data.quantidadeMedida)));
-        formData.append("validade", data.dataValidade);
-        formData.append("fk_unidade_medida_id", String(Number(data.unidadeMedida)));
-        formData.append("fk_horta_id", String(fkHortaId));
+  formData.append("nome", data.nome);
+  formData.append("descricao", data.descricao || "");
+  formData.append("preco_unit", String(precoFormatado.toFixed(2)));
+  formData.append("quantidade_estoque", String(Math.floor(Number(data.quantidadeEstoque))));
+  formData.append("quant_unit_medida", String(Math.floor(Number(data.quantidadeMedida))));
 
-        // Enviar imagem se houver
-        if (data.imagem) {
-            const file = Array.isArray(data.imagem) ? data.imagem[0] : data.imagem;
-            formData.append("caminho", file);
-        }
+  // Aqui convertemos a data para YYYY-MM-DD
+  const [day, month, year] = data.dataValidade.split("/").map(Number);
+  const validadeString = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+  formData.append("validade", validadeString);
 
-        // Chamar mutation
-        cadastroProduto(formData);
-    });
+  formData.append("fk_unidade_medida_id", String(Number(data.unidadeMedida)));
+  formData.append("fk_horta_id", String(fkHortaId));
+
+  if (data.imagem) {
+    const file = Array.isArray(data.imagem) ? data.imagem[0] : data.imagem;
+    formData.append("caminho", file);
+  }
+
+  // 🔹 Log dos valores que vão para o backend
+  console.log("Dados do produto antes do envio:");
+  console.log({
+    nome: data.nome,
+    descricao: data.descricao,
+    preco_unit: precoFormatado.toFixed(2),
+    quantidade_estoque: Math.floor(Number(data.quantidadeEstoque)),
+    quant_unit_medida: Math.floor(Number(data.quantidadeMedida)),
+    validade: validadeString,
+    fk_unidade_medida_id: Number(data.unidadeMedida),
+    fk_horta_id: fkHortaId,
+    imagem: data.imagem,
+  });
+
+  // Chamar mutation
+  cadastroProduto(formData);
+});
+
 
     return (
         <Container disableGutters maxWidth={false} sx={{ backgroundColor: "#fff8f0", mt: 8, textAlign: "center", p: 0 }}>
