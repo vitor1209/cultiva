@@ -66,7 +66,7 @@ const Relatorio: React.FC = () => {
         </Paper>
 
         {/* CARD 3 */}
-        <Paper
+        {/* <Paper
           elevation={0}
           sx={{
             p: 3,
@@ -84,7 +84,7 @@ const Relatorio: React.FC = () => {
             </Typography>
             <StarIcon sx={{ color: "#f7c600" }} />
           </Box>
-        </Paper>
+        </Paper> */}
       </Box>
 
       {/* Produtos Mais Vendidos */}

@@ -11,8 +11,6 @@ export function HeaderProdutor({
   nome,
   endereco,
   telefone,
-  rating,
-  reviews,
   descricao,
   logo,
   desde,
@@ -76,8 +74,6 @@ export function HeaderProdutor({
                     },
                 }}
             >
-                <Typography level="h4">{rating}⭐</Typography>
-                <Typography level="body-sm">({reviews} avaliações)</Typography>
 
                 {beditar && (
                     <Button tamanho={"sm"} sx={{ alignSelf: "flex-end", marginTop: "30px", width: "100px"}}
