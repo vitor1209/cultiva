@@ -36,7 +36,18 @@ export default function ProductCardComponent({
                     <Image src={imageUrl} alt={title} />
                     <InfoWrapper textAlign="start">
                         <Typography variant="h6">{title}</Typography>
-                        <Typography variant="body2" color="gray">{farm}</Typography>
+                        <Typography
+                            variant="body2"
+                            color="gray"
+                            sx={{
+                                maxWidth: 450,
+                                whiteSpace: "wrap",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                            }}
+                        >
+                            {farm}
+                        </Typography>
                         <Price variant="h6">R$ {price.toFixed(2)}</Price>
                     </InfoWrapper>
                 </Stack>
@@ -66,7 +77,7 @@ export default function ProductCardComponent({
                 description={modalMessageDel ?? ""}
                 buttonText="Concluir"
                 color="#dc2626"
-                to = "/FinalizarCarrinho"
+                to="/FinalizarCarrinho"
                 Icon={CheckCircle}
             />
         </>
