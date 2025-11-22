@@ -13,9 +13,9 @@ export function useFinalizarCarrinho() {
     const [carrinhoItems, setCarrinhoItems] = useState<CarrinhoGet.Item[]>([]);
 
     useEffect(() => {
-  if (carrinhoItemsOriginal)
-    setCarrinhoItems(carrinhoItemsOriginal);
-}, [carrinhoItemsOriginal]);
+        if (carrinhoItemsOriginal)
+            setCarrinhoItems(carrinhoItemsOriginal);
+    }, [carrinhoItemsOriginal]);
 
     const aumentarQuantidade = (id: number) => {
         setCarrinhoItems(prev =>
@@ -78,8 +78,11 @@ export function useFinalizarCarrinho() {
 
             console.log("Carrinho atualizado com sucesso!");
 
-            navigate("/FinalizarEndereco");
-
+            navigate("/FinalizarEndereco", {
+                state: {
+                    opcaoEntrega
+                }
+            });
         } catch (error) {
             console.error("Erro ao enviar carrinho:", error);
         }

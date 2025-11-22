@@ -1,8 +1,6 @@
 import z from "zod"
 
 export const enderecoEntregaSchema = z.object({
-    tipoEntrega: z.enum(["residencia", "retirada"]),
-
     cep: z.string().min(8, "CEP inválido"),
     estado: z.string().min(1, "Selecione um estado"),
 
@@ -10,7 +8,7 @@ export const enderecoEntregaSchema = z.object({
     rua: z.string().min(1, "Rua obrigatória"),
 
     numero: z.string().min(1, "Número obrigatório"),
-    complemento: z.string().optional(),
+    bairro: z.string().min(1, "Bairro obrigatório")
 })
 
 export type EnderecoEntregaForm = z.infer<typeof enderecoEntregaSchema>

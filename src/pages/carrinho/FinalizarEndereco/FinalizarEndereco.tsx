@@ -6,11 +6,12 @@ import SearchBar from "../../../components/barSearch/barSearch";
 import { Button } from "../../../components/Button/Button";
 import { ResumoCompra } from "../../../components/ResumoCompra/ResumoCompra";
 import { ResumoPedido } from "../../../components/ResumoPedido/ResumoPedido";
-import { EnderecoEntrega } from "./EnderecoEntrega";
+import { EnderecoEntrega } from "./Endereco/EnderecoEntrega";
 import { useFinalizarEndereco } from "./finalizarEndereco.hook";
+import { useLocation } from "react-router-dom";
+import { useEnderecoForm } from "./Endereco/Endereco.hook";
 
 export function FinalizarEnderecoPage() {
-
     const {
         produtosResumo,
         subtotal,
@@ -24,20 +25,24 @@ export function FinalizarEnderecoPage() {
         setOpcaoPagamento,
     } = useFinalizarEndereco();
 
+    const form = useEnderecoForm();
+
+    const location = useLocation();
+    const opcaoEntregaSelecionada = location.state?.opcaoEntrega ?? "residencia";
+
     return (
         <Container
             disableGutters
             maxWidth={false}
             sx={{ backgroundColor: "#fff8f0", textAlign: "center", marginTop: 8, padding: 0 }}
         >
-
+            {/* Header e SearchBar */}
             <Header
                 end={
                     <Stack direction={'row'} gap={3}>
                         <IconButton aria-label="carrinho" size="large">
                             <ShoppingCart />
                         </IconButton>
-
                         <IconButton aria-label="usuario" size="large">
                             <UserRound />
                         </IconButton>
@@ -69,7 +74,7 @@ export function FinalizarEnderecoPage() {
                         <ResumoPedido produtos={produtosResumo} />
                     )}
 
-                    <EnderecoEntrega />
+                    {opcaoEntregaSelecionada === "residencia" && <EnderecoEntrega form={form.form} />}
                 </Stack>
 
                 <Stack p={"3% 0"} />
@@ -82,23 +87,18 @@ export function FinalizarEnderecoPage() {
                         entrega={entrega}
                         total={total}
                         formaPagamento={true}
-
                         pagamento={OpcaoPagamento}
                         onChangePagamento={setOpcaoPagamento}
-
                         opcaoEntrega={opcaoEntrega}
                         onChangeEntrega={setOpcaoEntrega}
-
-                        page="Confirmar"
-                        onConfirmar={()=>{}}
+                        page="Finalizar"
+                        onConfirmar={form.onSubmit} 
                     />
                 </Stack>
-
             </Stack>
 
             <Stack p={"3% 0"} />
             <Footer />
-
         </Container>
     );
 }
