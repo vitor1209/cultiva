@@ -1,5 +1,5 @@
 import { Container, IconButton, Stack } from "@mui/material";
-import { ShoppingCart, UserRound } from "lucide-react";
+import { UserRound } from "lucide-react";
 import { Header } from "../../../components/Header/Header";
 import { Footer } from "../../../components/Footer/Footer";
 import SearchBar from "../../../components/barSearch/barSearch";
@@ -8,22 +8,20 @@ import ProductCardComponent from "../../../components/CardCarrinho/CardCarrinho"
 import Typography from "@mui/joy/Typography";
 import { useState, useEffect } from "react";
 import { ResumoCompra } from "../../../components/ResumoCompra/ResumoCompra";
-import { useGetCarrinho } from "../../../controllers/carrinho.controller"; 
+import { useGetCarrinho } from "../../../controllers/carrinho.controller";
 import type { CarrinhoGet } from "../../../models/carrinho.types";
+import { CarrinhoButton } from "../carrinho.hook";
 
 export function FinalizarCarrinhoPage() {
   const [opcaoEntrega, setOpcaoEntrega] = useState<"residencia" | "horta">("residencia");
   const { data: carrinhoItemsOriginal, isLoading } = useGetCarrinho();
 
-  // Estado local do carrinho
   const [carrinhoItems, setCarrinhoItems] = useState<CarrinhoGet.Item[]>([]);
 
-  // Atualiza o estado local quando os dados do backend chegam
   useEffect(() => {
     if (carrinhoItemsOriginal) setCarrinhoItems(carrinhoItemsOriginal);
   }, [carrinhoItemsOriginal]);
 
-  // Funções de aumentar/diminuir quantidade
   const aumentarQuantidade = (id: number) => {
     setCarrinhoItems(prev =>
       prev.map(item =>
@@ -46,7 +44,22 @@ export function FinalizarCarrinhoPage() {
 
   // Calcular subtotal e total com base no estado local
   const entrega = opcaoEntrega === "horta" ? 0 : 8.0;
-  const subtotal = carrinhoItems.reduce((acc, item) => acc + item.preco_item_total, 0);
+  useEffect(() => {
+    if (carrinhoItemsOriginal) {
+      setCarrinhoItems(
+        carrinhoItemsOriginal.map(item => ({
+          ...item,
+          preco_unit: item.preco_item_total / item.quantidade_item_total
+        }))
+      );
+    }
+  }, [carrinhoItemsOriginal]);
+
+  const subtotal = carrinhoItems.reduce(
+    (acc, item) => acc + item.produto.preco_unit * item.quantidade_item_total,
+    0
+  );
+
   const total = subtotal + entrega;
 
   return (
@@ -58,9 +71,8 @@ export function FinalizarCarrinhoPage() {
       <Header
         end={
           <Stack direction={'row'} gap={3}>
-            <IconButton aria-label="carrinho" size="large">
-              <ShoppingCart />
-            </IconButton>
+            <CarrinhoButton />
+
             <IconButton aria-label="usuario" size="large">
               <UserRound />
             </IconButton>
@@ -97,7 +109,7 @@ export function FinalizarCarrinhoPage() {
               id={item.id}
               title={item.produto.nome}
               farm={`Horta ${item.produto.descricao}`}
-              price={item.preco_item_total} 
+              price={item.preco_item_total}
               quantity={item.quantidade_item_total}
               imageUrl={
                 item.produto.imagens[0]?.caminho

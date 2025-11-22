@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useCarrinhoAdd, useCarrinhoDel, useGetCarrinho } from "../../controllers/carrinho.controller";
 import { useNavigate } from "react-router-dom";
 import type { CarrinhoAdd } from "../../models/carrinho.types";
-import { IconButton } from "@mui/material";
+import { Badge, IconButton } from "@mui/material";
 import { ShoppingCart } from "lucide-react";
 
 export const useAddCarrinho = () => {
@@ -60,9 +60,9 @@ export const useDelCarrinho = () => {
   };
 };
 
+
 export function CarrinhoButton() {
   const navigate = useNavigate();
-
   const { data: carrinho } = useGetCarrinho(); 
 
   const handleClick = () => {
@@ -73,9 +73,18 @@ export function CarrinhoButton() {
     }
   };
 
+  const totalItens = carrinho?.reduce((acc, item) => acc + item.quantidade_item_total, 0) ?? 0;
+
   return (
     <IconButton aria-label="carrinho" size="large" onClick={handleClick}>
-      <ShoppingCart />
+      <Badge 
+        badgeContent={totalItens} 
+        color="error" 
+        overlap="circular"
+        sx={{ "& .MuiBadge-badge": { fontSize: '0.8rem', height: 18, minWidth: 18 } }}
+      >
+        <ShoppingCart />
+      </Badge>
     </IconButton>
   );
 }

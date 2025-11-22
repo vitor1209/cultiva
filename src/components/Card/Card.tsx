@@ -185,7 +185,7 @@ export default function ProductCard({
                 title="Carrinho"
                 description={modalMessage ?? ""}
                 buttonText="Concluir"
-                to = "/HomeProdutor"
+                to="/HomeConsumidor"
                 Icon={CheckCircle}
             />
         </>
