@@ -30,7 +30,7 @@ export default function DadosPessoais() {
                 acao=""
                 noTabs
                 children={
-                    <>
+                    <> 
                         <Input
                             placeholder="Seu nome"
                             name="nome"
