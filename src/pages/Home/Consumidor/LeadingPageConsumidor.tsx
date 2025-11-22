@@ -1,5 +1,5 @@
 import { Container, IconButton, Stack, Box } from "@mui/material";
-import { ShoppingCart, UserRound, ChevronRight } from "lucide-react";
+import {  UserRound, ChevronRight } from "lucide-react";
 import { Header } from "../../../components/Header/Header.tsx";
 import { Footer } from "../../../components/Footer/Footer.tsx";
 import SearchBar from "../../../components/barSearch/barSearch.tsx";
@@ -11,6 +11,7 @@ import { CardPedidos } from "../../../components/CardPedidos/CardPedidos.tsx";
 import { useGetProdutosGeral } from "../../../controllers/produto.controller.ts";
 import { useState } from "react";
 import ProductCard from "../../../components/Card/Card.tsx";
+import { CarrinhoButton } from "../../carrinho/carrinho.hook.tsx";
 
 const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -50,9 +51,7 @@ export function HomeConsumidorPage() {
             <Header
                 end={
                     <Stack direction={'row'} gap={3}>
-                        <IconButton href="/CarrinhoVazioPage" aria-label="delete" size="large">
-                            <ShoppingCart />
-                        </IconButton>
+                        <CarrinhoButton/>
                         <IconButton href="/CarrinhoVazioPage" aria-label="perfil" size="large">
                             <UserRound />
                         </IconButton>

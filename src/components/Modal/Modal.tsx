@@ -36,7 +36,7 @@ export const PadraoModal: React.FC<ModalProps> = ({
                 {btnTwo
                     ?
                     <Stack gap={1}>
-                        <Button to="/Pedidos" variante="ButtonRed" espacamento={70} onClick={onConfirm || onClose} tamanho="md">{buttonTextTwo}</Button>
+                        <Button to={to} variante="ButtonRed" espacamento={70} onClick={onConfirm || onClose} tamanho="md">{buttonTextTwo}</Button>
                         <Button onClick={onClose} espacamento={100} tamanho="md">{buttonText}</Button>
                     </Stack>
                     :

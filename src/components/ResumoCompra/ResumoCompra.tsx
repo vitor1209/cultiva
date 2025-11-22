@@ -92,7 +92,7 @@ export const ResumoCompra = ({
                             Finalizar compra
                         </BotaoFinalizar>
 
-                        <BotaoSecundario fullWidth onClick={onContinuar}>
+                        <BotaoSecundario href="/HomeConsumidor" fullWidth onClick={onContinuar}>
                             Continuar comprando
                         </BotaoSecundario>
                     </Stack>

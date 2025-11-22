@@ -12,6 +12,7 @@ import { useDeleteProduto } from '../../controllers/produto.controller.ts';
 import { useState } from 'react';
 import { PadraoModal } from '../Modal/Modal.tsx';
 import { useNavigate } from 'react-router-dom';
+import { useAddCarrinho } from '../../pages/carrinho/carrinho.hook.tsx';
 
 export default function ProductCard({
     image,
@@ -25,6 +26,14 @@ export default function ProductCard({
 }: CardProps) {
     const navigate = useNavigate();
 
+    const { handleAdd, modalMessage, modalOpen, setModalOpen } = useAddCarrinho();
+
+    const handleAdicionarCarrinho = () => {
+        handleAdd({
+            produto_id: id,
+            quantidade: 1,
+        });
+    };
 
     const handleEdit = () => {
         navigate(`/EditarProdutoPage/${id}`);
@@ -80,7 +89,13 @@ export default function ProductCard({
             case "Produto":
                 return (
                     <Box className="center">
-                        <Button variante="ButtonGreen" espacamento={70} tamanho="md" icon={ShoppingCart}>
+                        <Button
+                            variante="ButtonGreen"
+                            espacamento={70}
+                            tamanho="md"
+                            icon={ShoppingCart}
+                            onClick={handleAdicionarCarrinho}
+                        >
                             Adicionar
                         </Button>
                     </Box>
@@ -92,7 +107,6 @@ export default function ProductCard({
 
     return (
         <>
-
 
             <Styled.ProductCardStyled tipoCard={tipoCard}>
                 <CardOverflow sx={{ height: '50%', width: '100%' }}>
@@ -163,6 +177,16 @@ export default function ProductCard({
                 Icon={CheckCircle}
                 to="/HomeProdutor"
                 color="#dc2626"
+            />
+
+            <PadraoModal
+                open={modalOpen}
+                onClose={() => setModalOpen(false)}
+                title="Carrinho"
+                description={modalMessage ?? ""}
+                buttonText="Concluir"
+                to = "/HomeProdutor"
+                Icon={CheckCircle}
             />
         </>
     );
