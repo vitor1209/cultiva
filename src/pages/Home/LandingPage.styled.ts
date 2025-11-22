@@ -62,16 +62,7 @@ export const Session = styled(Stack)(() => ({
 }))
 
 
-// export const Hero = styled(Stack)(() => ({
-//     padding: "4rem 1rem",
-//     display: "flex",
-//     flexDirection: "column",
-//     justifyContent: "center",
-//     alignItems: "center",
-//     background: "linear-gradient(135deg, #d6ffcb 0%, #a4e6b7 100%)",
-//     textAlign: "center",
-//     height: "25rem"
-// }));
+
 
 const moverGradiente = keyframes`
   0% {
@@ -112,6 +103,6 @@ export const HeroContainer = styled(Box)(() => ({
     height: "auto",
 
     "@media (min-width: 900px)": {
-        height: "40rem"
+        height: "45rem"
     }
 }));

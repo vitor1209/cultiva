@@ -77,7 +77,7 @@ export function HeaderProdutor({
 
                 {beditar && (
                     <Button tamanho={"sm"} sx={{ alignSelf: "flex-end", marginTop: "30px", width: "100px"}}
-                    to="/AindaNaoExiste:(">Editar</Button>
+                    to="/DadosProdutor">Editar</Button>
                 )}
 
             </Stack>

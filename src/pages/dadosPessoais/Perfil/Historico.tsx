@@ -42,7 +42,8 @@ const Historico = () => {
         variant="h5"
         fontWeight="bold"
         sx={{ mb: 3, textAlign: "left" }}
-      >
+        fontFamily={'"Anybody", "Inter", sans-serif'}
+      > 
         Histórico de Pedidos
       </Typography>
 
@@ -62,7 +63,7 @@ const Historico = () => {
         >
           {/* ESQUERDA */}
           <Box>
-            <Typography variant="subtitle1" fontWeight={600}>
+            <Typography variant="subtitle1" fontWeight={600} fontFamily={'"Anybody", "Inter", sans-serif'}>
               Pedido #{pedido.id}
             </Typography>
 

@@ -11,9 +11,39 @@ import SearchBar from "../../../components/barSearch/barSearch.tsx";
 import CardInfo from "../../../components/cardInfo/CardInfo.tsx";
 import { Link } from "react-router-dom";
 import { useGetProdutos } from "../../../controllers/produto.controller.ts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+
+
+const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+
+    if (section) {
+        const yOffset = -100;
+        const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+    }
+};
+
 
 export function HomePageProdutor() {
+
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.hash) {
+            const element = document.querySelector(location.hash);
+
+            if (element) {
+                const yOffset = -100; 
+                const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+                window.scrollTo({ top: y, behavior: "smooth" });
+            }
+        }
+    }, [location]);
+
+
 
     const [mostrarTodos, setMostrarTodos] = useState(false);
 
@@ -41,7 +71,7 @@ export function HomePageProdutor() {
         error,
     } = useGetProdutos(fk_horta_id);
 
-        const produtosExibidos = mostrarTodos
+    const produtosExibidos = mostrarTodos
         ? produtos
         : produtos?.slice(0, 8);
 
@@ -63,9 +93,9 @@ export function HomePageProdutor() {
             >
                 <>
                     <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">Início</Button>
-                    <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">Seus Produtos</Button>
+                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('produtos')} tamanho="sm">Seus Produtos</Button>
                     <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">Pedidos</Button>
-                    <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">Como Funciona</Button>
+                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('sobre')} tamanho="sm">Sobre</Button>
                 </>
             </Header>
 
@@ -90,7 +120,6 @@ export function HomePageProdutor() {
                     <CardInfo name={"Pedidos do Mês"} acrescimo="+12%" valor={"45"} color={"blue"} tamanho={"lg"} icon={ShoppingBag} />
                     <CardInfo name={"Receita Total"} acrescimo="+8%" valor={"R$ 3.240"} color={"green"} tamanho={"lg"} icon={TrendingUp} />
                     <CardInfo name={"Produtos Ativos"} acrescimo="+2" valor={"12"} color={"purple"} tamanho={"lg"} icon={Package} />
-                    <CardInfo name={"Avaliação Média"} acrescimo="+0.2" valor={"4.8"} color={"orange"} tamanho={"lg"} icon={Star} />
                 </Stack>
             </Container>
 
@@ -123,7 +152,7 @@ export function HomePageProdutor() {
             <Styled.Division />
 
             {/* Produtos */}
-            <Container maxWidth={"xl"} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Container id="produtos" maxWidth={"xl"} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Stack direction="row" justifyContent='space-between' width="90%" marginBottom={2}>
                     <Typography level="body-lg">Seus Produtos</Typography>
                     <Button
@@ -147,7 +176,7 @@ export function HomePageProdutor() {
                         produtosExibidos.map(produto =>
                             <ProductCard
                                 key={produto.id}
-                                id={produto.id} 
+                                id={produto.id}
                                 image={produto.imagem ?? "https://veja.abril.com.br/wp-content/uploads/2016/12/maconha.jpg?crop=1&resize=1212,909"}
                                 name={produto.nome}
                                 lugar={usuario?.nome}
@@ -164,16 +193,39 @@ export function HomePageProdutor() {
 
             <Styled.Division />
 
+            <Styled.ContainerFull id="sobre">
+                <Styled.Session>
+
+                    <Typography level="h2" fontFamily={'"Anybody", "Inter", sans-serif'}>Sobre Cultiva+</Typography>
+                    <Typography level="body-md">
+                        O Cultiva+ é uma plataforma dedicada a conectar pequenos produtores locais a consumidores que buscam produtos naturais, frescos e de qualidade. Nosso objetivo é facilitar o comércio direto, promovendo uma relação mais próxima entre quem produz e quem consome, incentivando hábitos de consumo sustentáveis e conscientes.
+
+                    </Typography>
+
+                    <Typography level="body-md">
+
+                        Com o Cultiva+, os consumidores podem navegar facilmente pelo catálogo de produtos, visualizar detalhes como fotos, preço, validade, adicionar itens ao carrinho e finalizar suas compras de forma prática.
+                    </Typography>
+
+                    <Typography level="body-md">
+
+                        Para os produtores, o Cultiva+ oferece um painel completo de gestão, permitindo cadastrar e gerenciar produtos. A plataforma proporciona mais praticidade e eficiência, tornando o processo de venda mais lucrativo e organizado.
+
+                        Nosso compromisso é criar uma comunidade que valoriza a produção local, a transparência e o consumo consciente, conectando pessoas e fortalecendo a economia sustentável.
+                    </Typography>
+
+                </Styled.Session>
+            </Styled.ContainerFull>
             {/* Outros produtores */}
-            <Container maxWidth={"xl"} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '3% 0' }}>
+            {/* <Container maxWidth={"xl"} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '3% 0' }}>
                 <Stack direction="row" justifyContent='space-between' width="95%" marginBottom={2}>
                     <Typography level="body-lg">Conferir outros Produtores</Typography>
                     <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho="sm">Ver todos</Button>
                 </Stack>
-                <Stack direction={{ xs: "column", sm: "row" }} flexWrap="wrap" gap={2.5}>
-                    {/* Futuro: lista de produtores */}
-                </Stack>
-            </Container>
+                <Stack direction={{ xs: "column", sm: "row" }} flexWrap="wrap" gap={2.5}> */}
+            {/* Futuro: lista de produtores */}
+            {/* </Stack>
+            </Container> */}
 
             <Styled.Division />
             <Footer />

@@ -13,6 +13,10 @@ import { Link } from "react-router-dom";
 
 
 export function PedidosPage() {
+
+
+
+
     const handleFilterChange = (filters: { status: string; sort: string }) => {
         console.log("Filtros aplicados:", filters);
     };
@@ -36,7 +40,8 @@ export function PedidosPage() {
                 }
             >
                 <>
-                    <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">Início</Button>
+
+                    <Button variante="ButtonLinkBlack"  to="/HomeProdutor" tamanho="sm">Início</Button>
                     <Button variante="ButtonLinkBlack" to="/HomeProdutor#produtos" tamanho="sm">Seus Produtos</Button>
                     <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">Pedidos</Button>
                     <Button variante="ButtonLinkBlack" to="/HomeProdutor#sobre"tamanho="sm">Sobre</Button>

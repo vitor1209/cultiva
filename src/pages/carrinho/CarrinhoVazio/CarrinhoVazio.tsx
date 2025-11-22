@@ -6,8 +6,8 @@ import SearchBar from "../../../components/barSearch/barSearch";
 import { Button } from "../../../components/Button/Button";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
-export function CarrinhoVazioPage(){
-    return(
+export function CarrinhoVazioPage() {
+    return (
         <Container
             disableGutters
             maxWidth={false}
@@ -19,7 +19,7 @@ export function CarrinhoVazioPage(){
                         <IconButton aria-label="delete" size="large">
                             <ShoppingCart />
                         </IconButton>
-                        <IconButton aria-label="delete" size="large">
+                        <IconButton aria-label="delete" size="large" href="/DadosProdutor">
                             <UserRound />
                         </IconButton>
                     </Stack>
@@ -31,15 +31,16 @@ export function CarrinhoVazioPage(){
                 }
             >
                 <>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Início</Button>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Produtores</Button>
-                    <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">Produtos</Button>
-                    <Button variante="ButtonLinkBlack" tamanho="sm">Como Funciona</Button>
+                    <Button variante="ButtonLinkBlack" tamanho="sm" to="/HomeConsumidor">Início</Button>
+                    <Button variante="ButtonLinkBlack" to="/HomeConsumidor#produtos" tamanho="sm">Produtos</Button>
+
+                    <Button variante="ButtonLinkBlack" to="/HomeConsumidor#produtores"tamanho="sm">Produtores</Button>
+                    <Button variante="ButtonLinkBlack" to="/HomeConsumidor#sobre" tamanho="sm">Sobre</Button>
                 </>
             </Header>
             <Stack p={"5% 0"} />
 
-            <Stack                
+            <Stack
                 sx={{
                     width: "100%",
                     height: "50vh",
@@ -59,16 +60,16 @@ export function CarrinhoVazioPage(){
                         Adicione produtos ao carrinho para continuar
                     </Typography>
 
-                    <Button tamanho="md" to="/HomeConsumidor" 
-                    sx={{
-                        width: "250px",
-                        marginTop: "0.5rem"
-                    }}
+                    <Button tamanho="md" to="/HomeConsumidor"
+                        sx={{
+                            width: "250px",
+                            marginTop: "0.5rem"
+                        }}
                     >
                         Continuar comprando
                     </Button>
                 </Stack>
-                
+
             </Stack>
 
             <Stack p={"5% 0"} />
@@ -76,4 +77,4 @@ export function CarrinhoVazioPage(){
         </Container>
     );
 }
-    
+
