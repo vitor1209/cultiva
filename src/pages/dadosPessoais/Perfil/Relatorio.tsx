@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Typography, Paper } from "@mui/material";
-import StarIcon from "@mui/icons-material/Star";
 
 const Relatorio: React.FC = () => {
   return (
