@@ -1,6 +1,6 @@
 import { Container, Stack, IconButton, Box } from "@mui/material";
 import Typography from "@mui/joy/Typography";
-import { ChevronRight, UserRound, ShoppingBag, TrendingUp, Package, Star, Plus, ChartColumn } from "lucide-react";
+import { ChevronRight, UserRound, ShoppingBag, TrendingUp, Package, Plus, ChartColumn } from "lucide-react";
 import { Header } from "../../../components/Header/Header.tsx";
 import { CarouselFullScreen } from "../../../components/Carousel/Carousel.tsx";
 import * as Styled from "../LandingPage.styled.ts";

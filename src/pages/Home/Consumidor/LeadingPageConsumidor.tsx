@@ -1,5 +1,5 @@
 import { Container, IconButton, Stack, Box } from "@mui/material";
-import {  UserRound, ChevronRight } from "lucide-react";
+import { UserRound, ChevronRight } from "lucide-react";
 import { Header } from "../../../components/Header/Header.tsx";
 import { Footer } from "../../../components/Footer/Footer.tsx";
 import SearchBar from "../../../components/barSearch/barSearch.tsx";
@@ -13,6 +13,11 @@ import { useEffect, useState } from "react";
 import ProductCard from "../../../components/Card/Card.tsx";
 import { CarrinhoButton } from "../../carrinho/carrinho.hook.tsx";
 import { useLocation } from "react-router-dom";
+import { useGetProdutosPesquisa } from "../../../controllers/pesquisa.controller.ts";
+import type { Produto } from "../../../types/Produto.ts";
+
+
+
 
 const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -34,7 +39,7 @@ export function HomeConsumidorPage() {
             const element = document.querySelector(location.hash);
 
             if (element) {
-                const yOffset = -100; 
+                const yOffset = -100;
                 const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
                 window.scrollTo({ top: y, behavior: "smooth" });
@@ -51,13 +56,27 @@ export function HomeConsumidorPage() {
         error,
     } = useGetProdutosGeral();
 
-        const produtosExibidos = mostrarTodos
+    const produtosExibidos = mostrarTodos
         ? produtos
         : produtos?.slice(0, 8);
 
     const usuario = localStorage.getItem("usuarioLogado")
         ? JSON.parse(localStorage.getItem("usuarioLogado")!)
         : null;
+
+
+    const [search, setSearch] = useState("");
+    const {
+        data: produtosBusca,
+        isLoading: isLoadingBusca,
+        error: errorBusca,
+    } = useGetProdutosPesquisa({ nome: search });
+
+    const listaFinal = search.trim() === "" ? produtos : produtosBusca;
+
+    const produtosExibidosBusca = mostrarTodos
+        ? listaFinal
+        : listaFinal?.slice(0, 8);
 
     return (
         <Container
@@ -68,7 +87,7 @@ export function HomeConsumidorPage() {
             <Header
                 end={
                     <Stack direction={'row'} gap={3}>
-                        <CarrinhoButton/>
+                        <CarrinhoButton />
                         <IconButton href="/DadosConsumidor" aria-label="perfil" size="large">
                             <UserRound />
                         </IconButton>
@@ -76,7 +95,7 @@ export function HomeConsumidorPage() {
                 }
                 start={
                     <Stack flex={1} minWidth="250px" maxWidth="400px">
-                        <SearchBar />
+                        <SearchBar onSearchChange={(v) => setSearch(v)} />
                     </Stack>
                 }
             >
@@ -84,8 +103,8 @@ export function HomeConsumidorPage() {
                     <Button variante="ButtonLinkBlack" tamanho="sm" to="/HomeConsumidor">Início</Button>
                     <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('produtos')} tamanho="sm">Produtos</Button>
 
-                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('produtores')}  tamanho="sm">Produtores</Button>
-                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('sobre')}  tamanho="sm">Sobre</Button>
+                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('produtores')} tamanho="sm">Produtores</Button>
+                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('sobre')} tamanho="sm">Sobre</Button>
                 </>
             </Header>
 
@@ -126,25 +145,52 @@ export function HomeConsumidorPage() {
                         Ver todos
                     </Button>
                 </Stack>
-                <Stack direction={{ xs: "column", sm: "row" }} gap={4} flexWrap="wrap" justifyContent="space-evenly" alignItems="center" width="95%"    >
-                  {isLoading && <Typography>Carregando produtos...</Typography>}
+                <Stack
+                    direction={{ xs: "column", sm: "row" }}
+                    gap={4}
+                    flexWrap="wrap"
+                    justifyContent="space-evenly"
+                    alignItems="center"
+                    width="95%"
+                >
+                    {isLoading && <Typography>Carregando produtos...</Typography>}
                     {error && <Typography>Erro ao carregar produtos</Typography>}
 
-                    {produtosExibidos && produtosExibidos.length > 0 ? (
-                        produtosExibidos.map(produto =>
-                            <ProductCard
-                                key={produto.id}
-                                id={produto.id} 
-                                image={produto.imagem ?? "https://veja.abril.com.br/wp-content/uploads/2016/12/maconha.jpg?crop=1&resize=1212,909"}
-                                name={produto.nome}
-                                lugar={usuario?.nome}
-                                descricao={produto.descricao}
-                                preco={produto.preco_unit.toFixed(2)}
-                                tipoCard="Produto"
-                            />
+                    {search.trim() !== "" ? (
+                        // 🔎 Resultados da busca
+                        produtosBusca?.length ? (
+                            produtosBusca.map((produto: Produto) => (
+                                <ProductCard
+                                    key={produto.id}
+                                    id={produto.id}
+                                    image={produto.imagem ?? "https://via.placeholder.com/300"}
+                                    name={produto.nome}
+                                    lugar={usuario?.nome}
+                                    descricao={produto.descricao}
+                                    preco={produto.preco_unit.toFixed(2)}
+                                    tipoCard="Produto"
+                                />
+                            ))
+                        ) : (
+                            <Typography>Nenhum produto encontrado</Typography>
                         )
                     ) : (
-                        !isLoading && <Typography>Nenhum produto cadastrado</Typography>
+                        // 🧃 Lista normal (produtos gerais)
+                        produtosExibidos && produtosExibidos.length > 0 ? (
+                            produtosExibidos.map(produto => (
+                                <ProductCard
+                                    key={produto.id}
+                                    id={produto.id}
+                                    image={produto.imagem ?? "https://via.placeholder.com/300"} name={produto.nome}
+                                    lugar={usuario?.nome}
+                                    descricao={produto.descricao}
+                                    preco={produto.preco_unit.toFixed(2)}
+                                    tipoCard="Produto"
+                                />
+                            ))
+                        ) : (
+                            !isLoading && <Typography>Nenhum produto cadastrado</Typography>
+                        )
                     )}
                 </Stack>
             </Container>
@@ -157,7 +203,7 @@ export function HomeConsumidorPage() {
                     <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho={"sm"}>Ver todos</Button>
                 </Stack>
                 <Stack direction={{ xs: "column", sm: "row" }} flexWrap="wrap" gap={2.5}>
-                  
+
                 </Stack>
             </Container>
 
@@ -207,31 +253,31 @@ export function HomeConsumidorPage() {
                 </Box>
             </Container>
 
-                <Styled.Division />
+            <Styled.Division />
 
-                <Styled.ContainerFull id="sobre">
-                    <Styled.Session>
+            <Styled.ContainerFull id="sobre">
+                <Styled.Session>
 
-                        <Typography level="h2">Sobre Cultiva+</Typography>
-                        <Typography level="body-md">
-                            O Cultiva+ é uma plataforma dedicada a conectar pequenos produtores locais a consumidores que buscam produtos naturais, frescos e de qualidade. Nosso objetivo é facilitar o comércio direto, promovendo uma relação mais próxima entre quem produz e quem consome, incentivando hábitos de consumo sustentáveis e conscientes.
+                    <Typography level="h2">Sobre Cultiva+</Typography>
+                    <Typography level="body-md">
+                        O Cultiva+ é uma plataforma dedicada a conectar pequenos produtores locais a consumidores que buscam produtos naturais, frescos e de qualidade. Nosso objetivo é facilitar o comércio direto, promovendo uma relação mais próxima entre quem produz e quem consome, incentivando hábitos de consumo sustentáveis e conscientes.
 
-                        </Typography>
+                    </Typography>
 
-                        <Typography level="body-md">
+                    <Typography level="body-md">
 
-                            Com o Cultiva+, os consumidores podem navegar facilmente pelo catálogo de produtos, visualizar detalhes como fotos, preço, validade, adicionar itens ao carrinho e finalizar suas compras de forma prática.
-                        </Typography>
+                        Com o Cultiva+, os consumidores podem navegar facilmente pelo catálogo de produtos, visualizar detalhes como fotos, preço, validade, adicionar itens ao carrinho e finalizar suas compras de forma prática.
+                    </Typography>
 
-                        <Typography level="body-md">
+                    <Typography level="body-md">
 
-                            Para os produtores, o Cultiva+ oferece um painel completo de gestão, permitindo cadastrar e gerenciar produtos. A plataforma proporciona mais praticidade e eficiência, tornando o processo de venda mais lucrativo e organizado.
+                        Para os produtores, o Cultiva+ oferece um painel completo de gestão, permitindo cadastrar e gerenciar produtos. A plataforma proporciona mais praticidade e eficiência, tornando o processo de venda mais lucrativo e organizado.
 
-                            Nosso compromisso é criar uma comunidade que valoriza a produção local, a transparência e o consumo consciente, conectando pessoas e fortalecendo a economia sustentável.
-                        </Typography>
+                        Nosso compromisso é criar uma comunidade que valoriza a produção local, a transparência e o consumo consciente, conectando pessoas e fortalecendo a economia sustentável.
+                    </Typography>
 
-                    </Styled.Session>
-                </Styled.ContainerFull>
+                </Styled.Session>
+            </Styled.ContainerFull>
 
 
             <Stack p={"3% 0"} />
