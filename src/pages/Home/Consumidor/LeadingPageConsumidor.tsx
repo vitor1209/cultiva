@@ -9,9 +9,10 @@ import { CarouselFullScreen } from "../../../components/Carousel/Carousel.tsx";
 import * as Styled from "../LandingPage.styled.ts";
 import { CardPedidos } from "../../../components/CardPedidos/CardPedidos.tsx";
 import { useGetProdutosGeral } from "../../../controllers/produto.controller.ts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductCard from "../../../components/Card/Card.tsx";
 import { CarrinhoButton } from "../../carrinho/carrinho.hook.tsx";
+import { useLocation } from "react-router-dom";
 
 const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -25,6 +26,22 @@ const scrollToSection = (id: string) => {
 
 
 export function HomeConsumidorPage() {
+
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.hash) {
+            const element = document.querySelector(location.hash);
+
+            if (element) {
+                const yOffset = -100; 
+                const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+                window.scrollTo({ top: y, behavior: "smooth" });
+            }
+        }
+    }, [location]);
+
 
     const [mostrarTodos, setMostrarTodos] = useState(false);
 
@@ -52,7 +69,7 @@ export function HomeConsumidorPage() {
                 end={
                     <Stack direction={'row'} gap={3}>
                         <CarrinhoButton/>
-                        <IconButton href="/CarrinhoVazioPage" aria-label="perfil" size="large">
+                        <IconButton href="/DadosConsumidor" aria-label="perfil" size="large">
                             <UserRound />
                         </IconButton>
                     </Stack>

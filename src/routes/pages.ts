@@ -15,4 +15,6 @@ export {ResetSenhaPage} from "../pages/Auth/resetSenha/resetSenha.tsx"
 export {ResetTokenPage} from "../pages/Auth/resetToken/resetSenhaToken.tsx"
 export {HomeConsumidorPage} from "../pages/Home/Consumidor/LeadingPageConsumidor.tsx"
 export {CarrinhoVazioPage} from "../pages/carrinho/CarrinhoVazio/CarrinhoVazio.tsx"
-// export {DadosProdutor} from "../pages/dadosPessoais/Produtor/PerfilProdutor.tsx"
+export {DadosProdutor} from "../pages/dadosPessoais/Produtor/PerfilProdutor.tsx"
+export {DadosConsumidor} from "../pages/dadosPessoais/Consumidor/PerfilConsumidor.tsx"
+

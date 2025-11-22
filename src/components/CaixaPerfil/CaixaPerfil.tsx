@@ -31,10 +31,10 @@ export const CaixaPerfil = (
           
 
           <Box>
-            <Typography variant="h6" component="div" sx={{ fontWeight: 600, lineHeight: 1.2 }}>
+            <Typography variant="h6" component="div" fontFamily={'"Anybody", "Inter", sans-serif'} sx={{ fontWeight: 600, lineHeight: 1.2 }}>
               {nome}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="text.secondary" textAlign={"start"}>
               {perfil}
             </Typography>
           </Box>

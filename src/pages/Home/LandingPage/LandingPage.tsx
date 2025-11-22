@@ -1,7 +1,6 @@
 import { Box, Container, Stack } from "@mui/material";
 import Typography from '@mui/joy/Typography';
 import { ChevronRight } from "lucide-react";
-import { Header } from "../../../components/Header/Header.tsx";
 import { CarouselFullScreen } from "../../../components/Carousel/Carousel.tsx";
 import * as Styled from "../LandingPage.styled.ts";
 import { Button } from "../../../components/Button/Button.tsx";
@@ -23,9 +22,9 @@ export function HomePage() {
         <Container
             disableGutters
             maxWidth={false}
-            sx={{ backgroundColor: "#fff8f0", textAlign: "center", marginTop: 8, padding: 0 }}
+            sx={{ textAlign: "center", padding: 0 }}
         >
-            <Header
+            {/* <Header
                 end={
                     <Button
                         to="/Login"
@@ -44,7 +43,7 @@ export function HomePage() {
 
                     <Button to="" variante="ButtonLinkBlack" onClick={() => scrollToSection('sobre')} tamanho="sm">Sobre</Button>
                 </>
-            </Header>
+            </Header> */}
 
             <Styled.HeroContainer>
                 <Stack
@@ -73,7 +72,9 @@ export function HomePage() {
                                 fontSize: { xs: "2rem", md: "3rem" },
                                 color: "#1B3A28",
                                 lineHeight: 1.2,
+                                
                             }}
+                            fontFamily={'"Anybody", "Inter", sans-serif'}
                         >
                             Conectando você ao Produtor Local
                         </Typography>
@@ -99,7 +100,7 @@ export function HomePage() {
                                 Começar Agora
                             </Button>
 
-                            <Button variante="ButtonLinkBlack" tamanho="xl" to="/Sobre">
+                            <Button variante="ButtonLinkBlack"  onClick={() => scrollToSection('inicio')} tamanho="xl">
                                 Veja Como Funciona
                             </Button>
                         </Stack>
@@ -144,18 +145,18 @@ export function HomePage() {
 
 
 
-            <Styled.Division />
-            <CarouselFullScreen tamanho={"full"}>
+            <Styled.Division id="inicio" />
+            <CarouselFullScreen  tamanho={"full"}>
                 <Box sx={{ background: "#1976d2", height: 324 }}></Box>
                 <Box sx={{ background: "#9c27b0", height: 324 }}></Box>
                 <Box sx={{ background: "#2e7d32", height: 324 }}></Box>
             </CarouselFullScreen>
-            <Styled.Division />
+            <Styled.Division  />
 
 
 
 
-            <Container id="inicio" maxWidth={"xl"} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', }}>
+            <Container  maxWidth={"xl"} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', }}>
                 <Stack direction="row" justifyContent='space-between' width="90%" alignItems='center' marginBottom={2}>
                     <Typography level="h4">Mais Vendidos</Typography>
                     <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho={"sm"}>Ver todos</Button>
@@ -184,7 +185,7 @@ export function HomePage() {
             <Styled.ContainerFull id="sobre">
                 <Styled.Session>
 
-                    <Typography level="h2">Sobre Cultiva+</Typography>
+                    <Typography level="h2" fontFamily={'"Anybody", "Inter", sans-serif'}>Sobre Cultiva+</Typography>
                     <Typography level="body-md">
                         O Cultiva+ é uma plataforma dedicada a conectar pequenos produtores locais a consumidores que buscam produtos naturais, frescos e de qualidade. Nosso objetivo é facilitar o comércio direto, promovendo uma relação mais próxima entre quem produz e quem consome, incentivando hábitos de consumo sustentáveis e conscientes.
 
@@ -207,7 +208,7 @@ export function HomePage() {
             <Styled.Division />
 
             <Styled.CTABox>
-                <Typography level="h2">Pronto para apoiar produtores locais?</Typography>
+                <Typography level="h2" fontFamily={'"Anybody", "Inter", sans-serif'}>Pronto para apoiar produtores locais?</Typography>
                 <Button
                     to="/Login"
                     variante="ButtonGreen"
