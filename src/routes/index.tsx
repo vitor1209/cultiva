@@ -18,7 +18,9 @@ import {
     ResetTokenPage,
     HomeConsumidorPage,
     CarrinhoVazioPage,
+    DadosProdutor,
 } from "./pages";
+
 
 
 export default function AppRoutes() {
@@ -48,6 +50,8 @@ export default function AppRoutes() {
                 <Route path="/Cadastrar" element={<CadastrarProdutoPage />} />
                 <Route path="/ProdutorPrivatePage" element={<ProdutorPrivatePage />} />
                 <Route path="/EditarProdutoPage/:id" element={<EditarProdutoPage />} />
+                <Route path="/DadosProdutor" element={<DadosProdutor />} />
+
             </Route>
         </Routes>
     );

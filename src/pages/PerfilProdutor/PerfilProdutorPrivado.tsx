@@ -4,7 +4,6 @@ import { Button } from "../../components/Button/Button.tsx"
 import SearchBar from "../../components/barSearch/barSearch.tsx"
 import { UserRound, ChevronRight, LogOut } from "lucide-react";
 import Typography from '@mui/joy/Typography';
-import ProductCard from "../../components/Card/Card.tsx";
 import { Footer } from "../../components/Footer/Footer.tsx";
 import * as Styled from "./PerfilProdutor.styled.ts";
 import { HeaderProdutor } from "../../components/HeaderProdutor/HeaderProdutor.tsx";
@@ -55,8 +54,6 @@ export const ProdutorPrivatePage = () => {
                 nome="Sítio Verde Serra"
                 endereco="Rua das Palmeiras, 233 - Santa Branca"
                 telefone="(19) 99855-2291"
-                rating={4.8}
-                reviews={128}
                 logo={"https://scontent.fcgh17-1.fna.fbcdn.net/v/t51.75761-15/476900709_18018938066669479_1055719783307189216_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=1L76eXZgVpsQ7kNvwG44Mei&_nc_oc=AdlB-yur_e7ULD9hmRFK4383vl95TUNU8QECKmfbY79-gN5mzEnpPsa80YIoRIsPjivHdD-0_1bd6lK_pv6lJ80I&_nc_zt=23&_nc_ht=scontent.fcgh17-1.fna&_nc_gid=0IqFh4BOMMuN0lBhQbIi9w&oh=00_AfjyBiFrzn5xUibSlxw1ndOVvaPSHOGnuyRv_Ud_NFRmBQ&oe=6917C411"}
                 descricao="Produtor local especializado em cultivo orgânico de hortaliças. Comprometido com a sustentabilidade e qualidade dos produtos."
                 beditar
@@ -93,47 +90,7 @@ export const ProdutorPrivatePage = () => {
                     alignItems="center"
                     width="95%"
                 >
-                    {/* Cards de exemplo — você pode substituir por dados reais */}
-                    <ProductCard
-                        image="https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"
-                        name="Alface Orgânica"
-                        lugar="Sítio Verde"
-                        avaliacao={4.8}
-                        preco={'3.50'}
-                        tipoCard={'Produtor'}
-                    />
-                    <ProductCard
-                        image="https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"
-                        name="Alface Orgânica"
-                        lugar="Sítio Verde"
-                        avaliacao={4.8}
-                        preco={'3.50'}
-                        tipoCard={'Produtor'}
-                    />
-                    <ProductCard
-                        image="https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"
-                        name="Alface Orgânica"
-                        lugar="Sítio Verde"
-                        avaliacao={4.8}
-                        preco={'3.50'}
-                        tipoCard={'Produtor'}
-                    />
-                    <ProductCard
-                        image="https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"
-                        name="Alface Orgânica"
-                        lugar="Sítio Verde"
-                        avaliacao={4.8}
-                        preco={'3.50'}
-                        tipoCard={'Produtor'}
-                    />
-                    <ProductCard
-                        image="https://image.tuasaude.com/media/article/du/sw/beneficios-da-alface_16044.jpg"
-                        name="Alface Orgânica"
-                        lugar="Sítio Verde"
-                        avaliacao={4.8}
-                        preco={'3.50'}
-                        tipoCard={'Produtor'}
-                    />
+                {/* aqui tinha produtos cards */}
                 </Stack>
             </Container>
 

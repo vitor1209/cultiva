@@ -1,101 +1,107 @@
-import React from 'react';
-import { Box, Typography, Grid, Button, Paper } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
+import ContainerForm from "../../../components/FormContainer/FormContainer";
+import { Button } from "../../../components/Button/Button";
+import { Input } from "../../../components/Input/Input";
+import { Stack, Alert } from "@mui/material";
+import Typography from "@mui/joy/Typography";
+import { useForm } from "react-hook-form";
+import { ChevronLeft } from "lucide-react";
+import * as styled from "../../Auth/Auth.styled";
 
-interface DataFieldProps {
-    label: string;
-    value: string;
-}
+export default function DadosPessoais() {
+    const { control, handleSubmit } = useForm();
 
-const DataField: React.FC<DataFieldProps> = ({ label, value }) => (
-    <Grid size={{ xs: 12, sm: 6 }}>
-        <Box sx={{ mb: 2 }}>
-            <Typography
-                variant="subtitle2"
-                color="text.secondary"
-                sx={{ mb: 0.5 }}
-            >
-                {label}
-            </Typography>
+    const onSubmit = (data: any) => {
+        console.log("ENVIADO:", data);
+    };
 
-            <Box
-                sx={{
-                    backgroundColor: '#F7F7F7',
-                    borderRadius: '8px',
-                    px: 2,
-                    py: 1.5,
-                }}
-            >
-                <Typography
-                    variant="body1"
-                    color="text.primary"
-                    sx={{ fontWeight: 500 }}
-                >
-                    {value}
-                </Typography>
-            </Box>
-        </Box>
-    </Grid>
-);
-
-const DadosPessoais = () => {
     return (
-        <Paper
-            elevation={0}
-            sx={{
-                p: 4,
-                mt: 3,
-                mb: 5,
-                mx: 5,
-                borderRadius: '12px',
-                boxShadow: 'none',
-            }}
-        >
-            {/* Cabeçalho */}
-            <Box
-                sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    mb: 4
-                }}
+        <styled.ContainerAuth>
+            <Button
+                icon={ChevronLeft}
+                sx={{ position: "absolute", top: "3%", right: "3%", zIndex: 10 }}
+                tamanho="sm"
+                to="/Dashboard"
+                variante="ButtonLinkBlack"
             >
-                <Typography variant="h5" fontWeight="bold">
-                    Dados Pessoais
-                </Typography>
+                Voltar
+            </Button>
 
-                <Button
-                    variant="outlined"
-                    startIcon={<EditIcon />}
-                    sx={{
-                        borderRadius: 2,
-                        textTransform: 'none',
-                        py: 1,
-                        px: 2,
-                        borderColor: 'primary.main',
-                        color: 'primary.main',
-                    }}
-                >
-                    Editar
-                </Button>
-            </Box>
+            <ContainerForm
+                acao=""
+                noTabs
+                children={
+                    <> 
+                        <Input
+                            placeholder="Seu nome"
+                            name="nome"
+                            label="Nome"
+                            control={control}
+                        />
 
-            {/* Grid dos campos */}
-            <Grid container spacing={4}>
-                <DataField label="Nome" value="Exemplo: Horta da Aline" />
-                <DataField label="Estado" value="São Paulo" />
+                        <Input
+                            placeholder="(00) 00000-0000"
+                            name="telefone"
+                            label="Telefone"
+                            control={control}
+                        />
 
-                <DataField label="Telefone" value="123.456.789-00" />
-                <DataField label="CEP" value="13045-230" />
+                        <Input
+                            placeholder="00/00/0000"
+                            name="datanasc"
+                            label="Data de nascimento"
+                            control={control}
+                        />
 
-                <DataField label="CEP" value="13045-230" />
-                <DataField
-                    label="Endereço"
-                    value="Rua Bélgica, 55, Ribeirão Pires - SP"
-                />
-            </Grid>
-        </Paper>
+                        <Input
+                            type="file"
+                            placeholder="Foto"
+                            name="foto"
+                            label="Foto"
+                            control={control}
+                        />
+                    </>
+                }
+                childrenSecund={
+                    <>
+                        <Input
+                            type="file"
+                            placeholder="Envie o banner"
+                            name="banner"
+                            label="Banner"
+                            control={control}
+                        />
+
+                        <Input
+                            placeholder="Ex: Horta do João"
+                            name="nome_horta"
+                            label="Nome da Horta"
+                            control={control}
+                        />
+
+                        <Input
+                            placeholder="0,00"
+                            name="frete"
+                            type="number"
+                            label="Frete"
+                            control={control}
+                        />
+
+                        <Stack mt={2}>
+                            <Button
+                                tamanho="md"
+                                variante="ButtonGreen"
+                                onClick={handleSubmit(onSubmit)}
+                            >
+                                Salvar
+                            </Button>
+                        </Stack>
+
+                        <Typography textAlign="center" level="body-xs" mt={1}>
+                            Atualize os dados da sua horta sempre que necessário.
+                        </Typography>
+                    </>
+                }
+            />
+        </styled.ContainerAuth>
     );
-};
-
-export default DadosPessoais;
+}
