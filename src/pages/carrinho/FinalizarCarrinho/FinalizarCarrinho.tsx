@@ -6,61 +6,25 @@ import SearchBar from "../../../components/barSearch/barSearch";
 import { Button } from "../../../components/Button/Button";
 import ProductCardComponent from "../../../components/CardCarrinho/CardCarrinho";
 import Typography from "@mui/joy/Typography";
-import { useState, useEffect } from "react";
 import { ResumoCompra } from "../../../components/ResumoCompra/ResumoCompra";
-import { useGetCarrinho } from "../../../controllers/carrinho.controller";
-import type { CarrinhoGet } from "../../../models/carrinho.types";
 import { CarrinhoButton } from "../carrinho.hook";
+import { useFinalizarCarrinho } from "./FinalizarCarrinho.hook";
 
 export function FinalizarCarrinhoPage() {
-  const [opcaoEntrega, setOpcaoEntrega] = useState<"residencia" | "horta">("residencia");
-  const { data: carrinhoItemsOriginal, isLoading } = useGetCarrinho();
 
-  const [carrinhoItems, setCarrinhoItems] = useState<CarrinhoGet.Item[]>([]);
-
-  useEffect(() => {
-    if (carrinhoItemsOriginal) setCarrinhoItems(carrinhoItemsOriginal);
-  }, [carrinhoItemsOriginal]);
-
-  const aumentarQuantidade = (id: number) => {
-    setCarrinhoItems(prev =>
-      prev.map(item =>
-        item.id === id
-          ? { ...item, quantidade_item_total: item.quantidade_item_total + 1 }
-          : item
-      )
-    );
-  };
-
-  const diminuirQuantidade = (id: number) => {
-    setCarrinhoItems(prev =>
-      prev.map(item =>
-        item.id === id && item.quantidade_item_total > 1
-          ? { ...item, quantidade_item_total: item.quantidade_item_total - 1 }
-          : item
-      )
-    );
-  };
-
-  // Calcular subtotal e total com base no estado local
-  const entrega = opcaoEntrega === "horta" ? 0 : 8.0;
-  useEffect(() => {
-    if (carrinhoItemsOriginal) {
-      setCarrinhoItems(
-        carrinhoItemsOriginal.map(item => ({
-          ...item,
-          preco_unit: item.preco_item_total / item.quantidade_item_total
-        }))
-      );
-    }
-  }, [carrinhoItemsOriginal]);
-
-  const subtotal = carrinhoItems.reduce(
-    (acc, item) => acc + item.produto.preco_unit * item.quantidade_item_total,
-    0
-  );
-
-  const total = subtotal + entrega;
+  const {
+    carrinhoItems,
+    isLoading,
+    aumentarQuantidade,
+    diminuirQuantidade,
+    subtotal,
+    freteTotal,
+    entrega,
+    total,
+    opcaoEntrega,
+    setOpcaoEntrega,
+    handleFinalizar
+  } = useFinalizarCarrinho();
 
   return (
     <Container
@@ -72,7 +36,6 @@ export function FinalizarCarrinhoPage() {
         end={
           <Stack direction={'row'} gap={3}>
             <CarrinhoButton />
-
             <IconButton aria-label="usuario" size="large">
               <UserRound />
             </IconButton>
@@ -109,12 +72,12 @@ export function FinalizarCarrinhoPage() {
               id={item.id}
               title={item.produto.nome}
               farm={`Horta ${item.produto.descricao}`}
-              price={item.preco_item_total}
+              price={item.produto.preco_unit}
               quantity={item.quantidade_item_total}
               imageUrl={
                 item.produto.imagens[0]?.caminho
                   ? `http://127.0.0.1:8000/storage/${item.produto.imagens[0].caminho}`
-                  : "https://veja.abril.com.br/wp-content/uploads/2016/12/maconha.jpg?crop=1&resize=1212,909"
+                  : "https://via.placeholder.com/300"
               }
               onIncrease={() => aumentarQuantidade(item.id)}
               onDecrease={() => diminuirQuantidade(item.id)}
@@ -129,13 +92,15 @@ export function FinalizarCarrinhoPage() {
           <ResumoCompra
             subtotal={subtotal}
             entrega={entrega}
+            freteTotal={freteTotal}
             total={total}
             opcaoEntrega={opcaoEntrega}
             onChangeEntrega={setOpcaoEntrega}
-            onFinalizar={() => console.log("Finalizou!")}
+            onFinalizar={handleFinalizar}
             onContinuar={() => console.log("Continuar!")}
-            page="Confirmar"
-          />
+            page="Confirmar" 
+            formaPagamento={false} 
+            onChangePagamento={()=>{}}          />
         </Stack>
       </Stack>
 

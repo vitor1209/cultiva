@@ -12,11 +12,14 @@ import type { ResumoCompraProps } from "./ResumoCompra.types";
 
 export const ResumoCompra = ({
     subtotal,
-    entrega,
+    freteTotal,
     total,
+    formaPagamento = false,
     opcaoEntrega,
+    pagamento,
     page,
     onChangeEntrega,
+    onChangePagamento,
     onFinalizar,
     onContinuar,
     onConfirmar,
@@ -28,34 +31,65 @@ export const ResumoCompra = ({
                     Resumo da compra
                 </Typography>
 
-                <Stack spacing={1}>
-                    <Typography fontWeight={600}>
-                        Opção de entrega
-                    </Typography>
+                {/* PAGAMENTO */}
+                {formaPagamento && (
+                    <>
+                        <Stack spacing={1}>
+                            <Typography fontWeight={600}>
+                                Forma de Pagamento
+                            </Typography>
 
-                    <Stack direction="row" alignItems="center" spacing={1}>
-                        <Radio
-                            checked={opcaoEntrega === "residencia"}
-                            onChange={() => onChangeEntrega("residencia")}
-                        />
-                        <Typography>
-                            Entrega na residência (R$ {entrega.toFixed(2)})
+                            <Stack direction="row" alignItems="center" spacing={1}>
+                                <Radio
+                                    checked={pagamento === "PIX"}
+                                    onChange={() => onChangePagamento("PIX")}
+                                />
+                                <Typography>PIX</Typography>
+                            </Stack>
+
+                            <Stack direction="row" alignItems="center" spacing={1}>
+                                <Radio
+                                    checked={pagamento === "Dinheiro"}
+                                    onChange={() => onChangePagamento("Dinheiro")}
+                                />
+                                <Typography>Dinheiro</Typography>
+                            </Stack>
+                        </Stack>
+
+                        <Linha />
+                    </>
+                )}
+
+                {!formaPagamento && (
+                    <Stack spacing={1}>
+                        <Typography fontWeight={600}>
+                            Opção de entrega
                         </Typography>
+
+                        <Stack direction="row" alignItems="center" spacing={1}>
+                            <Radio
+                                checked={opcaoEntrega === "residencia"}
+                                onChange={() => onChangeEntrega("residencia")}
+                            />
+                            <Typography>
+                                Entrega na residência (R$ {freteTotal.toFixed(2)})
+                            </Typography>
+                        </Stack>
+
+                        <Stack direction="row" alignItems="center" spacing={1}>
+                            <Radio
+                                checked={opcaoEntrega === "horta"}
+                                onChange={() => onChangeEntrega("horta")}
+                            />
+                            <Typography>
+                                Retirar na horta (Grátis)
+                            </Typography>
+                        </Stack>
                     </Stack>
+                )}
 
-                    <Stack direction="row" alignItems="center" spacing={1}>
-                        <Radio
-                            checked={opcaoEntrega === "horta"}
-                            onChange={() => onChangeEntrega("horta")}
-                        />
-                        <Typography>
-                            Retirar na horta (Grátis)
-                        </Typography>
-                    </Stack>
-                </Stack>
 
-                <Linha />
-
+                {/* RESUMO DE VALORES */}
                 <Stack spacing={1}>
                     <RowValor>
                         <Typography color="#9ca3af">Subtotal:</Typography>
@@ -65,7 +99,9 @@ export const ResumoCompra = ({
                     <RowValor>
                         <Typography color="#9ca3af">Entrega:</Typography>
                         <Typography>
-                            R$ {opcaoEntrega === "horta" ? "0.00" : entrega.toFixed(2)}
+                            {opcaoEntrega === "horta"
+                                ? "R$ 0.00"
+                                : `R$ ${freteTotal.toFixed(2)}`}
                         </Typography>
                     </RowValor>
                 </Stack>
@@ -86,23 +122,28 @@ export const ResumoCompra = ({
                     </Typography>
                 </RowValor>
 
-                {page === 'Confirmar'
-                    ? <Stack spacing={1} mt={1}>
+                {/* BOTÕES */}
+                {page === "Confirmar" ? (
+                    <Stack spacing={1} mt={1}>
                         <BotaoFinalizar fullWidth onClick={onFinalizar}>
                             Finalizar compra
                         </BotaoFinalizar>
 
-                        <BotaoSecundario href="/HomeConsumidor" fullWidth onClick={onContinuar}>
+                        <BotaoSecundario
+                            href="/HomeConsumidor"
+                            fullWidth
+                            onClick={onContinuar}
+                        >
                             Continuar comprando
                         </BotaoSecundario>
                     </Stack>
-                    : <Stack spacing={1} mt={1}>
+                ) : (
+                    <Stack spacing={1} mt={1}>
                         <BotaoFinalizar fullWidth onClick={onConfirmar}>
                             Confirmar Compra
                         </BotaoFinalizar>
                     </Stack>
-                }
-
+                )}
             </Stack>
         </CardResumo>
     );

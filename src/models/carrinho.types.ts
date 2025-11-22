@@ -42,6 +42,13 @@ export namespace CarrinhoGet {
     fk_produto_id: number;
   };
 
+  export type Horta = {
+    id: number;
+    nome_horta: string;
+    fk_usuario_id: number;
+    frete: string; 
+  };
+
   export type Produto = {
     id: number;
     nome: string;
@@ -52,7 +59,8 @@ export namespace CarrinhoGet {
     quant_unit_medida: number;
     fk_horta_id: number;
     fk_unidade_medida_id: number;
-    imagens: Imagem[]; 
+    imagens: Imagem[];
+    horta: Horta;
   };
 
   export type Item = {
@@ -62,7 +70,7 @@ export namespace CarrinhoGet {
     quantidade_item_total: number;
     preco_item_total: number;
     fk_pedido_id: number | null;
-    produto: Produto;
+    produto: Produto; 
   };
 
   export type Response = Item[];

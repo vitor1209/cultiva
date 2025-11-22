@@ -50,7 +50,9 @@ export function EditarProdutoPage() {
                 imagem: undefined,
                 dataColheita: ""
             });
+            console.log(produto.imagem);
         }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [produto, reset]);
 
