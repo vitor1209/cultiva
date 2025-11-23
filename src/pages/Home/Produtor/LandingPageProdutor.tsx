@@ -1,6 +1,6 @@
 import { Container, Stack, IconButton, Box } from "@mui/material";
 import Typography from "@mui/joy/Typography";
-import { ChevronRight, UserRound, ShoppingBag, TrendingUp, Package, Star, Plus, ChartColumn } from "lucide-react";
+import { ChevronRight, UserRound, ShoppingBag, TrendingUp, Package,  Plus, ChartColumn } from "lucide-react";
 import { Header } from "../../../components/Header/Header.tsx";
 import { CarouselFullScreen } from "../../../components/Carousel/Carousel.tsx";
 import * as Styled from "../LandingPage.styled.ts";
@@ -42,8 +42,6 @@ export function HomePageProdutor() {
             }
         }
     }, [location]);
-
-
 
     const [mostrarTodos, setMostrarTodos] = useState(false);
 
@@ -93,7 +91,7 @@ export function HomePageProdutor() {
             >
                 <>
                     <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">Início</Button>
-                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('produtos')} tamanho="sm">Seus Produtos</Button>
+                    <Button variante="ButtonLinkBlack"  onClick={() => scrollToSection('produtos')} tamanho="sm">Seus Produtos</Button>
                     <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">Pedidos</Button>
                     <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('sobre')} tamanho="sm">Sobre</Button>
                 </>

@@ -13,7 +13,7 @@ export function HeaderProdutor({
   telefone,
   descricao,
   logo,
-  desde,
+//   desde,
   beditar,
 }: HeaderProdutorProps) {
     return (
@@ -56,9 +56,9 @@ export function HeaderProdutor({
                 }}
             >
                 <Typography level="h4">{nome}</Typography>
-                <Typography level="body-sm">Na plataforma desde {desde}</Typography>
+                {/* <Typography level="body-sm">Na plataforma desde {desde}</Typography> */}
                 <Typography level="body-sm" sx={{ color: '#000000ff' }}>{descricao}</Typography>
-                <Typography level="body-sm" sx={{ color: '#000000ff' }}>Localizado na {endereco}</Typography>
+                <Typography level="body-sm" sx={{ color: '#000000ff' }}>Email: {endereco}</Typography>
                 <Typography level="body-sm" sx={{ color: '#009a05ff' }}>Telefone: {telefone}</Typography>
             </Stack>
         

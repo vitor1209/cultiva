@@ -5,6 +5,7 @@ import type { CarrinhoAdd } from "../../models/carrinho.types";
 import { Badge, IconButton } from "@mui/material";
 import { ShoppingCart } from "lucide-react";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAddCarrinho = () => {
   const addMutation = useCarrinhoAdd();
 
@@ -33,6 +34,7 @@ export const useAddCarrinho = () => {
   };
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useDelCarrinho = () => {
   const delMutation = useCarrinhoDel();
 

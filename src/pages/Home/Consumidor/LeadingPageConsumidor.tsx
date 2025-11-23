@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import ProductCard from "../../../components/Card/Card.tsx";
 import { CarrinhoButton } from "../../carrinho/carrinho.hook.tsx";
 import { useLocation } from "react-router-dom";
+import { useGetHorta } from "../../../controllers/horta.controller.ts";
 
 const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -43,17 +44,15 @@ export function HomeConsumidorPage() {
     }, [location]);
 
 
-    const [mostrarTodos, setMostrarTodos] = useState(false);
-
-    const {
-        data: produtos,
-        isLoading,
-        error,
-    } = useGetProdutosGeral();
-
-        const produtosExibidos = mostrarTodos
-        ? produtos
-        : produtos?.slice(0, 8);
+     const [mostrarTodos, setMostrarTodos] = useState(false);
+        const [mostrarHortas, setMostrarHortas] = useState(false);
+    
+        const { data: produtos, isLoading, error } = useGetProdutosGeral();
+        const { data: hortas, isLoading: hortasLoading, error: hortasError } = useGetHorta();
+    
+        const produtosExibidos = mostrarTodos ? produtos : produtos?.slice(0, 8);
+        const hortasExibidas = mostrarHortas ? hortas : hortas?.slice(0, 8);
+    
 
     const usuario = localStorage.getItem("usuarioLogado")
         ? JSON.parse(localStorage.getItem("usuarioLogado")!)
@@ -151,15 +150,48 @@ export function HomeConsumidorPage() {
 
             <Styled.Division />
 
-            <Container id="produtores" maxWidth={"xl"} sx={{ width: '95%', padding: '3% 0 4% 0 ', p: { xs: 2, md: 4 }, borderRadius: '25px', backgroundColor: '#d9d3d0', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', }}>
+         <Container
+                maxWidth={"xl"}
+                sx={{
+                    width: '95%',
+                    padding: '3% 0 4% 0',
+                    p: { xs: 2, md: 4 },
+                    borderRadius: '25px',
+                    backgroundColor: '#d9d3d0',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexDirection: 'column',
+                }}
+            >
                 <Stack direction="row" justifyContent='space-between' width="95%" alignItems='center' marginBottom={2}>
-                    <Typography level="body-lg">Produtores em Destaque</Typography>
-                    <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho={"sm"}>Ver todos</Button>
+                    <Typography level="h4">Produtores em Destaque</Typography>
+
+                    <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" onClick={() => setMostrarHortas(true)} tamanho={"sm"}>Ver todos</Button>
                 </Stack>
+
                 <Stack direction={{ xs: "column", sm: "row" }} flexWrap="wrap" gap={2.5}>
-                  
+                    {hortasLoading && <Typography>Carregando hortas...</Typography>}
+                    {hortasError && <Typography>Erro ao carregar hortas</Typography>}
+
+                    {hortasExibidas && hortasExibidas.length > 0 ? (
+                        hortasExibidas.map(horta =>
+                            <ProductCard
+                                key={horta.id}
+                                id={horta.id}
+                                image={horta.usuario.banner ?? "https://veja.abril.com.br/wp-content/uploads/2016/12/maconha.jpg?crop=1&resize=1212,909"}
+                                name={horta.nome}               
+                                lugar={horta.usuario.email}       
+                                descricao={horta.usuario.nome}      
+                                tipoCard="Horta"
+                            />
+                        )
+                    ) : (
+                        !hortasLoading && <Typography>Nenhum produtor cadastrado</Typography>
+                    )}
                 </Stack>
             </Container>
+
 
             <Styled.Division />
 

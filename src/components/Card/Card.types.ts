@@ -6,5 +6,5 @@ export interface CardProps {
     descricao?: string;
     validade?: string;
     preco?: string | number;
-    tipoCard: "Horta" | "Produtor" | "Produto";
+    tipoCard: "Horta" | "Produtor" | "Produto" | 'semLogin';
 }

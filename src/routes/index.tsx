@@ -6,7 +6,7 @@ import {
     CadastroPage,
     HomePageProdutor,
     PedidosPage,
-    PedidoDetalhe,
+    PedidoDetalhePage,
     CadastrarProdutoPage,
     // ProdutoDetalhePage,
     FinalizarCarrinhoPage,
@@ -38,7 +38,7 @@ export default function AppRoutes() {
                 {/* <Route path="/ProdutoDetalhe" element={<ProdutoDetalhePage />} /> */}
                 <Route path="/FinalizarCarrinho" element={<FinalizarCarrinhoPage />} />
                 <Route path="/FinalizarEndereco" element={<FinalizarEnderecoPage />} />
-                <Route path="/PerfilProdutorPage" element={<PerfilProdutorPage />} />
+                <Route path="/PerfilProdutor/:hortaId" element={<PerfilProdutorPage />} />
                 <Route path="/ResetTokenPage" element={<ResetTokenPage />} />
                 <Route path="/CarrinhoVazioPage" element={<CarrinhoVazioPage />} />        
                 
@@ -48,7 +48,7 @@ export default function AppRoutes() {
             <Route element={<PrivateRoute />}>
                 <Route path="/HomeProdutor" element={<HomePageProdutor />} />
                 <Route path="/Pedidos" element={<PedidosPage />} />
-                <Route path="/Pedidos/:id" element={<PedidoDetalhe />} />
+                <Route path="/Pedidos/:id" element={<PedidoDetalhePage />} />
                 <Route path="/Cadastrar" element={<CadastrarProdutoPage />} />
                 <Route path="/ProdutorPrivatePage" element={<ProdutorPrivatePage />} />
                 <Route path="/EditarProdutoPage/:id" element={<EditarProdutoPage />} />

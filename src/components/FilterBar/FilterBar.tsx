@@ -5,7 +5,7 @@ import { useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 
-type StatusType = "Todos" | "Preparando" | "Enviado" | "Disponível para Retirada" | 'Finalizado';
+type StatusType = "Todos" | "Preparando" | "Enviado" | "Disponível para Retirada" | 'Finalizado' | 'Cancelado';
 type SortType = "Mais recentes" | "Mais antigos";
 
 interface FilterBarProps {

@@ -53,10 +53,6 @@ export default function ProductCard({
         });
     }
 
-    const descCurta = descricao && descricao.length > 40
-        ? descricao.substring(0, 40) + "..."
-        : descricao;
-
     const renderByType = () => {
         switch (tipoCard) {
             case "Horta":
@@ -67,6 +63,7 @@ export default function ProductCard({
                             espacamento={70}
                             tamanho="sm"
                             sx={{ border: '1px solid', borderColor: 'grey.300' }}
+                            onClick={() => navigate(`/PerfilProdutor/${id}`)}
                         >
                             Ver produtos
                         </Button>
@@ -95,6 +92,21 @@ export default function ProductCard({
                             tamanho="md"
                             icon={ShoppingCart}
                             onClick={handleAdicionarCarrinho}
+                        >
+                            Adicionar
+                        </Button>
+                    </Box>
+                );
+
+            case "semLogin":
+                return (
+                    <Box className="center">
+                        <Button
+                            variante="ButtonGreen"
+                            espacamento={70}
+                            tamanho="md"
+                            icon={ShoppingCart}
+                            to='/Login'
                         >
                             Adicionar
                         </Button>
@@ -142,8 +154,13 @@ export default function ProductCard({
                     {/* Descrição curta */}
                     {descricao && (
                         <div className="inline-item">
-                            <Typography level="body-sm">
-                                {descCurta}
+                            <Typography sx={{
+                                textAlign: 'start',
+                                whiteSpace: 'wrap',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                            }} level="body-sm">
+                                {descricao}
                             </Typography>
                         </div>
                     )}

@@ -42,7 +42,7 @@ export const ContainerInfos = styled(Stack)(({ theme }) => ({
 
 export const ContainerBtn = styled(Stack)(({ theme }) => ({
     justifyContent: "space-around",
-    alignItems: "flex-start",
+    alignItems: "center",
     gap: "1rem",
 
     [theme.breakpoints.down("md")]: {

@@ -1,12 +1,11 @@
-import Typography from "@mui/joy/Typography"
-import { Box, FormControl, MenuItem, Select, Stack, type SelectChangeEvent } from "@mui/material"
-import { Button } from "../Button/Button"
-import type { CardPedidoPros, StatusType } from "./CardPedido.type"
+import Typography from "@mui/joy/Typography";
+import { Box, Stack } from "@mui/material";
+import { Button } from "../Button/Button";
+import type { CardPedidoPros, StatusType } from "./CardPedido.type";
 import { useState } from "react";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { theme } from "../../lib/theme/theme";
-
 import * as styled from "./CardPedido.styled";
+import { useNavigate } from "react-router-dom";
 
 export const CardPedido = ({
     img,
@@ -17,35 +16,44 @@ export const CardPedido = ({
     totalCompra,
     status,
 }: CardPedidoPros) => {
-    const [statusAtivo, setstatusAtivo] = useState<StatusType>(status);
-    const [colorAtivo, setscolorAtivo] = useState<string>('#6796FF');
+    const [statusAtivo] = useState<StatusType>(status);
 
-    const setColor = (status: StatusType) => {
-        switch (status) {
-            case 'Disponível para Retirada':
-                setscolorAtivo("#DE96FA")
-                break;
-            case 'Enviado':
-                setscolorAtivo("#DE96FA")
-                break;
-            case 'Finalizado':
-                setscolorAtivo("#A0E393")
-                break;
-            case 'Preparando':
-                setscolorAtivo("#6796FF")
-                break;
+    const navigate = useNavigate();
 
-            default:
-                setscolorAtivo("#6796FF")
-                break;
-        }
-    }
-
-    const handleStatusChange = (event: SelectChangeEvent) => {
-        const newStatus = event.target.value as StatusType;
-        setColor(newStatus);
-        setstatusAtivo(newStatus);
+    const irParaPedido = () => {
+        navigate(`/Pedidos/${id}`);
     };
+
+    const formatDate = (datetime: string) => {
+        const date = new Date(datetime);
+        return (
+            date.toLocaleDateString("pt-BR") +
+            " " +
+            date.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })
+        );
+    };
+
+    const formatCurrency = (value: string | number) => {
+        const numberValue = typeof value === "string" ? parseFloat(value) : value;
+        return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(numberValue);
+    };
+
+    const getStatusColor = (status: StatusType) => {
+        switch (status) {
+            case "Preparando":
+                return "#6796FF";
+            case "Enviado":
+            case "Disponível para Retirada":
+                return "#DE96FA";
+            case "Finalizado":
+                return "#A0E393";
+            case "Cancelado":
+                return "#e26262ff";
+            default:
+                return "#6796FF";
+        }
+    };
+
     return (
         <styled.ContainerCardPedido>
             <styled.ContainerInfos>
@@ -53,55 +61,61 @@ export const CardPedido = ({
                     component="img"
                     src={img}
                     sx={{
-                        width: '7.6rem',
-                        height: '7.6rem',
+                        width: "7.6rem",
+                        height: "7.6rem",
                         borderRadius: "50%",
                         objectFit: "cover",
-                        boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.2)',
+                        boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.2)",
                     }}
                 />
-                <Stack sx={{
-                    marginLeft: '3.5%', width: '100%', [theme.breakpoints.down('md')]: {
-                        alignItems: 'center',
-                        textAlign: 'center',
-                        marginLeft: 0,
-                    }
-                }}
+                <Stack
+                    sx={{
+                        marginLeft: "3.5%",
+                        width: "100%",
+                        [theme.breakpoints.down("md")]: {
+                            alignItems: "center",
+                            textAlign: "center",
+                            marginLeft: 0,
+                        },
+                    }}
                 >
-                    <Typography level="body-lg" >{nome}</Typography>
-                    <Typography level="body-lg" >Pedido: #{id}</Typography>
-                    <Stack direction={{ sm: "column", md: "row" }} alignItems={'center'} gap={0.5}>
+                    <Typography level="body-lg">{nome}</Typography>
+                    <Typography level="body-lg">Pedido: #{id}</Typography>
+                    <Stack direction={{ sm: "column", md: "row" }} alignItems="center" gap={0.5}>
                         <Typography>Data da Compra: </Typography>
-                        <Typography level="body-sm">{data}</Typography>
+                        <Typography level="body-sm">{formatDate(data)}</Typography>
                     </Stack>
-                    <Stack direction={{ sm: "column", md: "row" }} alignItems={'center'} gap={0.5}>
+                    <Stack direction={{ sm: "column", md: "row" }} alignItems="center" gap={0.5}>
                         <Typography>Forma de Pagamento: </Typography>
                         <Typography level="body-sm">{formaPagamento}</Typography>
                     </Stack>
-                    <Stack direction={{ sm: "column", md: "row" }} alignItems={'center'} gap={0.5}>
+                    <Stack direction={{ sm: "column", md: "row" }} alignItems="center" gap={0.5}>
                         <Typography>Total Compra: </Typography>
-                        <Typography level="body-sm">R$ {totalCompra}</Typography>
+                        <Typography level="body-sm">{formatCurrency(totalCompra)}</Typography>
                     </Stack>
                 </Stack>
             </styled.ContainerInfos>
 
             <styled.ContainerBtn>
                 <Typography>Atualizar Status:</Typography>
-                <FormControl size="small" sx={{ minWidth: '16.25rem', backgroundColor: colorAtivo, borderRadius: '10px' }}>
-                    <Select value={statusAtivo} onChange={handleStatusChange} IconComponent={KeyboardArrowDownIcon} sx={{
-                        color: 'white', borderRadius: '10px', border: '1px solid #000',
-                        "& .MuiSelect-icon": {
-                            color: "white",
-                        }
-                    }}>
-                        <MenuItem value="Preparando">Preparando</MenuItem>
-                        <MenuItem value="Enviado">Enviado</MenuItem>
-                        <MenuItem value="Disponível para Retirada">Disponível para Retirada</MenuItem>
-                        <MenuItem value="Finalizado">Finalizado</MenuItem>
-                    </Select>
-                </FormControl>
-                <Button to={`/Pedidos/${id}`} espacamento={70} tamanho="md">Ver Detalhes</Button>
+                <Box
+                    sx={{
+                        backgroundColor: getStatusColor(statusAtivo),
+                        color: "#fff",
+                        padding: "0.6rem 0rem",
+                        borderRadius: "12px",
+                        width: '100%',
+                        fontWeight: 600,
+                        textAlign: "center",
+                    }}
+                >
+                    {statusAtivo}
+                </Box>
+
+                <Button onClick={irParaPedido} espacamento={70} tamanho="md">
+                    Ver Detalhes
+                </Button>
             </styled.ContainerBtn>
         </styled.ContainerCardPedido>
-    )
-}
+    );
+};
