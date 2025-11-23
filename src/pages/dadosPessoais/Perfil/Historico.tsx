@@ -1,5 +1,5 @@
 
-import { Box, Typography, Paper, Button } from "@mui/material";
+import { Box, Typography, Paper } from "@mui/material";
 
 interface Pedido {
   id: string;
@@ -93,18 +93,7 @@ const Historico = () => {
               {pedido.valor}
             </Typography>
 
-            <Button
-              variant="outlined"
-              size="small"
-              sx={{
-                textTransform: "none",
-                mt: 1,
-                borderRadius: 2,
-                fontSize: "0.75rem",
-              }}
-            >
-              Ver detalhes
-            </Button>
+            
           </Box>
         </Paper>
       ))}

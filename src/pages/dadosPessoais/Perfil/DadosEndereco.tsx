@@ -10,7 +10,7 @@ import { PadraoModal } from '../../../components/Modal/Modal';
 
 export const DadosEndereco = () => {
 
-    const { form, onSubmit,modalOpen,setModalOpen } = useFinalizarEnderecoForm();
+    const { form, onSubmit,modalOpen,setModalOpen, modalMessage } = useFinalizarEnderecoForm();
     const { control, handleSubmit } = form;
 
     return (
@@ -52,7 +52,6 @@ export const DadosEndereco = () => {
                         <Stack spacing={4} flex={1}>
                             <Input Icon={Asterisk} name="rua" placeholder="Rua" control={control} label="Rua:" />
                             <Input Icon={Asterisk} name="numero" placeholder="Número" control={control} label="Número:" />
-                            <Input Icon={Asterisk} name="bairro" placeholder="Bairro" control={control} label="Bairro:" />
                             <Input Icon={Asterisk} name="cidade" placeholder="Cidade" control={control} label="Cidade:" />
                         </Stack>
 
@@ -105,8 +104,9 @@ export const DadosEndereco = () => {
             <PadraoModal
                 open={modalOpen}
                 onClose={() => setModalOpen(false)}
-                title="Carrinho"
-                // description={modalMessage ?? ""}
+                title="Atualizado"
+                to='/DadosConsumidor'
+                description={modalMessage ?? ""}
                 buttonText="Concluir"
                 Icon={CheckCircle}
             />

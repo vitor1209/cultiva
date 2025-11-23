@@ -25,7 +25,6 @@ export function useFinalizarEnderecoForm() {
             form.reset({
                 rua: enderecoExistente.rua,
                 numero: enderecoExistente.numero,
-                bairro: enderecoExistente.bairro,
                 cidade: enderecoExistente.cidade,
                 estado: enderecoExistente.estado,
                 cep: enderecoExistente.cep,
@@ -59,7 +58,6 @@ export function useFinalizarEnderecoForm() {
         });
     };
 
-     const [openModal, setOpenModal] = useState(false);
 
     return {
         form,
@@ -68,7 +66,5 @@ export function useFinalizarEnderecoForm() {
         setModalOpen,
         modalMessage,
         enderecoExistente,
-        openModal,
-        setOpenModal,
     };
 }

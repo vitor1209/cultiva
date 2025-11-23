@@ -11,11 +11,6 @@ export const EnderecoSchema = z.object({
         .min(1, "Informe o número")
         .max(10, "Número deve ter no máximo 10 caracteres"),
 
-    bairro: z
-        .string()
-        .min(1, "Informe o bairro")
-        .max(255, "Bairro deve ter no máximo 255 caracteres"),
-
     cidade: z
         .string()
         .min(1, "Informe a cidade")
