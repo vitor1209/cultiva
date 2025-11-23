@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 
+
 const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
 
@@ -128,10 +129,10 @@ export function HomePageProdutor() {
 
             {/* Carrossel */}
             <Stack justifyContent={'center'} alignItems={'center'}>
-                <CarouselFullScreen tamanho="xl">
-                    <Box component="img" src={banner1} sx={{ width: "100%", objectFit: "cover" }} />
-                    <Box component="img" src={banner2} sx={{ width: "100%", objectFit: "cover" }} />
-                    <Box component="img" src={banner3} sx={{ width: "100%", objectFit: "cover" }} />
+                <CarouselFullScreen tamanho="xl"  >
+                    <Link to="/Sobre"><Box component="img" src={banner1} sx={{ width: "100%", objectFit: "cover" }} /></Link>
+                    <Link to="/Sobre#VantagensProdutor"><Box component="img" src={banner2} sx={{ width: "100%", objectFit: "cover" }} /></Link>
+                    <Link to="/Sobre#Beneficios"><Box component="img" src={banner3} sx={{ width: "100%", objectFit: "cover" }} /></Link>
                 </CarouselFullScreen>
             </Stack>
 

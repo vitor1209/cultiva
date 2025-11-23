@@ -12,11 +12,23 @@ import ftNi from "../../assets/images/imgSobre/ftsGrupo/ftNicole.svg";
 import ftThais from "../../assets/images/imgSobre/ftsGrupo/ftThais.svg";
 import ftVitor from "../../assets/images/imgSobre/ftsGrupo/ftVitor.svg";
 import ftProfs from "../../assets/images/imgSobre/ftsGrupo/profs.svg";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 
 
 export function SobrePage() {
 
+    const location = useLocation();
+    useEffect(() => {
+        if (location.hash) {
+        const element = document.querySelector(location.hash) as HTMLElement | null;
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+        }
+        }
+    }, [location.hash]);
+  
     return (
         <Box width="100%" display="flex" flexDirection="column" alignItems="center" bgcolor={"#fff9dfff"}>
 
@@ -86,7 +98,7 @@ export function SobrePage() {
                 <CarouselCards></CarouselCards>
             </Box>
 
-            <Box
+            <Box id= "Beneficios"
                 width="80%"
                 maxWidth="1300px"
                 px={{ xs: 3, md: 6 }}
@@ -109,7 +121,7 @@ export function SobrePage() {
                     Por que Priorizar Alimentos Naturais?
                 </Typography>
 
-                <Stack id= "Beneficios"
+                <Stack 
                 direction={{ xs: "column", md: "row" }}
                 spacing={4}
                 alignItems="center"
