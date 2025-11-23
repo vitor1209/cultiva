@@ -20,6 +20,7 @@ import {
     CarrinhoVazioPage,
     DadosProdutor,
     DadosConsumidor,
+    SobrePage, 
 
 } from "./pages";
 
@@ -41,7 +42,7 @@ export default function AppRoutes() {
                 <Route path="/PerfilProdutor/:hortaId" element={<PerfilProdutorPage />} />
                 <Route path="/ResetTokenPage" element={<ResetTokenPage />} />
                 <Route path="/CarrinhoVazioPage" element={<CarrinhoVazioPage />} />        
-                <Route path="/Sobre" element={<SobrePage />} />        
+                <Route path="/Sobre" element={<SobrePage/>} />      
                 
             </Route>
 

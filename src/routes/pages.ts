@@ -17,4 +17,5 @@ export {HomeConsumidorPage} from "../pages/Home/Consumidor/LeadingPageConsumidor
 export {CarrinhoVazioPage} from "../pages/carrinho/CarrinhoVazio/CarrinhoVazio.tsx"
 export {DadosProdutor} from "../pages/dadosPessoais/Produtor/PerfilProdutor.tsx"
 export {DadosConsumidor} from "../pages/dadosPessoais/Consumidor/PerfilConsumidor.tsx"
+export {SobrePage} from "../pages/Sobre/Sobre.tsx"
 
