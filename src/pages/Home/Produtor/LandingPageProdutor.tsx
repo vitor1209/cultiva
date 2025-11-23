@@ -14,7 +14,20 @@ import { useGetProdutos } from "../../../controllers/produto.controller.ts";
 import banner1 from "../../../assets/images/banner/3.svg"
 import banner2 from "../../../assets/images/banner/4.svg"
 import banner3 from "../../../assets/images/banner/5.svg"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+
+
+const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+
+    if (section) {
+        const yOffset = -100;
+        const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+    }
+};
+
 
 export function HomePageProdutor() {
 
