@@ -1,15 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Box, Tabs, Tab, Paper } from '@mui/material';
-import {DadosPessoaisC} from "./DadosPessoaisC";
+import { DadosPessoaisC } from "./DadosPessoaisC";
 import Historico from './Historico';
 import { DadosEndereco } from './DadosEndereco';
 
 export const ProfileTabsContainerC = () => {
-    const [activeTab, setActiveTab] = useState(0);
+
+    const [activeTab, setActiveTab] = useState<number>(() => {
+        const saved = localStorage.getItem("profile_active_tab_c");
+        return saved ? Number(saved) : 0;
+    });
 
     const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
         setActiveTab(newValue);
+        localStorage.setItem("profile_active_tab_c", String(newValue)); // ⬅ salva
     };
+
+    useEffect(() => {
+        const saved = localStorage.getItem("profile_active_tab_c");
+        if (saved !== null) {
+            setActiveTab(Number(saved));
+        }
+    }, []);
 
     const renderTabContent = () => {
         switch (activeTab) {
@@ -60,7 +72,6 @@ export const ProfileTabsContainerC = () => {
                                 px: { xs: 1, md: 3 },
                                 py: { xs: 1, md: 1.5 },
                                 fontFamily: '"Anybody", "Inter", sans-serif',
-
                                 '&.Mui-selected': {
                                     color: 'text.primary',
                                     backgroundColor: 'white',

@@ -3,33 +3,32 @@ import * as z from "zod";
 export const EnderecoSchema = z.object({
     rua: z
         .string()
-        .max(255, "Rua deve ter no máximo 255 caracteres")
-        .optional(),
+        .min(1, "Informe a rua")
+        .max(255, "Rua deve ter no máximo 255 caracteres"),
 
     numero: z
         .string()
-        .max(10, "Número deve ter no máximo 10 caracteres")
-        .optional(),
+        .min(1, "Informe o número")
+        .max(10, "Número deve ter no máximo 10 caracteres"),
 
     bairro: z
         .string()
-        .max(255, "Bairro deve ter no máximo 255 caracteres")
-        .optional(),
+        .min(1, "Informe o bairro")
+        .max(255, "Bairro deve ter no máximo 255 caracteres"),
 
     cidade: z
         .string()
-        .max(255, "Cidade deve ter no máximo 255 caracteres")
-        .optional(),
+        .min(1, "Informe a cidade")
+        .max(255, "Cidade deve ter no máximo 255 caracteres"),
 
     estado: z
         .string()
-        .max(2, "Estado deve ter 2 caracteres (UF)")
-        .optional(),
+        .length(2, "Estado deve ter 2 caracteres (UF)"),
 
     cep: z
         .string()
-        .max(20, "CEP deve ter no máximo 20 caracteres")
-        .optional(),
+        .min(1, "Informe o CEP")
+        .max(20, "CEP deve ter no máximo 20 caracteres"),
 
     complemento: z
         .string()
@@ -37,3 +36,5 @@ export const EnderecoSchema = z.object({
         .nullable()
         .optional(),
 });
+
+export type EnderecoEntregaDados = z.infer<typeof EnderecoSchema>;

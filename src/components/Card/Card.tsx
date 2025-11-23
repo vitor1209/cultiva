@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { PadraoModal } from '../Modal/Modal.tsx';
 import { useNavigate } from 'react-router-dom';
 import { useAddCarrinho } from '../../pages/carrinho/carrinho.hook.tsx';
+import { Link as RouterLink } from "react-router-dom";
 
 export default function ProductCard({
     image,
@@ -138,7 +139,13 @@ export default function ProductCard({
 
                 <CardContent className="cardContainer">
                     <div className="inline-item">
-                        <Link color="neutral" textColor="text.primary">
+                        <Link
+                            component={RouterLink}
+                            to={`/Produto/${id}`}
+                            color="neutral"
+                            textColor="text.primary"
+                            underline="none"
+                        >
                             {name}
                         </Link>
                     </div>

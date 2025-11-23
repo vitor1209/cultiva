@@ -13,6 +13,11 @@ import { UserRound } from "lucide-react";
 
 
 export function DadosConsumidor() {
+
+    const usuario = localStorage.getItem("usuarioLogado")
+        ? JSON.parse(localStorage.getItem("usuarioLogado")!)
+        : null;
+
     return (
         <>
             <Container
@@ -44,21 +49,16 @@ export function DadosConsumidor() {
                     </>
                 </Header>
 
-                <CaixaPerfil nome="Vitor Lopez" perfil="Consumidor" />
+                <CaixaPerfil nome={usuario?.nome ?? "Usuário"} perfil="Consumidor" />
 
 
                 <ProfileTabsContainerC />
 
 
-
-
-
                 <Footer />
             </Container>
 
-
         </>
-
 
 
     )

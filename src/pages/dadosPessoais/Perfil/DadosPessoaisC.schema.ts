@@ -23,6 +23,4 @@ export const DadosPessoaisSchemaC = z.object({
                     .or(z.string())
                     .optional(),
 
-
-
 });

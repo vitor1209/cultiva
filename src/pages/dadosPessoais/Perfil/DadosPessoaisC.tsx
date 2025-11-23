@@ -7,7 +7,6 @@ import { DadosPessoaisSchemaC } from './DadosPessoaisC.schema';
 import { MASCARAS } from '../../../masks';
 import { InputImagem } from '../../../components/Input/BoxImg/BoxImg';
 
-
 export const DadosPessoaisC = () => {
     const { control } = useForm({
         resolver: zodResolver(DadosPessoaisSchemaC),
@@ -17,13 +16,8 @@ export const DadosPessoaisC = () => {
             celularcon: '',
             dataNascicon: '',
             fotocon: '',
-
         },
     });
-
-
-
-
 
     return (
         <Stack spacing={4} p={{ xs: 2, md: 6 }} marginBottom={"40px"}>
@@ -42,7 +36,7 @@ export const DadosPessoaisC = () => {
                     fontWeight="bold"
                     fontFamily={'"Anybody", "Inter", sans-serif'}
                 >
-                    Dados do Endereço
+                    Dados Pessoais
                 </Typography>
 
                 <Button tamanho="md" espacamento={10}>
@@ -50,41 +44,62 @@ export const DadosPessoaisC = () => {
                 </Button>
             </Stack>
 
-            {/* —— 2 COLUNAS COM 3 INPUTS —— */}
-            <Stack
-                direction={{ xs: "column", md: "row" }}
-                spacing={6}
-                width="90%"
-                alignSelf="center"
-            >
-                <Stack spacing={3} flex={1}>
-                    <Input name="NomeCompletocon" placeholder="Nome Completo" control={control} label="Nome Completo:" />
-                    <Input name="Emailcon" placeholder="Email" control={control} label="Email:" />
-                </Stack>
-
-                <Stack spacing={3} flex={1}>
-                    <Input mask={MASCARAS.celular} name="celularcon" placeholder="Celular" control={control} label="Celular:" />
-
-                    <Input name="dataNascicon" placeholder="Data de Nascimento" mask={MASCARAS.data} control={control} label="Data de Nascimento:" />
-                </Stack>
-            </Stack>
-
-            {/* —— INPUTS DE FOTO (SEMPRE ABAIXO DAS 2 COLUNAS) —— */}
-            <Stack
-                spacing={6}
-                width="90%"
-                alignSelf="center"
-                marginTop={2}
-
-
-            >
-                <Stack flex={1} alignItems="center" >
+            {/* ——— FOTO (ESQ) • INPUTS (DIR) ——— */}
+           <Stack
+    direction={{ xs: "column", md: "row" }}
+    spacing={8}
+    width="90%"
+    marginRight="auto"
+    marginLeft="auto"
+    alignItems="center"
+    justifyContent="center"
+>
+                {/* Coluna da IMAGEM */}
+                <Stack flex={1} alignItems="center">
                     <InputImagem
                         name="fotocon"
                         control={control}
                         label="Foto de perfil:"
-                        height={18}
-                        width={18}
+                        height={20}
+                        width={20}
+                    />
+                </Stack>
+
+                {/* Coluna dos INPUTS */}
+                <Stack
+                    flex={1}
+                    spacing={3}
+                    width="100%"
+                    textAlign={'start'}
+                >
+                    <Input
+                        name="NomeCompletocon"
+                        placeholder="Nome Completo"
+                        control={control}
+                        label="Nome Completo:"
+                    />
+
+                    <Input
+                        name="Emailcon"
+                        placeholder="Email"
+                        control={control}
+                        label="Email:"
+                    />
+
+                    <Input
+                        mask={MASCARAS.celular}
+                        name="celularcon"
+                        placeholder="Celular"
+                        control={control}
+                        label="Celular:"
+                    />
+
+                    <Input
+                        name="dataNascicon"
+                        placeholder="Data de Nascimento"
+                        mask={MASCARAS.data}
+                        control={control}
+                        label="Data de Nascimento:"
                     />
                 </Stack>
             </Stack>
@@ -92,4 +107,3 @@ export const DadosPessoaisC = () => {
         </Stack>
     );
 };
-
