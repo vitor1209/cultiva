@@ -82,7 +82,9 @@ export function SobrePage() {
                 }}
             />
 
-            <CarouselCards></CarouselCards>
+            <Box id="VantagensProdutor">
+                <CarouselCards></CarouselCards>
+            </Box>
 
             <Box
                 width="80%"
@@ -107,7 +109,7 @@ export function SobrePage() {
                     Por que Priorizar Alimentos Naturais?
                 </Typography>
 
-                <Stack
+                <Stack id= "Beneficios"
                 direction={{ xs: "column", md: "row" }}
                 spacing={4}
                 alignItems="center"

@@ -17,6 +17,7 @@ import banner2 from "../../../assets/images/banner/4.svg"
 import banner3 from "../../../assets/images/banner/5.svg"
 import { useLocation } from "react-router-dom";
 import { useGetHorta } from "../../../controllers/horta.controller.ts";
+import { Link } from "react-router-dom";
 
 const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -104,9 +105,9 @@ export function HomeConsumidorPage() {
 
             <Stack justifyContent={'center'} alignItems={'center'}>
                 <CarouselFullScreen tamanho="xl"  >
-                    <Box component="img" src={banner1} sx={{ width: "100%", objectFit: "cover" }} />
-                    <Box component="img" src={banner2} sx={{ width: "100%", objectFit: "cover" }} />
-                    <Box component="img" src={banner3} sx={{ width: "100%", objectFit: "cover" }} />
+                    <Link to="/Sobre"><Box component="img" src={banner1} sx={{ width: "100%", objectFit: "cover" }} /></Link>
+                    <Link to="/Sobre#VantagensProdutor"><Box component="img" src={banner2} sx={{ width: "100%", objectFit: "cover" }} /></Link>
+                    <Link to="/Sobre#Beneficios"><Box component="img" src={banner3} sx={{ width: "100%", objectFit: "cover" }} /></Link>
                 </CarouselFullScreen>
             </Stack>
 
@@ -153,7 +154,7 @@ export function HomeConsumidorPage() {
 
             <Styled.Division />
 
-         <Container
+            <Container
                 maxWidth={"xl"}
                 sx={{
                     width: '95%',
