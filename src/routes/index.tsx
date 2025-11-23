@@ -41,6 +41,7 @@ export default function AppRoutes() {
                 <Route path="/PerfilProdutor/:hortaId" element={<PerfilProdutorPage />} />
                 <Route path="/ResetTokenPage" element={<ResetTokenPage />} />
                 <Route path="/CarrinhoVazioPage" element={<CarrinhoVazioPage />} />        
+                <Route path="/Sobre" element={<SobrePage />} />        
                 
             </Route>
 
