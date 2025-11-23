@@ -11,6 +11,9 @@ import SearchBar from "../../../components/barSearch/barSearch.tsx";
 import CardInfo from "../../../components/cardInfo/CardInfo.tsx";
 import { Link } from "react-router-dom";
 import { useGetProdutos } from "../../../controllers/produto.controller.ts";
+import banner1 from "../../../assets/images/banner/3.svg"
+import banner2 from "../../../assets/images/banner/4.svg"
+import banner3 from "../../../assets/images/banner/5.svg"
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -126,9 +129,9 @@ export function HomePageProdutor() {
             {/* Carrossel */}
             <Stack justifyContent={'center'} alignItems={'center'}>
                 <CarouselFullScreen tamanho="xl">
-                    <Box sx={{ background: "#1976d2", height: { xs: '10rem', sm: '20.25rem' }, borderRadius: '30px' }} />
-                    <Box sx={{ background: "#9c27b0", height: { xs: '10rem', sm: '20.25rem' }, borderRadius: '30px' }} />
-                    <Box sx={{ background: "#2e7d32", height: { xs: '10rem', sm: '20.25rem' }, borderRadius: '30px' }} />
+                    <Box component="img" src={banner1} sx={{ width: "100%", objectFit: "cover" }} />
+                    <Box component="img" src={banner2} sx={{ width: "100%", objectFit: "cover" }} />
+                    <Box component="img" src={banner3} sx={{ width: "100%", objectFit: "cover" }} />
                 </CarouselFullScreen>
             </Stack>
 
