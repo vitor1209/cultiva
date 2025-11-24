@@ -70,6 +70,7 @@ export function CarouselCards() {
                 mb={2}
                 variant="h5"
                 sx={{color: "white" }}
+                fontFamily={"Anybody"}
             >
                 Torne-se um Produtor
             </Typography>
@@ -78,10 +79,11 @@ export function CarouselCards() {
                 mb={5}
                 variant="h5"
                 sx={{color: "white" }}
+                fontFamily={"Anybody"}
             >
                 Conheça as Vantagens de Fazer Parte do Cultiva+
             </Typography>
-            <Typography width={"80%"} align="center" fontSize={{ xs: "0.95rem", md: "1.1rem"  }} sx={{color: "white"}} mb={10}>
+            <Typography width={"80%"} align="center" fontSize={{ xs: "0.95rem", md: "1.1rem"  }} sx={{color: "white"}} mb={10} fontFamily={"Arimo"}>
                 O Cultiva+ é uma plataforma que conecta produtores locais a consumidores interessados em alimentos frescos e naturais. Ao participar do sistema, o produtor amplia sua visibilidade na região, alcançando novos clientes e aumentando suas oportunidades de venda. Essa exposição fortalece o comércio local e contribui diretamente para o crescimento financeiro do produtor. Além disso, o Cultiva+ oferece ferramentas que proporcionam maior organização no dia a dia: controle de vendas, relatórios personalizados e acompanhamento do desempenho do negócio. Com esses recursos, o produtor obtém mais clareza sobre sua produção e consegue administrar seu empreendimento de forma simples e eficiente.
             </Typography>
             
@@ -181,6 +183,7 @@ export function CarouselCards() {
                                         fontSize: isCenter ? "1.2rem" : "1rem",
                                         textAlign: "center",
                                         fontWeight: "bold",
+                                        fontFamily: "Anybody"
                                         
                                     }}
                                 >
@@ -196,6 +199,7 @@ export function CarouselCards() {
                                         fontSize: "0.9rem",
                                         textAlign: "center",
                                         width: "90%",
+                                        fontFamily: "Arimo"
                                         }}
                                     >
                                         {card.desc}

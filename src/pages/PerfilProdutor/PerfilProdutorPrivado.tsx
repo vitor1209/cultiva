@@ -1,7 +1,6 @@
-import { Container, IconButton, Stack } from "@mui/material";
-import { Header } from "../../components/Header/Header";
-import { Button } from "../../components/Button/Button";
-import SearchBar from "../../components/barSearch/barSearch";
+import { Container, IconButton, Stack } from "@mui/material"
+import { Header } from "../../components/Header/Header.tsx"
+import { Button } from "../../components/Button/Button.tsx"
 import { UserRound, ChevronRight, LogOut } from "lucide-react";
 import Typography from "@mui/joy/Typography";
 import ProductCard from "../../components/Card/Card";
@@ -40,37 +39,33 @@ let fkHortaId = 1
     navigate("/Login");
   };
 
-  return (
-    <Container
-      disableGutters
-      maxWidth={false}
-      sx={{ backgroundColor: "#fff8f0", textAlign: "left", marginTop: 12, padding: 0 }}
-    >
-      {/* Header principal */}
-      <Header
-        end={
-          <Stack direction="row" spacing={1}>
-            <IconButton aria-label="perfil" size="large">
-              <UserRound />
-            </IconButton>
-            <IconButton aria-label="logout" size="large" onClick={handleLogout}>
-              <LogOut />
-            </IconButton>
-          </Stack>
-        }
-        start={
-          <Stack flex={1} minWidth="250px" maxWidth="400px">
-            <SearchBar />
-          </Stack>
-        }
-      >
-        <>
-          <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">Início</Button>
-          <Button variante="ButtonLinkBlack" to="#produtos" tamanho="sm">Seus Produtos</Button>
-          <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">Pedidos</Button>
-          <Button variante="ButtonLinkBlack" to="#sobre" tamanho="sm">Sobre</Button>
-        </>
-      </Header>
+    return (
+        <Container
+            disableGutters
+            maxWidth={false}
+            sx={{ backgroundColor: "#fff8f0", textAlign: "left", marginTop: 12, padding: 0 }}
+        >
+            {/* Header principal */}
+            <Header
+                end={
+                    <Stack direction="row" spacing={1}>
+                        <IconButton aria-label="perfil" size="large">
+                            <UserRound />
+                        </IconButton>
+                        <IconButton aria-label="logout" size="large" onClick={handleLogout}>
+                            <LogOut />
+                        </IconButton>
+                    </Stack>
+                }
+
+            >
+                <>
+                    <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">Início</Button>
+                    <Button variante="ButtonLinkBlack" to="/HomeProdutor#produtos" tamanho="sm">Seus Produtos</Button>
+                    <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">Pedidos</Button>
+                    <Button variante="ButtonLinkBlack" to="/HomeProdutor#sobre" tamanho="sm">Sobre</Button>
+                </>
+            </Header>
 
       {/* Header do produtor */}
       <HeaderProdutor

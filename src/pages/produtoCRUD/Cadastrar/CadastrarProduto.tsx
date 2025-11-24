@@ -1,8 +1,7 @@
-import { Container, IconButton, MenuItem, Stack, Typography } from "@mui/material";
+import { Container, IconButton, MenuItem, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Alert } from "@mui/joy";
 import { Asterisk, UserRound } from "lucide-react";
 import { Header } from "../../../components/Header/Header.tsx";
-import SearchBar from "../../../components/barSearch/barSearch.tsx";
 import { Button } from "../../../components/Button/Button.tsx";
 import { Footer } from "../../../components/Footer/Footer.tsx";
 import { Input } from "../../../components/Input/Input.tsx";
@@ -13,79 +12,100 @@ import { SelectControlado } from "../../../components/Input/Select/Select.tsx";
 import { useCadastroProduto } from "./CadastrarProduto.hooks.ts";
 import { useForm } from "react-hook-form";
 import type { CadastroProdutoType } from "../CadastrarProduto.schemas.ts";
+import { Link } from "react-router-dom";
+
 
 export function CadastrarProdutoPage() {
     const { control, handleSubmit } = useForm<CadastroProdutoType>();
     const { cadastroProduto, successMessage, errorMessage, loading } = useCadastroProduto();
 
-   const onSubmit = handleSubmit((data) => {
-  // Pegar o usuário logado
-  const usuarioLogado = localStorage.getItem("usuarioLogado");
-  let fkHortaId = 0; // valor padrão
+    const onSubmit = handleSubmit((data) => {
+        // Pegar o usuário logado
+        const usuarioLogado = localStorage.getItem("usuarioLogado");
+        let fkHortaId = 0; // valor padrão
 
-  if (usuarioLogado) {
-    try {
-      const userObj = JSON.parse(usuarioLogado);
-      // Agora usamos o id do usuário como fk_horta_id
-      fkHortaId = userObj.id || 0;
-    } catch (err) {
-      console.warn("Não foi possível ler o usuário logado:", err);
-    }
-  }
+        if (usuarioLogado) {
+            try {
+                const userObj = JSON.parse(usuarioLogado);
+                // Agora usamos o id do usuário como fk_horta_id
+                fkHortaId = userObj.id || 0;
+            } catch (err) {
+                console.warn("Não foi possível ler o usuário logado:", err);
+            }
+        }
 
-  // FormData para envio
-  const formData = new FormData();
-  const precoFormatado = parseFloat(
-    data.preco.replace("R$", "").replace(/\./g, "").replace(",", ".")
-  );
+        // FormData para envio
+        const formData = new FormData();
+        const precoFormatado = parseFloat(
+            data.preco.replace("R$", "").replace(/\./g, "").replace(",", ".")
+        );
 
-  formData.append("nome", data.nome);
-  formData.append("descricao", data.descricao || "");
-  formData.append("preco_unit", String(precoFormatado.toFixed(2)));
-  formData.append("quantidade_estoque", String(Math.floor(Number(data.quantidadeEstoque))));
-  formData.append("quant_unit_medida", String(Math.floor(Number(data.quantidadeMedida))));
+        formData.append("nome", data.nome);
+        formData.append("descricao", data.descricao || "");
+        formData.append("preco_unit", String(precoFormatado.toFixed(2)));
+        formData.append("quantidade_estoque", String(Math.floor(Number(data.quantidadeEstoque))));
+        formData.append("quant_unit_medida", String(Math.floor(Number(data.quantidadeMedida))));
 
-  // Aqui convertemos a data para YYYY-MM-DD
-  const [day, month, year] = data.dataValidade.split("/").map(Number);
-  const validadeString = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-  formData.append("validade", validadeString);
+        // Aqui convertemos a data para YYYY-MM-DD
+        const [day, month, year] = data.dataValidade.split("/").map(Number);
+        const validadeString = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+        formData.append("validade", validadeString);
 
-  formData.append("fk_unidade_medida_id", String(Number(data.unidadeMedida)));
-  formData.append("fk_horta_id", String(fkHortaId));
+        formData.append("fk_unidade_medida_id", String(Number(data.unidadeMedida)));
+        formData.append("fk_horta_id", String(fkHortaId));
 
-  if (data.imagem) {
-    const file = Array.isArray(data.imagem) ? data.imagem[0] : data.imagem;
-    formData.append("caminho", file);
-  }
+        if (data.imagem) {
+            const file = Array.isArray(data.imagem) ? data.imagem[0] : data.imagem;
+            formData.append("caminho", file);
+        }
 
-  console.log("Dados do produto antes do envio:");
-  console.log({
-    nome: data.nome,
-    descricao: data.descricao,
-    preco_unit: precoFormatado.toFixed(2),
-    quantidade_estoque: Math.floor(Number(data.quantidadeEstoque)),
-    quant_unit_medida: Math.floor(Number(data.quantidadeMedida)),
-    validade: validadeString,
-    fk_unidade_medida_id: Number(data.unidadeMedida),
-    fk_horta_id: fkHortaId,
-    imagem: data.imagem,
-  });
+        console.log("Dados do produto antes do envio:");
+        console.log({
+            nome: data.nome,
+            descricao: data.descricao,
+            preco_unit: precoFormatado.toFixed(2),
+            quantidade_estoque: Math.floor(Number(data.quantidadeEstoque)),
+            quant_unit_medida: Math.floor(Number(data.quantidadeMedida)),
+            validade: validadeString,
+            fk_unidade_medida_id: Number(data.unidadeMedida),
+            fk_horta_id: fkHortaId,
+            imagem: data.imagem,
+        });
 
-  // Chamar mutation
-  cadastroProduto(formData);
-});
+        // Chamar mutation
+        cadastroProduto(formData);
+
+
+    });
+        const theme = useTheme();
+
+        const isMdUp = useMediaQuery(theme.breakpoints.up("lg"));
+
+        const l = isMdUp ? 40 : 18;
+
+        const h = isMdUp ? 40 : 18;
+
 
 
     return (
         <Container disableGutters maxWidth={false} sx={{ backgroundColor: "#fff8f0", mt: 8, textAlign: "center", p: 0 }}>
             <Header
-                end={<IconButton size="large"><UserRound /></IconButton>}
-                start={<Stack flex={1} minWidth="250px" maxWidth="400px"><SearchBar /></Stack>}
+                end={<IconButton size="large" component={Link} to="/ProdutorPrivatePage"><UserRound /></IconButton>}
+ 
             >
-                <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">Início</Button>
-                <Button variante="ButtonLinkBlack" tamanho="sm">Seus Produtos</Button>
-                <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">Pedidos</Button>
-                <Button variante="ButtonLinkBlack" tamanho="sm">Como Funciona</Button>
+                
+                    <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">
+                        Início
+                    </Button>
+                    <Button variante="ButtonLinkBlack" to="/HomeProdutor#produtos" tamanho="sm">
+                        Seus Produtos
+                    </Button>
+                    <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">
+                        Pedidos
+                    </Button>
+                    <Button variante="ButtonLinkBlack" to="/Sobre" tamanho="sm">
+                        Sobre
+                    </Button>
             </Header>
 
             <Stack>
@@ -96,8 +116,8 @@ export function CadastrarProdutoPage() {
                                 name="imagem"
                                 control={control}
                                 label="Cadastrar Novo Produto:"
-                                height={40}
-                                width={45}
+                                height={h}
+                                width={l}
                             />
                         </styled.BoxFoto>
 

@@ -3,7 +3,6 @@ import { Header } from "../../../components/Header/Header";
 import { Button } from "../../../components/Button/Button";
 import { Footer } from "../../../components/Footer/Footer";
 import { ChartColumn, Package, Plus, ShoppingBag, UserRound } from "lucide-react";
-import SearchBar from "../../../components/barSearch/barSearch";
 import CardInfo from "../../../components/cardInfo/CardInfo";
 import Typography from "@mui/joy/Typography";
 import * as styled from "../Pedidos.styled";
@@ -52,11 +51,6 @@ export function PedidosPage() {
                         <UserRound />
                     </IconButton>
                 }
-                start={
-                    <Stack flex={1} minWidth="250px" maxWidth="400px">
-                        <SearchBar />
-                    </Stack>
-                }
             >
                 <>
                     <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">
@@ -68,7 +62,7 @@ export function PedidosPage() {
                     <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">
                         Pedidos
                     </Button>
-                    <Button variante="ButtonLinkBlack" to="/HomeProdutor#sobre" tamanho="sm">
+                    <Button variante="ButtonLinkBlack" to="/Sobre" tamanho="sm">
                         Sobre
                     </Button>
                 </>
@@ -95,8 +89,8 @@ export function PedidosPage() {
                     <Typography level="body-lg">Resumo de desempenho</Typography>
                 </Stack>
                 <Stack direction={{ xs: "column", sm: "row" }} flexWrap="wrap" gap={2.5}>
-                    <CardInfo name={"Cadastrar Produto"} valor={"Adicione novos produtos"} color={"blue"} tamanho={"md"} icon={Plus} />
-                    <CardInfo name={"Meus Produtos"} valor={"Gerenciar produtos"} color={"green"} tamanho={"md"} icon={Package} />
+                    <CardInfo to="/Cadastrar" name={"Cadastrar Produto"} valor={"Adicione novos produtos"} color={"blue"} tamanho={"md"} icon={Plus} />
+                    <CardInfo to="/ProdutorPrivatePage" name={"Meus Produtos"} valor={"Gerenciar produtos"} color={"green"} tamanho={"md"} icon={Package} />
                     <CardInfo name={"Pedidos Recebidos"} valor={"Ver novos pedidos"} color={"purple"} tamanho={"md"} icon={ShoppingBag} />
                     <CardInfo name={"Relatórios"} valor={"Análise de vendas"} color={"orange"} tamanho={"md"} icon={ChartColumn} />
                 </Stack>
