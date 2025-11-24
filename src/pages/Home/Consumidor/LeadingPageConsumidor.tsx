@@ -1,5 +1,5 @@
 import { Container, IconButton, Stack, Box } from "@mui/material";
-import {  UserRound, ChevronRight } from "lucide-react";
+import { UserRound, ChevronRight } from "lucide-react";
 import { Header } from "../../../components/Header/Header.tsx";
 import { Footer } from "../../../components/Footer/Footer.tsx";
 import SearchBar from "../../../components/barSearch/barSearch.tsx";
@@ -35,7 +35,7 @@ export function HomeConsumidorPage() {
             const element = document.querySelector(location.hash);
 
             if (element) {
-                const yOffset = -100; 
+                const yOffset = -100;
                 const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
                 window.scrollTo({ top: y, behavior: "smooth" });
@@ -44,12 +44,12 @@ export function HomeConsumidorPage() {
     }, [location]);
 
 
-     const [mostrarTodos, setMostrarTodos] = useState(false);
-        const [mostrarHortas, setMostrarHortas] = useState(false);
-        const { data: produtos, isLoading, error } = useGetProdutosGeral();
-        const { data: hortas, isLoading: hortasLoading, error: hortasError } = useGetHorta();
-        const produtosExibidos = mostrarTodos ? produtos : produtos?.slice(0, 8);
-        const hortasExibidas = mostrarHortas ? hortas : hortas?.slice(0, 8);
+    const [mostrarTodos, setMostrarTodos] = useState(false);
+    const [mostrarHortas, setMostrarHortas] = useState(false);
+    const { data: produtos, isLoading, error } = useGetProdutosGeral();
+    const { data: hortas, isLoading: hortasLoading, error: hortasError } = useGetHorta();
+    const produtosExibidos = mostrarTodos ? produtos : produtos?.slice(0, 8);
+    const hortasExibidas = mostrarHortas ? hortas : hortas?.slice(0, 8);
 
     const usuario = localStorage.getItem("usuarioLogado")
         ? JSON.parse(localStorage.getItem("usuarioLogado")!)
@@ -64,7 +64,7 @@ export function HomeConsumidorPage() {
             <Header
                 end={
                     <Stack direction={'row'} gap={3}>
-                        <CarrinhoButton/>
+                        <CarrinhoButton />
                         <IconButton href="/DadosConsumidor" aria-label="perfil" size="large">
                             <UserRound />
                         </IconButton>
@@ -80,8 +80,8 @@ export function HomeConsumidorPage() {
                     <Button variante="ButtonLinkBlack" tamanho="sm" to="/HomeConsumidor">Início</Button>
                     <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('produtos')} tamanho="sm">Produtos</Button>
 
-                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('produtores')}  tamanho="sm">Produtores</Button>
-                    <Button variante="ButtonLinkBlack" to="/Sobre"  tamanho="sm">Sobre</Button>
+                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('produtores')} tamanho="sm">Produtores</Button>
+                    <Button variante="ButtonLinkBlack" to="/Sobre" tamanho="sm">Sobre</Button>
                 </>
             </Header>
 
@@ -123,14 +123,14 @@ export function HomeConsumidorPage() {
                     </Button>
                 </Stack>
                 <Stack direction={{ xs: "column", sm: "row" }} gap={4} flexWrap="wrap" justifyContent="space-evenly" alignItems="center" width="95%"    >
-                  {isLoading && <Typography>Carregando produtos...</Typography>}
+                    {isLoading && <Typography>Carregando produtos...</Typography>}
                     {error && <Typography>Erro ao carregar produtos</Typography>}
 
                     {produtosExibidos && produtosExibidos.length > 0 ? (
                         produtosExibidos.map(produto =>
                             <ProductCard
                                 key={produto.id}
-                                id={produto.id} 
+                                id={produto.id}
                                 image={produto.imagem ?? "https://veja.abril.com.br/wp-content/uploads/2016/12/maconha.jpg?crop=1&resize=1212,909"}
                                 name={produto.nome}
                                 lugar={usuario?.nome}
@@ -147,7 +147,7 @@ export function HomeConsumidorPage() {
 
             <Styled.Division />
 
-         <Container
+            <Container
                 maxWidth={"xl"}
                 sx={{
                     width: '95%',
@@ -161,7 +161,7 @@ export function HomeConsumidorPage() {
                     flexDirection: 'column',
                 }}
             >
-                <Stack direction="row" justifyContent='space-between' width="95%" alignItems='center' marginBottom={2}>
+                <Stack id="produtores" direction="row" justifyContent='space-between' width="95%" alignItems='center' marginBottom={2}>
                     <Typography level="h4">Produtores em Destaque</Typography>
 
                     <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" onClick={() => setMostrarHortas(true)} tamanho={"sm"}>Ver todos</Button>
@@ -177,9 +177,9 @@ export function HomeConsumidorPage() {
                                 key={horta.id}
                                 id={horta.id}
                                 image={horta.usuario.banner ?? "https://veja.abril.com.br/wp-content/uploads/2016/12/maconha.jpg?crop=1&resize=1212,909"}
-                                name={horta.nome}               
-                                lugar={horta.usuario.email}       
-                                descricao={horta.usuario.nome}      
+                                name={horta.nome}
+                                lugar={horta.usuario.email}
+                                descricao={horta.usuario.nome}
                                 tipoCard="Horta"
                             />
                         )

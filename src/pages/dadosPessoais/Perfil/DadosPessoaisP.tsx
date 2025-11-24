@@ -40,7 +40,7 @@ export const DadosPessoais = () => {
                 <Typography
                     variant="h5"
                     fontWeight="bold"
-                    fontFamily={'"Anybody", "Inter", sans-serif'}
+                    fontFamily={"Anybody"}
                 >
                     Dados Pessoais
                 </Typography>

@@ -107,6 +107,7 @@ export const CardPedido = ({
                         width: '100%',
                         fontWeight: 600,
                         textAlign: "center",
+                        fontFamily: "Anybody"
                     }}
                 >
                     {statusAtivo}

@@ -58,7 +58,7 @@ export function SobrePage() {
                     }}
                 >
                     <IconButton onClick={() => navigate(-1)}>
-                        <ArrowBackIosNewIcon fontSize="small" />
+                        <ArrowBackIosNewIcon fontSize="small" />Voltar
                     </IconButton>
                 </Paper>
             </Box>

@@ -29,7 +29,7 @@ export const DadosEndereco = () => {
                         <Typography
                             variant="h5"
                             fontWeight="bold"
-                            fontFamily={'"Anybody", "Inter", sans-serif"'}
+                            fontFamily={"Anybody"}
                         >
                             Dados do Endereço
                         </Typography>

@@ -2,11 +2,10 @@ import { Container, IconButton, Stack } from "@mui/material";
 import { Header } from "../../../components/Header/Header";
 import { Button } from "../../../components/Button/Button";
 import { Footer } from "../../../components/Footer/Footer";
-import { ChartColumn, Package, Plus, ShoppingBag, UserRound } from "lucide-react";
+import { Package, Plus, ShoppingBag, UserRound } from "lucide-react";
 import CardInfo from "../../../components/cardInfo/CardInfo";
 import Typography from "@mui/joy/Typography";
 import * as styled from "../Pedidos.styled";
-import { FilterBar } from "../../../components/FilterBar/FilterBar";
 import { CardPedido } from "../../../components/CardPedido/CardPedido";
 import { Link } from "react-router";
 import { useGetPedidosProdutor } from "../../../controllers/pedido.controller";
@@ -14,9 +13,6 @@ import { useGetPedidosProdutor } from "../../../controllers/pedido.controller";
 export function PedidosPage() {
     const { data, isLoading, isError } = useGetPedidosProdutor();
 
-    const handleFilterChange = (filters: { status: string; sort: string }) => {
-        console.log("Filtros aplicados:", filters);
-    };
 
     type StatusType = "Preparando" | "Enviado" | "Disponível para Retirada" | "Finalizado" | 'Cancelado'
 
@@ -86,11 +82,11 @@ export function PedidosPage() {
                 <Stack direction="row" justifyContent="space-between" width="100%" alignItems="center" marginBottom={2}>
                     <Typography level="body-lg">Resumo de desempenho</Typography>
                 </Stack>
-                <Stack direction={{ xs: "column", sm: "row" }} flexWrap="wrap" gap={2.5}>
+                <Stack direction={{ xs: "column", sm: "row" }} flexWrap="wrap" gap={2.5} width={"100%"} >
                     <CardInfo to="/Cadastrar" name={"Cadastrar Produto"} valor={"Adicione novos produtos"} color={"blue"} tamanho={"md"} icon={Plus} />
                     <CardInfo to="/ProdutorPrivatePage" name={"Meus Produtos"} valor={"Gerenciar produtos"} color={"green"} tamanho={"md"} icon={Package} />
                     <CardInfo name={"Pedidos Recebidos"} valor={"Ver novos pedidos"} color={"purple"} tamanho={"md"} icon={ShoppingBag} />
-                    <CardInfo name={"Relatórios"} valor={"Análise de vendas"} color={"orange"} tamanho={"md"} icon={ChartColumn} />
+                    {/* <CardInfo name={"Relatórios"} valor={"Análise de vendas"} color={"orange"} tamanho={"md"} icon={ChartColumn} /> */}
                 </Stack>
             </Container>
 
@@ -120,7 +116,7 @@ export function PedidosPage() {
                     <Typography>Erro ao carregar pedidos.</Typography>
                 ) : (
                     <Stack direction={{ xs: "column", sm: "row" }} width="100%" flexWrap="wrap" gap={2.5}>
-                        <FilterBar onFilterChange={handleFilterChange} />
+                        {/* <FilterBar onFilterChange={handleFilterChange} /> */}
 
                         {data?.pedidos?.length ? (
                             data.pedidos.map((pedido) => (
@@ -133,6 +129,7 @@ export function PedidosPage() {
                                     formaPagamento={pedido.forma_pagamento ?? 'PIX'}
                                     totalCompra={pedido.preco_final}
                                     status={mapStatus(pedido.status)}
+                                    
                                 />
                             ))
                         ) : (

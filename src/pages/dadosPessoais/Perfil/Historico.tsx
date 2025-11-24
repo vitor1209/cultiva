@@ -69,13 +69,13 @@ const Historico = () => {
         variant="h5"
         fontWeight="bold"
         mb={4}
-        sx={{ mb: 3, textAlign: "left" }}
-        fontFamily={'"Anybody", "Inter", sans-serif"'}
+        sx={{ mb: 3, textAlign: "center" }}
+        fontFamily={"Anybody"}
       >
         Histórico de Pedidos
       </Typography>
 
-      {pedidos.map((pedido) => {
+      {[...pedidos].reverse().map((pedido) => {
         const statusText = mapStatus(pedido.status);
 
         const dataFormatada = new Date(pedido.data_hora).toLocaleDateString(

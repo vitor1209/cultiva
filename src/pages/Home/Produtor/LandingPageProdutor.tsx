@@ -1,6 +1,6 @@
 import { Container, Stack, IconButton, Box } from "@mui/material";
 import Typography from "@mui/joy/Typography";
-import { ChevronRight, UserRound, ShoppingBag, TrendingUp, Package, Plus, ChartColumn } from "lucide-react";
+import { ChevronRight, UserRound, ShoppingBag, Package, Plus } from "lucide-react";
 import { Header } from "../../../components/Header/Header.tsx";
 import { CarouselFullScreen } from "../../../components/Carousel/Carousel.tsx";
 import * as Styled from "../LandingPage.styled.ts";
@@ -102,18 +102,7 @@ export function HomePageProdutor() {
                 </Typography>
             </Styled.boxName>
 
-            <Styled.Division />
-
-            <Container maxWidth={"xl"} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <Stack direction="row" justifyContent='space-between' width="94%" marginBottom={2}>
-                    <Typography level="body-lg">Resumo de desempenho</Typography>
-                </Stack>
-                <Stack justifyContent={'space-evenly'} direction={{ xs: "column", sm: "row" }} gap={3} p={'0 3%'}>
-                    <CardInfo name={"Pedidos do Mês"} acrescimo="+12%" valor={"45"} color={"blue"} tamanho={"lg"} icon={ShoppingBag} />
-                    <CardInfo name={"Receita Total"} acrescimo="+8%" valor={"R$ 3.240"} color={"green"} tamanho={"lg"} icon={TrendingUp} />
-                    <CardInfo name={"Produtos Ativos"} acrescimo="+2" valor={"12"} color={"purple"} tamanho={"lg"} icon={Package} />
-                </Stack>
-            </Container>
+  
 
             <Styled.Division />
 
@@ -131,11 +120,10 @@ export function HomePageProdutor() {
                 <Stack direction="row" justifyContent='space-between' width="94%" marginBottom={2}>
                     <Typography level="body-lg">Suas Ações Rápidas</Typography>
                 </Stack>
-                <Stack justifyContent={'space-evenly'} direction={{ xs: "column", sm: "row" }} gap={3} p={'0 4.5%'}>
+                <Stack justifyContent={'space-evenly'} direction={{ xs: "column", sm: "row" }} gap={3} p={'0 4.5%'} width={"100%"}  >
                     <CardInfo to="/Cadastrar" name={"Cadastrar Produto"} valor={"Adicione novos produtos"} color={"blue"} tamanho={"md"} icon={Plus} />
-                    <CardInfo to="/PerfilProdutor" name={"Meus Produtos"} valor={"Gerenciar produtos"} color={"green"} tamanho={"md"} icon={Package} />
-                    <CardInfo name={"Pedidos Recebidos"} valor={"Ver novos pedidos"} color={"purple"} tamanho={"md"} icon={ShoppingBag} />
-                    <CardInfo name={"Relatórios"} valor={"Análise de vendas"} color={"orange"} tamanho={"md"} icon={ChartColumn} />
+                    <CardInfo to="/ProdutorPrivatePage" name={"Meus Produtos"} valor={"Gerenciar produtos"} color={"green"} tamanho={"md"} icon={Package} />
+                    <CardInfo to="/Pedidos" name={"Pedidos Recebidos"} valor={"Ver novos pedidos"} color={"purple"} tamanho={"md"} icon={ShoppingBag} />
                 </Stack>
             </Container>
 

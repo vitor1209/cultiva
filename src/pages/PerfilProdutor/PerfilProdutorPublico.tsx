@@ -2,13 +2,13 @@ import { Container, IconButton, Stack } from "@mui/material";
 import { Header } from "../../components/Header/Header";
 import { Button } from "../../components/Button/Button";
 import SearchBar from "../../components/barSearch/barSearch";
-import { UserRound, LogOut, ChevronRight } from "lucide-react";
+import { UserRound, ChevronRight } from "lucide-react";
 import Typography from "@mui/joy/Typography";
 import ProductCard from "../../components/Card/Card.tsx";
 import { Footer } from "../../components/Footer/Footer";
 import * as Styled from "../PerfilProdutor/PerfilProdutor.styled.ts";
 import { HeaderProdutor } from "../../components/HeaderProdutor/HeaderProdutor.tsx";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import { useGetHorta } from "../../controllers/horta.controller.ts";
 import { useGetProdutos } from "../../controllers/produto.controller.ts";
 import { useState } from "react";
@@ -32,12 +32,7 @@ export const PerfilProdutorPage = () => {
         ? produtos
         : produtos?.slice(0, 8);
 
-    const navigate = useNavigate();
 
-    const handleLogout = () => {
-        localStorage.removeItem("usuarioLogado");
-        navigate("/");
-    };
 
     return (
         <Container
@@ -53,12 +48,10 @@ export const PerfilProdutorPage = () => {
             <Header
                 end={
                     <Stack direction="row" spacing={1}>
-                        <IconButton aria-label="perfil" size="large">
+                        <IconButton aria-label="perfil" size="large" href="/DadosConsumidor">
                             <UserRound />
                         </IconButton>
-                        <IconButton aria-label="logout" size="large" onClick={handleLogout}>
-                            <LogOut />
-                        </IconButton>
+             
                     </Stack>
                 }
                 start={
