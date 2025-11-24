@@ -72,7 +72,7 @@ export function HomeConsumidorPage() {
                     </Stack>
                 }
                 start={
-                    <Stack flex={1} minWidth="250px" maxWidth="400px">
+                    <Stack flex={1} minWidth="250px" maxWidth="400px" zIndex={"300000"}>
                         <SearchBar />
                     </Stack>
                 }
@@ -82,7 +82,7 @@ export function HomeConsumidorPage() {
                     <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('produtos')} tamanho="sm">Produtos</Button>
 
                     <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('produtores')}  tamanho="sm">Produtores</Button>
-                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('sobre')}  tamanho="sm">Sobre</Button>
+                    <Button variante="ButtonLinkBlack" to="/Sobre"  tamanho="sm">Sobre</Button>
                 </>
             </Header>
 
@@ -193,75 +193,9 @@ export function HomeConsumidorPage() {
 
             <Styled.Division />
 
-            <Container maxWidth={"xl"} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', }}>
-                <Stack direction="row" justifyContent='space-between' width="100%" alignItems='center' marginBottom={2}>
-                    <Typography level="h4">Para você</Typography>
-                    <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho={"sm"}>Ver todos</Button>
-                </Stack>
+        
 
-                <Box
-                    sx={{
-                        display: "flex",
-                        gap: 3,
-                        flexWrap: "wrap",
-                        textAlign: "left"
-                    }}
-                >
-                    <CardPedidos
-                        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUDtoK4TI2r2dm0VcG6wJa8A1MEV1rXAYVCg&s"
-                        nome="Horta do Chico"
-                        data="19/10/2025"
-                        status="Disponível para retirada"
-                    />
 
-                    <CardPedidos
-                        image="https://ibassets.com.br/ib.image.general/e5c40f457a8841b0892f561ade78aa1c.png"
-                        nome="Casa Horta"
-                        data="19/10/2025"
-                        status="Preparando"
-                    />
-
-                    <CardPedidos
-                        image="https://rotarysantosboqueirao.com.br/wp-content/uploads/2019/10/HORTA-COMUNIT%C3%81RIA-3-2.jpg"
-                        nome="Bons Frutos"
-                        data="19/10/2025"
-                        status="Enviado"
-                    />
-
-                    <CardPedidos
-                        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHvw-wkffWPmdR-AcPX8pQENZm6vkSuNX6uQ&s"
-                        nome="da Horta pra Porta"
-                        data="19/10/2025"
-                        status="Finalizado"
-                    />
-                </Box>
-            </Container>
-
-                <Styled.Division />
-
-                <Styled.ContainerFull id="sobre">
-                    <Styled.Session>
-
-                        <Typography level="h2">Sobre Cultiva+</Typography>
-                        <Typography level="body-md">
-                            O Cultiva+ é uma plataforma dedicada a conectar pequenos produtores locais a consumidores que buscam produtos naturais, frescos e de qualidade. Nosso objetivo é facilitar o comércio direto, promovendo uma relação mais próxima entre quem produz e quem consome, incentivando hábitos de consumo sustentáveis e conscientes.
-
-                        </Typography>
-
-                        <Typography level="body-md">
-
-                            Com o Cultiva+, os consumidores podem navegar facilmente pelo catálogo de produtos, visualizar detalhes como fotos, preço, validade, adicionar itens ao carrinho e finalizar suas compras de forma prática.
-                        </Typography>
-
-                        <Typography level="body-md">
-
-                            Para os produtores, o Cultiva+ oferece um painel completo de gestão, permitindo cadastrar e gerenciar produtos. A plataforma proporciona mais praticidade e eficiência, tornando o processo de venda mais lucrativo e organizado.
-
-                            Nosso compromisso é criar uma comunidade que valoriza a produção local, a transparência e o consumo consciente, conectando pessoas e fortalecendo a economia sustentável.
-                        </Typography>
-
-                    </Styled.Session>
-                </Styled.ContainerFull>
 
             <Stack p={"3% 0"} />
             <Footer />

@@ -91,7 +91,7 @@ export function HomePageProdutor() {
                     <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">Início</Button>
                     <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('produtos')} tamanho="sm">Seus Produtos</Button>
                     <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">Pedidos</Button>
-                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('sobre')} tamanho="sm">Sobre</Button>
+                    <Button variante="ButtonLinkBlack" to="/Sobre" tamanho="sm">Sobre</Button>
                 </>
             </Header>
 
@@ -182,31 +182,8 @@ export function HomePageProdutor() {
                 </Stack>
             </Container>
 
-            <Styled.Division />
 
-            <Styled.ContainerFull id="sobre">
-                <Styled.Session>
-
-                    <Typography level="h2" fontFamily={'"Anybody", "Inter", sans-serif'}>Sobre Cultiva+</Typography>
-                    <Typography level="body-md">
-                        O Cultiva+ é uma plataforma dedicada a conectar pequenos produtores locais a consumidores que buscam produtos naturais, frescos e de qualidade. Nosso objetivo é facilitar o comércio direto, promovendo uma relação mais próxima entre quem produz e quem consome, incentivando hábitos de consumo sustentáveis e conscientes.
-
-                    </Typography>
-
-                    <Typography level="body-md">
-
-                        Com o Cultiva+, os consumidores podem navegar facilmente pelo catálogo de produtos, visualizar detalhes como fotos, preço, validade, adicionar itens ao carrinho e finalizar suas compras de forma prática.
-                    </Typography>
-
-                    <Typography level="body-md">
-
-                        Para os produtores, o Cultiva+ oferece um painel completo de gestão, permitindo cadastrar e gerenciar produtos. A plataforma proporciona mais praticidade e eficiência, tornando o processo de venda mais lucrativo e organizado.
-
-                        Nosso compromisso é criar uma comunidade que valoriza a produção local, a transparência e o consumo consciente, conectando pessoas e fortalecendo a economia sustentável.
-                    </Typography>
-
-                </Styled.Session>
-            </Styled.ContainerFull>
+        
             {/* Outros produtores */}
             {/* <Container maxWidth={"xl"} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '3% 0' }}>
                 <Stack direction="row" justifyContent='space-between' width="95%" marginBottom={2}>

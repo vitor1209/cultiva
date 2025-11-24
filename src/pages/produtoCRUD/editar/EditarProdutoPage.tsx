@@ -12,7 +12,7 @@ import { InputImagem } from "../../../components/Input/BoxImg/BoxImg.tsx";
 import { SelectControlado } from "../../../components/Input/Select/Select.tsx";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import type { CadastroProdutoType } from "../CadastrarProduto.schemas.ts";
 import { useEditarProduto } from "./EditarProduto.hook.ts";
 
@@ -100,13 +100,22 @@ export function EditarProdutoPage() {
     return (
         <Container disableGutters maxWidth={false} sx={{ backgroundColor: "#fff8f0", mt: 8, textAlign: "center", p: 0 }}>
             <Header
-                end={<IconButton size="large"><UserRound /></IconButton>}
-                start={<Stack flex={1} minWidth="250px" maxWidth="400px"><SearchBar /></Stack>}
+                end={<IconButton size="large" component={Link} to="/ProdutorPrivatePage"><UserRound /></IconButton>}
+ 
             >
-                <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">Início</Button>
-                <Button variante="ButtonLinkBlack" tamanho="sm">Seus Produtos</Button>
-                <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">Pedidos</Button>
-                <Button variante="ButtonLinkBlack" tamanho="sm">Como Funciona</Button>
+                
+                    <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">
+                        Início
+                    </Button>
+                    <Button variante="ButtonLinkBlack" to="/HomeProdutor#produtos" tamanho="sm">
+                        Seus Produtos
+                    </Button>
+                    <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">
+                        Pedidos
+                    </Button>
+                    <Button variante="ButtonLinkBlack" to="/Sobre" tamanho="sm">
+                        Sobre
+                    </Button>
             </Header>
 
             <Stack>

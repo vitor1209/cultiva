@@ -42,7 +42,7 @@ export function DadosConsumidor() {
                         <Button variante="ButtonLinkBlack" to="/HomeConsumidor#produtos" tamanho="sm">Produtos</Button>
 
                         <Button variante="ButtonLinkBlack" to="/HomeConsumidor#produtores" tamanho="sm">Produtores</Button>
-                        <Button variante="ButtonLinkBlack" to="/HomeConsumidor#sobre" tamanho="sm">Sobre</Button>
+                        <Button variante="ButtonLinkBlack" to="/Sobre" tamanho="sm">Sobre</Button>
                     </>
                 </Header>
 

@@ -1,7 +1,6 @@
-import { Container, IconButton, Stack } from "@mui/material";
-import { Header } from "../../components/Header/Header";
-import { Button } from "../../components/Button/Button";
-import SearchBar from "../../components/barSearch/barSearch";
+import { Container, IconButton, Stack } from "@mui/material"
+import { Header } from "../../components/Header/Header.tsx"
+import { Button } from "../../components/Button/Button.tsx"
 import { UserRound, ChevronRight, LogOut } from "lucide-react";
 import Typography from "@mui/joy/Typography";
 import ProductCard from "../../components/Card/Card";

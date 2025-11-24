@@ -86,10 +86,11 @@ export function ProdutoDetalhePage() {
                     }
                 >
                     <>
-                        <Button variante="ButtonLinkBlack" tamanho="sm">Início</Button>
-                        <Button variante="ButtonLinkBlack" tamanho="sm">Produtores</Button>
-                        <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">Produtos</Button>
-                        <Button variante="ButtonLinkBlack" tamanho="sm">Como Funciona</Button>
+                    <Button variante="ButtonLinkBlack" tamanho="sm" to="/HomeConsumidor">Início</Button>
+                    <Button variante="ButtonLinkBlack" to="/HomeConsumidor#produtos" tamanho="sm">Produtos</Button>
+
+                    <Button variante="ButtonLinkBlack" to="/HomeConsumidor#produtores"tamanho="sm">Produtores</Button>
+                    <Button variante="ButtonLinkBlack" to="/Sobre" tamanho="sm">Sobre</Button>
                     </>
                 </Header>
 

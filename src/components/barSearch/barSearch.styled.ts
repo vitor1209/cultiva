@@ -12,10 +12,19 @@ export const Search = styled("div")(() => ({
     backgroundColor: "#f2f2f5",
     "&:hover": {
         filter: "brightness(80%)",
+
+    },
+
+    "&:focus-within": {
+        borderColor: "#00a63e",
+        borderWidth: "1px",
+        borderStyle: "solid",
+        
     },
     marginLeft: 0,
     transition: "ease-in-out 0.3s",
     width: "100%",
+
 }))
 
 export const SearchIconWrapper = styled("div")(() => ({
