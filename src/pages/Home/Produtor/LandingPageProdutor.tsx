@@ -52,13 +52,11 @@ export function HomePageProdutor() {
         ? JSON.parse(localStorage.getItem("usuarioLogado")!)
         : null;
 
-
     if (!usuario) {
         throw new Error("Usuário não está logado");
     }
 
-    const userObj = JSON.parse(usuario) as { id: number };
-    const fk_horta_id = userObj.id;
+    const fk_horta_id = usuario.id;
 
     console.log("fk_horta_id:", fk_horta_id);
 
@@ -183,7 +181,7 @@ export function HomePageProdutor() {
             </Container>
 
 
-        
+
             {/* Outros produtores */}
             {/* <Container maxWidth={"xl"} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '3% 0' }}>
                 <Stack direction="row" justifyContent='space-between' width="95%" marginBottom={2}>

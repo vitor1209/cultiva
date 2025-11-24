@@ -2,9 +2,15 @@ import { Navigate, Outlet } from "react-router";
 import ScrollToTop from "../components/Scroll";
 
 const produtor = (): boolean => {
-    const dados = JSON.parse(localStorage.getItem("usuarioLogado")!)
-    return dados.Tipo_usuario === 'Produtor'
-}
+    const user = localStorage.getItem("usuarioLogado");
+    if (!user) return false;
+    try {
+        const dados = JSON.parse(user);
+        return dados.Tipo_usuario.toLowerCase() === 'produtor';
+    } catch {
+        return false;
+    }
+};
 
 // sem login
 export const PublicRoute = () => {

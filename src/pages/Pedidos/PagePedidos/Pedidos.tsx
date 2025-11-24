@@ -34,7 +34,7 @@ export function PedidosPage() {
             case 5:
                 return "Cancelado";
             default:
-                return "Preparando"; 
+                return "Preparando";
         }
     };
 
@@ -126,7 +126,7 @@ export function PedidosPage() {
                             data.pedidos.map((pedido) => (
                                 <CardPedido
                                     key={pedido.id}
-                                    img={pedido.usuario.foto ?? ''}
+                                    img={`http://127.0.0.1:8000/storage/${pedido.usuario.foto ?? ''}`}
                                     nome={pedido.usuario.nome}
                                     id={pedido.id}
                                     data={pedido.data_hora}

@@ -99,7 +99,7 @@ export const PedidoDetalhePage = () => {
             <styled.texto direction={{ md: "column", lg: "row" }}>
               <Box
                 component="img"
-                src={pedido.img}
+                src={`http://127.0.0.1:8000/storage/${pedido.img ?? ''}`}
                 sx={{
                   width: '7.6rem',
                   height: '7.6rem',
