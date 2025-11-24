@@ -31,17 +31,14 @@ export const User = z
       message: "Confirmação de senha é obrigatória",
     }),
 
-    // Campo interno apenas para o Zod saber o tipo
     TipoInterno: z.enum(["consumidor", "produtor"]).default("consumidor"),
   })
 
-  // Validar se as senhas coincidem
   .refine((data) => data.Senha === data.ConfirmarSenha, {
     message: "As senhas não coincidem",
     path: ["ConfirmarSenha"],
   })
 
-  // Validação condicional de NomeHorta
   .refine(
     (data) =>
       data.TipoInterno === "consumidor" ||
@@ -52,7 +49,6 @@ export const User = z
     }
   )
 
-  // Validação condicional de frete
   .refine(
     (data) =>
       data.TipoInterno === "consumidor" ||

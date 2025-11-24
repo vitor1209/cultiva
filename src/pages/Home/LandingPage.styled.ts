@@ -37,7 +37,7 @@ export const ContainerFull = styled(Stack)(() => ({
 }))
 
 export const Session = styled(Stack)(() => ({
-    width: "60%", // largura interna padrão
+    width: "60%", 
     display: "flex",
     padding: "5% 0",
     alignItems: "center",

@@ -13,14 +13,13 @@ export const useEditarProduto = () => {
 
   const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-  // Carregar produto pelo ID
   const carregarProduto = async (id: string) => {
     setLoading(true);
     setErrorMessage(null);
 
     try {
       const response = await api.get(`/produtos/${id}`);
-      setProduto(response.data.data); // depende do seu retorno do backend
+      setProduto(response.data.data); 
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         setErrorMessage(err.response?.data?.message || "Erro ao carregar produto");
@@ -34,7 +33,6 @@ export const useEditarProduto = () => {
     }
   };
 
-  // Atualizar produto
   const atualizarProduto = async (id: string, payload: FormData) => {
     setLoading(true);
     setSuccessMessage(null);

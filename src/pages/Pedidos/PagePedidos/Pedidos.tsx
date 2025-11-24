@@ -35,7 +35,7 @@ export function PedidosPage() {
             case 5:
                 return "Cancelado";
             default:
-                return "Preparando"; // valor padrão caso venha outro número
+                return "Preparando"; 
         }
     };
 
@@ -45,7 +45,6 @@ export function PedidosPage() {
             maxWidth={false}
             sx={{ backgroundColor: "#fff8f0", textAlign: "center", marginTop: 8, padding: 0 }}
         >
-            {/* Header */}
             <Header
                 end={
                     <IconButton component={Link} to="/ProdutorPrivatePage" aria-label="perfil" size="large">
@@ -76,7 +75,6 @@ export function PedidosPage() {
 
             <styled.Division />
 
-            {/* Resumo de desempenho */}
             <Container
                 maxWidth={"xl"}
                 sx={{
@@ -104,7 +102,6 @@ export function PedidosPage() {
 
             <styled.Division />
 
-            {/* Lista de Pedidos */}
             <Container
                 maxWidth={"xl"}
                 sx={{
@@ -150,9 +147,7 @@ export function PedidosPage() {
                     </Stack>
                 )}
             </Container>
-
             <styled.Division />
-
             <Footer />
         </Container>
     );

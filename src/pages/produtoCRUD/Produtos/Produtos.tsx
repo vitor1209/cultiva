@@ -57,7 +57,7 @@ export function ProdutoDetalhePage() {
     };
 
     const produtosSemelhantes = produtos
-        ?.filter(p => p.id !== produtoId)   // remove o produto atual
+        ?.filter(p => p.id !== produtoId)   
         ?.slice(0, 4);
 
     return (
@@ -107,26 +107,20 @@ export function ProdutoDetalhePage() {
                     <Styled.texto>
                         <Stack spacing={0.8} width="100%" maxWidth="400px">
 
-                            {/* NOME */}
                             <Typography level="body-sm" sx={{ color: 'black', fontSize: '1.3rem' }}>
                                 {produto.nome}
                             </Typography>
 
-
-
-                            {/* HORTA / PRODUTOR */}
                             <Typography level="body-lg" sx={{ color: "green" }}>
                                 Por {horta?.nome ?? "Produtor Desconhecido"}
                             </Typography>
 
                             <hr />
 
-                            {/* PREÇO */}
                             <Typography sx={{ color: "green", fontSize: '1.4rem' }}>
                                 R$ {produto.preco_unit.toFixed(2)}
                             </Typography>
 
-                            {/* ESTOQUE */}
                             <Stack direction="row" spacing={1} alignItems="center">
                                 <Package size={24} color="#717182" />
                                 <Typography level="body-lg" sx={{ color: "#717182" }}>
@@ -134,7 +128,6 @@ export function ProdutoDetalhePage() {
                                 </Typography>
                             </Stack>
 
-                            {/* VALIDADE / COLHEITA */}
                             <Typography mb={2} level="body-lg" sx={{ color: "#717182" }}>
                                 Validade: <b>{formatDate(produto.validade) ?? "Não informado"}</b>
                             </Typography>
@@ -142,13 +135,11 @@ export function ProdutoDetalhePage() {
                             <hr />
                         </Stack>
 
-                        {/* DESCRIÇÃO */}
                         <Stack mt={2}>
                             <Typography>
                                 {produto.descricao ?? "Produto sem descrição detalhada."}
                             </Typography>
 
-                            {/* BOTÕES */}
                             <Stack mt={4} direction={isSmall ? "column" : "row"} gap={2} justifyContent="space-between">
                                 <Button
                                     espacamento={20}

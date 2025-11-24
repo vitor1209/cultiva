@@ -14,7 +14,6 @@ export const ContainerInputs = styled(Stack)(({ theme }) => ({
         width: "15rem",
         height: "10rem",
     },
-    // Responsividade: em telas pequenas, vira coluna
     [theme.breakpoints.down("lg")]: {
         flexDirection: "column",
         padding: "6% 4%",

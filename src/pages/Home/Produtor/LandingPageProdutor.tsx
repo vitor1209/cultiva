@@ -1,6 +1,6 @@
 import { Container, Stack, IconButton, Box } from "@mui/material";
 import Typography from "@mui/joy/Typography";
-import { ChevronRight, UserRound, ShoppingBag, TrendingUp, Package,  Plus, ChartColumn } from "lucide-react";
+import { ChevronRight, UserRound, ShoppingBag, TrendingUp, Package, Plus, ChartColumn } from "lucide-react";
 import { Header } from "../../../components/Header/Header.tsx";
 import { CarouselFullScreen } from "../../../components/Carousel/Carousel.tsx";
 import * as Styled from "../LandingPage.styled.ts";
@@ -38,7 +38,7 @@ export function HomePageProdutor() {
             const element = document.querySelector(location.hash);
 
             if (element) {
-                const yOffset = -100; 
+                const yOffset = -100;
                 const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
                 window.scrollTo({ top: y, behavior: "smooth" });
@@ -52,19 +52,15 @@ export function HomePageProdutor() {
         ? JSON.parse(localStorage.getItem("usuarioLogado")!)
         : null;
 
-    const usuarioLogado = localStorage.getItem("usuarioLogado");
-    let fkHortaId = 5;
 
-    if (usuarioLogado) {
-        try {
-            const userObj = JSON.parse(usuarioLogado);
-            fkHortaId = userObj.id || 5;
-        } catch (err) {
-            console.warn("Não foi possível ler o usuário logado:", err);
-        }
+    if (!usuario) {
+        throw new Error("Usuário não está logado");
     }
 
-    const fk_horta_id = fkHortaId;
+    const userObj = JSON.parse(usuario) as { id: number };
+    const fk_horta_id = userObj.id;
+
+    console.log("fk_horta_id:", fk_horta_id);
 
     const {
         data: produtos,
@@ -79,7 +75,6 @@ export function HomePageProdutor() {
     return (
         <Container disableGutters maxWidth={false} sx={{ backgroundColor: "#fff8f0", textAlign: "center", marginTop: 8, padding: 0 }}>
 
-            {/* Header */}
             <Header
                 end={
                     <IconButton component={Link} to="/ProdutorPrivatePage" aria-label="perfil" size="large">
@@ -94,13 +89,12 @@ export function HomePageProdutor() {
             >
                 <>
                     <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">Início</Button>
-                    <Button variante="ButtonLinkBlack"  onClick={() => scrollToSection('produtos')} tamanho="sm">Seus Produtos</Button>
+                    <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('produtos')} tamanho="sm">Seus Produtos</Button>
                     <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">Pedidos</Button>
                     <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('sobre')} tamanho="sm">Sobre</Button>
                 </>
             </Header>
 
-            {/* Banner com nome */}
             <Styled.boxName>
                 <Typography p={'0 3%'} level="inherit" sx={{ color: '#fff' }}>
                     Olá, {usuario?.nome ?? "Usuário"}
@@ -112,7 +106,6 @@ export function HomePageProdutor() {
 
             <Styled.Division />
 
-            {/* Resumo */}
             <Container maxWidth={"xl"} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Stack direction="row" justifyContent='space-between' width="94%" marginBottom={2}>
                     <Typography level="body-lg">Resumo de desempenho</Typography>
@@ -126,7 +119,6 @@ export function HomePageProdutor() {
 
             <Styled.Division />
 
-            {/* Carrossel */}
             <Stack justifyContent={'center'} alignItems={'center'}>
                 <CarouselFullScreen tamanho="xl">
                     <Box component="img" src={banner1} sx={{ width: "100%", objectFit: "cover" }} />
@@ -137,7 +129,6 @@ export function HomePageProdutor() {
 
             <Styled.Division />
 
-            {/* Ações rápidas */}
             <Container maxWidth={"xl"} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Stack direction="row" justifyContent='space-between' width="94%" marginBottom={2}>
                     <Typography level="body-lg">Suas Ações Rápidas</Typography>
@@ -152,7 +143,6 @@ export function HomePageProdutor() {
 
             <Styled.Division />
 
-            {/* Produtos */}
             <Container id="produtos" maxWidth={"xl"} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Stack direction="row" justifyContent='space-between' width="90%" marginBottom={2}>
                     <Typography level="body-lg">Seus Produtos</Typography>

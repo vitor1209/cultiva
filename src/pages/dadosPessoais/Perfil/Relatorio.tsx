@@ -14,12 +14,10 @@ const Relatorio: React.FC = () => {
         boxShadow: "none",
       }}
     >
-      {/* Título */}
       <Typography variant="h6" fontWeight="bold" sx={{ mb: 3 }}>
         Relatórios de Vendas
       </Typography>
 
-      {/* Cards superiores */}
       <Box
         sx={{
           display: "grid",
@@ -28,7 +26,6 @@ const Relatorio: React.FC = () => {
           mb: 5,
         }}
       >
-        {/* CARD 1 */}
         <Paper
           elevation={0}
           sx={{
@@ -46,7 +43,6 @@ const Relatorio: React.FC = () => {
           </Typography>
         </Paper>
 
-        {/* CARD 2 */}
         <Paper
           elevation={0}
           sx={{
@@ -64,7 +60,6 @@ const Relatorio: React.FC = () => {
           </Typography>
         </Paper>
 
-        {/* CARD 3 */}
         {/* <Paper
           elevation={0}
           sx={{
@@ -86,13 +81,11 @@ const Relatorio: React.FC = () => {
         </Paper> */}
       </Box>
 
-      {/* Produtos Mais Vendidos */}
       <Typography variant="subtitle1" fontWeight="bold" sx={{ mb: 2 }}>
         Produtos Mais Vendidos
       </Typography>
 
       <Box sx={{ pl: 1 }}>
-        {/* Item 1 */}
         <Box
           sx={{
             display: "flex",
@@ -104,7 +97,6 @@ const Relatorio: React.FC = () => {
           <Typography color="text.secondary">39 vendas</Typography>
         </Box>
 
-        {/* Item 2 */}
         <Box
           sx={{
             display: "flex",
@@ -116,7 +108,6 @@ const Relatorio: React.FC = () => {
           <Typography color="text.secondary">45 vendas</Typography>
         </Box>
 
-        {/* Item 3 */}
         <Box
           sx={{
             display: "flex",

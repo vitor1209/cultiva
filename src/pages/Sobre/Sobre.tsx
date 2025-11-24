@@ -14,7 +14,6 @@ import ftVitor from "../../assets/images/imgSobre/ftsGrupo/ftVitor.svg";
 import ftProfs from "../../assets/images/imgSobre/ftsGrupo/profs.svg";
 
 
-
 export function SobrePage() {
 
     return (
@@ -75,9 +74,9 @@ export function SobrePage() {
                     
 
                     height: {
-                    xs: "25vh",   // altura maior no celular
-                    md: "30vh",   // altura padrão no PC
-                    lg: "40vh",   // altura padrão no PC
+                    xs: "25vh",   
+                    md: "30vh",   
+                    lg: "40vh",   
                     },
                 }}
             />
@@ -165,7 +164,7 @@ export function SobrePage() {
                             sx={{
                                 "&:hover .overlay": { opacity: 1 },
                                 flex: { xs: "0 0 45%", sm: "0 0 45%", md: "0 0 22%" },
-                                boxSizing: "border-box", // importante para incluir padding/gap
+                                boxSizing: "border-box", 
                             }}
                         >
                             <img
@@ -240,7 +239,6 @@ export function SobrePage() {
 
 
             <Footer></Footer>
-
         </Box>
     );
 }

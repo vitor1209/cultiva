@@ -18,7 +18,6 @@ export const DadosEndereco = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Stack spacing={4} p={{ xs: 2, md: 6 }} marginBottom={"40px"}>
 
-                    {/* TÍTULO + BOTÃO SALVAR */}
                     <Stack
                         direction={{ xs: "column", sm: "row" }}
                         justifyContent="space-between"
@@ -40,7 +39,6 @@ export const DadosEndereco = () => {
                         </Button>
                     </Stack>
 
-                    {/* FORMULÁRIO */}
                     <Stack
                         direction={{ xs: 'column', md: 'row' }}
                         spacing={4}
@@ -48,14 +46,12 @@ export const DadosEndereco = () => {
                         width={"90%"}
                         alignSelf="center"
                     >
-                        {/* COLUNA 1 */}
                         <Stack spacing={4} flex={1}>
                             <Input Icon={Asterisk} name="rua" placeholder="Rua" control={control} label="Rua:" />
                             <Input Icon={Asterisk} name="numero" placeholder="Número" control={control} label="Número:" />
                             <Input Icon={Asterisk} name="cidade" placeholder="Cidade" control={control} label="Cidade:" />
                         </Stack>
 
-                        {/* COLUNA 2 */}
                         <Stack spacing={4} flex={1}>
                             <Stack sx={{ width: { md: "90%", lg: "100%" } }}>
                                 <Typography variant="subtitle1" fontWeight={500} color="#0A0A0A">

@@ -60,7 +60,6 @@ export function useFinalizarEnderecoForm(opcaoInicial?: "horta" | "residencia") 
 
     const handleSubmitFinalizar = () => {
         if (opcaoInicial === "residencia") {
-            // Envia endereço + pedido
             form.handleSubmit((data: EnderecoAdd.Request) => {
                 enderecoMutation.mutate(data, {
                     onSuccess: () => {
@@ -92,9 +91,8 @@ export function useFinalizarEnderecoForm(opcaoInicial?: "horta" | "residencia") 
                         }
                     },
                 });
-            })(); 
+            })();
         } else {
-            // Envia apenas pedido sem endereço
             const pedidoPayload: PedidoFinalizar.Request = {
                 forma_pagamento: opcaoPagamento,
                 servico_entrega: 0,

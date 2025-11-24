@@ -29,7 +29,6 @@ export default function CardInfo({
                         </Stack>
                     </Stack>
 
-                    {/* Ícone à direita */}
                     <styled.StackIcon colorKey={color}>
                         <Icon stroke={color} size={24} />
                     </styled.StackIcon>

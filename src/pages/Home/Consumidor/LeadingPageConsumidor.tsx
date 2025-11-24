@@ -28,11 +28,9 @@ const scrollToSection = (id: string) => {
     }
 };
 
-
 export function HomeConsumidorPage() {
 
     const location = useLocation();
-
     useEffect(() => {
         if (location.hash) {
             const element = document.querySelector(location.hash);
@@ -49,13 +47,10 @@ export function HomeConsumidorPage() {
 
      const [mostrarTodos, setMostrarTodos] = useState(false);
         const [mostrarHortas, setMostrarHortas] = useState(false);
-    
         const { data: produtos, isLoading, error } = useGetProdutosGeral();
         const { data: hortas, isLoading: hortasLoading, error: hortasError } = useGetHorta();
-    
         const produtosExibidos = mostrarTodos ? produtos : produtos?.slice(0, 8);
         const hortasExibidas = mostrarHortas ? hortas : hortas?.slice(0, 8);
-    
 
     const usuario = localStorage.getItem("usuarioLogado")
         ? JSON.parse(localStorage.getItem("usuarioLogado")!)
@@ -267,7 +262,6 @@ export function HomeConsumidorPage() {
 
                     </Styled.Session>
                 </Styled.ContainerFull>
-
 
             <Stack p={"3% 0"} />
             <Footer />

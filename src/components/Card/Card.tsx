@@ -158,7 +158,6 @@ export default function ProductCard({
                         </div>
                     </div>
 
-                    {/* Descrição curta */}
                     {descricao && (
                         <div className="inline-item">
                             <Typography sx={{
@@ -172,7 +171,6 @@ export default function ProductCard({
                         </div>
                     )}
 
-                    {/* Validade */}
                     {validade && (
                         <div className="inline-item">
                             <Typography level="body-xs" sx={{ opacity: 0.7 }}>

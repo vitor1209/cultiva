@@ -106,7 +106,6 @@ export function HomePage() {
             </CarouselFullScreen>
             <Styled.Division />
 
-            {/* Produtos */}
             <Container id="produtos" maxWidth="xl" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Stack direction="row" justifyContent="space-between" width="90%" alignItems="center" marginBottom={2}>
                     <Typography level="h4">Mais Vendidos</Typography>
@@ -181,7 +180,6 @@ export function HomePage() {
 
             <Styled.Division />
 
-            {/* Sobre */}
             <Styled.ContainerFull id="sobre">
                 <Styled.Session>
                     <Typography level="h2" fontFamily={'"Anybody", "Inter", sans-serif'}>Sobre Cultiva+</Typography>
@@ -193,7 +191,6 @@ export function HomePage() {
 
             <Styled.Division />
 
-            {/* CTA */}
             <Styled.CTABox>
                 <Typography level="h2" fontFamily={'"Anybody", "Inter", sans-serif'}>Pronto para apoiar produtores locais?</Typography>
                 <Button to="/Login" variante="ButtonGreen" espacamento={14} tamanho="md">Login</Button>

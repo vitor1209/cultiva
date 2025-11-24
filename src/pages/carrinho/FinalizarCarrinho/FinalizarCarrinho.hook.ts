@@ -37,7 +37,7 @@ export function useFinalizarCarrinho() {
         );
     };
 
-    /// FRETE POR HORTA
+    // FRETE HORTA
     const hortas = new Map<number, { nome: string; frete: number }>();
 
     carrinhoItems.forEach(item => {
@@ -55,7 +55,7 @@ export function useFinalizarCarrinho() {
 
     const entrega = opcaoEntrega === "horta" ? 0 : freteTotal;
 
-    /// SUBTOTAL
+    // SUBTOTAL
     const subtotal = carrinhoItems.reduce(
         (acc, item) =>
             acc + item.produto.preco_unit * item.quantidade_item_total,

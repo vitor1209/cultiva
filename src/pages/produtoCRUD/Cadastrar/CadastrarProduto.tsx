@@ -19,21 +19,18 @@ export function CadastrarProdutoPage() {
     const { cadastroProduto, successMessage, errorMessage, loading } = useCadastroProduto();
 
    const onSubmit = handleSubmit((data) => {
-  // Pegar o usuário logado
   const usuarioLogado = localStorage.getItem("usuarioLogado");
-  let fkHortaId = 0; // valor padrão
+  let fkHortaId = 0;
 
   if (usuarioLogado) {
     try {
       const userObj = JSON.parse(usuarioLogado);
-      // Agora usamos o id do usuário como fk_horta_id
       fkHortaId = userObj.id || 0;
     } catch (err) {
       console.warn("Não foi possível ler o usuário logado:", err);
     }
   }
 
-  // FormData para envio
   const formData = new FormData();
   const precoFormatado = parseFloat(
     data.preco.replace("R$", "").replace(/\./g, "").replace(",", ".")
@@ -45,7 +42,6 @@ export function CadastrarProdutoPage() {
   formData.append("quantidade_estoque", String(Math.floor(Number(data.quantidadeEstoque))));
   formData.append("quant_unit_medida", String(Math.floor(Number(data.quantidadeMedida))));
 
-  // Aqui convertemos a data para YYYY-MM-DD
   const [day, month, year] = data.dataValidade.split("/").map(Number);
   const validadeString = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
   formData.append("validade", validadeString);
@@ -71,10 +67,8 @@ export function CadastrarProdutoPage() {
     imagem: data.imagem,
   });
 
-  // Chamar mutation
   cadastroProduto(formData);
 });
-
 
     return (
         <Container disableGutters maxWidth={false} sx={{ backgroundColor: "#fff8f0", mt: 8, textAlign: "center", p: 0 }}>

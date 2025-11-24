@@ -7,7 +7,6 @@ import { DadosPessoaisSchema } from './DadosPessoaisP.schema';
 import { MASCARAS } from '../../../masks';
 import { InputImagem } from '../../../components/Input/BoxImg/BoxImg';
 
-
 export const DadosPessoais = () => {
     const { control } = useForm({
         resolver: zodResolver(DadosPessoaisSchema),
@@ -24,16 +23,12 @@ export const DadosPessoais = () => {
 
 
     const theme = useTheme();
-
-    // true se tela for md ou maior
     const isMdUp = useMediaQuery(theme.breakpoints.up("lg"));
-
     const l = isMdUp ? 40 : 18;
 
     return (
         <Stack spacing={4} p={{ xs: 2, md: 6 }} marginBottom={"40px"}>
 
-            {/* Título + Botão */}
             <Stack
                 direction={{ xs: "column", sm: "row" }}
                 justifyContent="space-between"
@@ -55,7 +50,6 @@ export const DadosPessoais = () => {
                 </Button>
             </Stack>
 
-            {/* —— 2 COLUNAS COM 3 INPUTS —— */}
             <Stack
                 direction={{ xs: "column", md: "row" }}
                 spacing={6}
@@ -75,7 +69,6 @@ export const DadosPessoais = () => {
                 </Stack>
             </Stack>
 
-            {/* —— INPUTS DE FOTO (SEMPRE ABAIXO DAS 2 COLUNAS) —— */}
             <Stack
                 direction={{ xs: "column", md: "row" }}
                 spacing={6}
@@ -104,7 +97,6 @@ export const DadosPessoais = () => {
                         />
                 </Stack>
             </Stack>
-
         </Stack>
     );
 };

@@ -78,11 +78,10 @@ const Historico = () => {
       {pedidos.map((pedido) => {
         const statusText = mapStatus(pedido.status);
 
-        // Formata data DD/MM/AAAA
         const dataFormatada = new Date(pedido.data_hora).toLocaleDateString(
           "pt-BR",
           { day: "2-digit", month: "2-digit", year: "numeric" }
-        );
+        )
 
         return (
           <Paper
@@ -98,7 +97,6 @@ const Historico = () => {
               alignItems: "flex-start",
             }}
           >
-            {/* ESQUERDA */}
             <Box>
               <Typography
                 variant="subtitle1"
@@ -124,7 +122,6 @@ const Historico = () => {
               </Typography>
             </Box>
 
-            {/* DIREITA */}
             <Box textAlign="right">
               <Typography variant="subtitle1" fontWeight={600}>
                 R$ {pedido.preco_final != null ? pedido.preco_final.toFixed(2) : "-"}

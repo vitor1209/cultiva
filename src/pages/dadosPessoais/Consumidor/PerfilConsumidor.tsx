@@ -3,14 +3,11 @@ import { Header } from "../../../components/Header/Header.tsx";
 import { Button } from "../../../components/Button/Button.tsx";
 import { Footer } from "../../../components/Footer/Footer.tsx";
 import { CaixaPerfil } from "../../../components/CaixaPerfil/CaixaPerfil.tsx";
-
 import { Container, Stack, IconButton } from "@mui/material";
 import SearchBar from "../../../components/barSearch/barSearch.tsx";
-
 import { ProfileTabsContainerC } from "../Perfil/FormContainerCon.tsx";
 import { CarrinhoButton } from "../../carrinho/carrinho.hook.tsx";
 import { UserRound } from "lucide-react";
-
 
 export function DadosConsumidor() {
 
@@ -51,16 +48,10 @@ export function DadosConsumidor() {
 
                 <CaixaPerfil nome={usuario?.nome ?? "Usuário"} perfil="Consumidor" />
 
-
                 <ProfileTabsContainerC />
-
 
                 <Footer />
             </Container>
-
         </>
-
-
     )
-
 }

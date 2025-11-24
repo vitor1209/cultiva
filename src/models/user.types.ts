@@ -27,7 +27,7 @@ export namespace AuthUpdate {
         foto?: string | null;
         banner?: string | null;
 
-        // Somente produtor
+        // se e produtor
         nome_horta?: string;
         frete?: number;
     };

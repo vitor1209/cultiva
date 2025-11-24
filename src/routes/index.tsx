@@ -1,5 +1,4 @@
-import { Routes, Route } from "react-router-dom";
-import { PublicRoute, PrivateRoute } from "./utils";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import {
     HomePage,
     LoginPage,
@@ -20,44 +19,61 @@ import {
     CarrinhoVazioPage,
     DadosProdutor,
     DadosConsumidor,
-    SobrePage, 
-
+    SobrePage,
 } from "./pages";
+import { PublicRoute, ProdutorRoute, ConsumidorRoute } from "./utils";
 
+// Layouts
+const RootLayout = () => <Outlet />;
 
+const router = createBrowserRouter([
+    {
+        element: <RootLayout />,
+        children: [
+            {
+                path: "*",
+                element: <h1>Página não encontrada</h1>,
+            },
+            {
+                element: <PublicRoute />,
+                children: [
+                    { path: "/", element: <HomePage /> },
+                    { path: "/Sobre", element: <SobrePage /> },
+                    { path: "/Login", element: <LoginPage /> },
+                    { path: "/ResetSenha", element: <ResetSenhaPage /> },
+                    { path: "/Cadastro", element: <CadastroPage /> },
+                    { path: "/ResetTokenPage", element: <ResetTokenPage /> },
+                    { path: "/PerfilProdutor/:hortaId", element: <PerfilProdutorPage /> },
+                ],
+            },
+            {
+                element: <ProdutorRoute />,
+                children: [
+                     { path: "/HomeProdutor", element: <HomePageProdutor /> },
+                    { path: "/PerfilProdutor/:hortaId", element: <PerfilProdutorPage /> },
+                    { path: "/Pedidos", element: <PedidosPage /> },
+                    { path: "/Pedidos/:id", element: <PedidoDetalhePage /> },
+                    { path: "/Cadastrar", element: <CadastrarProdutoPage /> },
+                    { path: "/ProdutorPrivatePage", element: <ProdutorPrivatePage /> },
+                    { path: "/EditarProdutoPage/:id", element: <EditarProdutoPage /> },
+                    { path: "/DadosProdutor", element: <DadosProdutor /> },
+                ],
+            },
+            {
+                element: <ConsumidorRoute />,
+                children: [
+                    { path: "/DadosConsumidor", element: <DadosConsumidor /> },
+                    { path: "/Produto/:id", element: <ProdutoDetalhePage /> },
+                    { path: "/HomeConsumidor", element: <HomeConsumidorPage /> },
+                    { path: "/FinalizarCarrinho", element: <FinalizarCarrinhoPage /> },
+                    { path: "/FinalizarEndereco", element: <FinalizarEnderecoPage /> },
+                    { path: "/CarrinhoVazioPage", element: <CarrinhoVazioPage /> },
+                ],
+            },
+        ],
+    },
+]);
 
 export default function AppRoutes() {
-    return (
-        <Routes>
-            {/* Rotas públicas */}
-            <Route element={<PublicRoute />}>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/HomeConsumidor" element={<HomeConsumidorPage />} />
-                <Route path="/Login" element={<LoginPage />} />
-                <Route path="/ResetSenha" element={<ResetSenhaPage />} />
-                <Route path="/Cadastro" element={<CadastroPage />} />
-                <Route path="/Produto/:id" element={<ProdutoDetalhePage />} />
-                <Route path="/FinalizarCarrinho" element={<FinalizarCarrinhoPage />} />
-                <Route path="/FinalizarEndereco" element={<FinalizarEnderecoPage />} />
-                <Route path="/PerfilProdutor/:hortaId" element={<PerfilProdutorPage />} />
-                <Route path="/ResetTokenPage" element={<ResetTokenPage />} />
-                <Route path="/CarrinhoVazioPage" element={<CarrinhoVazioPage />} />        
-                <Route path="/Sobre" element={<SobrePage/>} />      
-                
-            </Route>
-
-            {/* Rotas privadas */}
-            <Route element={<PrivateRoute />}>
-                <Route path="/HomeProdutor" element={<HomePageProdutor />} />
-                <Route path="/Pedidos" element={<PedidosPage />} />
-                <Route path="/Pedidos/:id" element={<PedidoDetalhePage />} />
-                <Route path="/Cadastrar" element={<CadastrarProdutoPage />} />
-                <Route path="/ProdutorPrivatePage" element={<ProdutorPrivatePage />} />
-                <Route path="/EditarProdutoPage/:id" element={<EditarProdutoPage />} />
-                <Route path="/DadosProdutor" element={<DadosProdutor />} />
-                <Route path="/DadosConsumidor" element={<DadosConsumidor />} />
-
-            </Route>
-        </Routes>
-    );
+    return <RouterProvider router={router} />;
 }

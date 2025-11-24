@@ -41,7 +41,6 @@ export function FinalizarEnderecoPage() {
                 maxWidth={false}
                 sx={{ backgroundColor: "#fff8f0", textAlign: "center", marginTop: 8, padding: 0 }}
             >
-                {/* Header e SearchBar */}
                 <Header
                     end={
                         <Stack direction={'row'} gap={3}>
@@ -70,7 +69,6 @@ export function FinalizarEnderecoPage() {
                 <Stack p={"3% 0"} />
 
                 <Stack direction={{ md: "column", lg: "row" }}>
-                    {/* ESQUERDA */}
                     <Stack gap={2} alignItems={'center'} flex={5}>
                         {isLoading ? (
                             <p>Carregando produtos...</p>
@@ -83,7 +81,6 @@ export function FinalizarEnderecoPage() {
 
                     <Stack p={"3% 0"} />
 
-                    {/* DIREITA */}
                     <Stack flex={3}>
                         <ResumoCompra
                             subtotal={subtotal}

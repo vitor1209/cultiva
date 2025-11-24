@@ -15,7 +15,6 @@ export default function TabsProduto() {
 
     return (
         <Styled.Container>
-            {/* Abas */}
             <Tabs
                 value={value}
                 onChange={handleChange}
@@ -34,7 +33,6 @@ export default function TabsProduto() {
 
             </Tabs>
 
-            {/* Conteúdo */}
             <Styled.ContentBox>
                 {value === 0 && (
                     <Stack spacing={2} textAlign="start">

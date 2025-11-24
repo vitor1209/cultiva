@@ -4,11 +4,9 @@ import { Button } from "../../../components/Button/Button.tsx";
 import { Footer } from "../../../components/Footer/Footer.tsx";
 import ProfileTabsContainer from "../Perfil/FormContainerProd.tsx"
 import { CaixaPerfil } from "../../../components/CaixaPerfil/CaixaPerfil.tsx";
-
 import { Container, Stack, IconButton } from "@mui/material";
 import SearchBar from "../../../components/barSearch/barSearch.tsx";
 import { Link } from "react-router-dom";
-
 import { UserRound } from "lucide-react";
 
 export function DadosProdutor() {
@@ -45,12 +43,10 @@ export function DadosProdutor() {
 
                 <CaixaPerfil nome={usuario?.nome ?? "Produtor"} perfil="Produtor"/>
 
-
                 <ProfileTabsContainer />
 
                 <Footer />
             </Container>
-
         </>
     )
 }

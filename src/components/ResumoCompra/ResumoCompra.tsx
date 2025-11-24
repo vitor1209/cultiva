@@ -31,7 +31,6 @@ export const ResumoCompra = ({
                     Resumo da compra
                 </Typography>
 
-                {/* PAGAMENTO */}
                 {formaPagamento && (
                     <>
                         <Stack spacing={1}>
@@ -88,8 +87,6 @@ export const ResumoCompra = ({
                     </Stack>
                 )}
 
-
-                {/* RESUMO DE VALORES */}
                 <Stack spacing={1}>
                     <RowValor>
                         <Typography color="#9ca3af">Subtotal:</Typography>
@@ -122,7 +119,6 @@ export const ResumoCompra = ({
                     </Typography>
                 </RowValor>
 
-                {/* BOTÕES */}
                 {page === "Confirmar" ? (
                     <Stack spacing={1} mt={1}>
                         <BotaoFinalizar fullWidth onClick={onFinalizar}>

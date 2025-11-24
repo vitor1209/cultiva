@@ -46,7 +46,6 @@ let fkHortaId = 1
       maxWidth={false}
       sx={{ backgroundColor: "#fff8f0", textAlign: "left", marginTop: 12, padding: 0 }}
     >
-      {/* Header principal */}
       <Header
         end={
           <Stack direction="row" spacing={1}>
@@ -72,7 +71,6 @@ let fkHortaId = 1
         </>
       </Header>
 
-      {/* Header do produtor */}
       <HeaderProdutor
         nome={horta?.nome ?? '' }
         endereco={horta?.usuario?.email ?? '' }
@@ -82,7 +80,6 @@ let fkHortaId = 1
         beditar
       />
 
-      {/* Produtos */}
       <Container
         id="produtos"
         maxWidth={"xl"}

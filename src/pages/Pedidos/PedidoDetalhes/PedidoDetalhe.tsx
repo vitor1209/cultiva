@@ -49,7 +49,6 @@ export const PedidoDetalhePage = () => {
   return (
     <Container disableGutters maxWidth={false} sx={{ backgroundColor: "#fff8f0", textAlign: "center", marginTop: 8, padding: 0 }}>
 
-      {/* Header */}
       <Header
         start={
           <Stack flex={1} minWidth="250px" maxWidth="400px">
@@ -70,7 +69,6 @@ export const PedidoDetalhePage = () => {
 
       <styled.Division />
 
-      {/* Container Principal */}
       <Container
         maxWidth="xl"
         sx={{
@@ -101,7 +99,6 @@ export const PedidoDetalhePage = () => {
           <Typography level="body-lg">Pedido: #{id}</Typography>
         </Stack>
 
-        {/* Detalhes do Pedido */}
         <styled.ContainerPedidoDetalhado>
           <styled.ContainerDados>
             <styled.texto direction={{ md: "column", lg: "row" }}>
@@ -166,7 +163,6 @@ export const PedidoDetalhePage = () => {
 
           <hr />
 
-          {/* Itens do Pedido */}
           <styled.ContainerItens>
             <Stack spacing={1}>
               <Typography level="body-lg" fontWeight="bold">Itens:</Typography>
@@ -188,13 +184,11 @@ export const PedidoDetalhePage = () => {
               </Stack>
             </Stack>
 
-            {/* Botões de ação */}
             <Stack direction={{ md: "column", lg: "row" }} gap={2} mt={3}>
               <Button tamanho="md" onClick={handleCancelar} variante="ButtonOrange" espacamento={40}>Cancelar Pedido</Button>
               <Button tamanho="md" onClick={handleAtualizar} espacamento={75}>Atualizar</Button>
             </Stack>
 
-            {/* Modais */}
             <PadraoModal
               open={openModal}
               onClose={() => setOpenModal(false)}

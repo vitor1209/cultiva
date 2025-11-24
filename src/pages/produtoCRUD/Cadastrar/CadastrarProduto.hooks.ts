@@ -17,7 +17,7 @@ export const useCadastroProduto = () => {
         setErrorMessage(null);
 
         try {
-            await api.post("/produtos", payload); // << usa a instância correta
+            await api.post("/produtos", payload); 
 
             setSuccessMessage("Produto cadastrado com sucesso!");
             await sleep(1000);

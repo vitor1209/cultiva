@@ -17,7 +17,6 @@ export const DadosPessoaisC = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Stack spacing={4} p={{ xs: 2, md: 6 }} marginBottom={"40px"}>
 
-                    {/* TÍTULO + BOTÃO SALVAR */}
                     <Stack
                         direction={{ xs: "column", sm: "row" }}
                         justifyContent="space-between"
@@ -39,7 +38,6 @@ export const DadosPessoaisC = () => {
                         </Button>
                     </Stack>
 
-                    {/* FOTO + INPUTS */}
                     <Stack
                         direction={{ xs: "column", md: "row" }}
                         spacing={8}
@@ -49,7 +47,6 @@ export const DadosPessoaisC = () => {
                         alignItems="center"
                         justifyContent="center"
                     >
-                        {/* FOTO */}
                         <Stack flex={1} alignItems="center">
                             <InputImagem
                                 name="foto"
@@ -60,7 +57,6 @@ export const DadosPessoaisC = () => {
                             />
                         </Stack>
 
-                        {/* INPUTS */}
                         <Stack flex={1} spacing={3} width="100%" textAlign={'start'}>
 
                             <Input
@@ -90,7 +86,6 @@ export const DadosPessoaisC = () => {
                 </Stack>
             </form>
 
-            {/* MODAL */}
             <PadraoModal
                 open={modalOpen}
                 onClose={() => setModalOpen(false)}

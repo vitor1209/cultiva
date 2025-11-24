@@ -23,11 +23,10 @@ export function useUserForm() {
 
   useEffect(() => {
     if (user) {
-      // Converte data yyyy-mm-dd -> dd/mm/yyyy
+      // yyyy-mm-dd mandar para dd/mm/yyyy
       const [ano, mes, dia] = user.datanasc.split("-");
       const dataFormatada = `${dia}/${mes}/${ano}`;
 
-      // Concatena URL da foto
       const fotoUrl = user.foto ? `http://127.0.0.1:8000/storage/${user.foto}` : "";
 
       form.reset({
@@ -51,7 +50,6 @@ export function useUserForm() {
     if (data.email) formData.append("email", data.email);
     if (data.telefone) formData.append("telefone", data.telefone);
 
-    // Adiciona foto somente se for um arquivo selecionado
     if (data.foto instanceof File) {
       formData.append("foto", data.foto);
     }

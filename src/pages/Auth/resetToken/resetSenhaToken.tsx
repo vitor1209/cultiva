@@ -20,7 +20,7 @@ export function ResetTokenPage() {
       email: data.Email,
       token: data.Token,
       senha: data.Senha,
-      senha_confirmation: data.Senha, // Laravel exige confirmação
+      senha_confirmation: data.Senha, // pq exige confirmação
     });
   });
 
