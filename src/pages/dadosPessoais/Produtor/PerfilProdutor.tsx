@@ -5,8 +5,7 @@ import { Footer } from "../../../components/Footer/Footer.tsx";
 import ProfileTabsContainer from "../Perfil/FormContainerProd.tsx"
 import { CaixaPerfil } from "../../../components/CaixaPerfil/CaixaPerfil.tsx";
 
-import { Container, Stack, IconButton } from "@mui/material";
-import SearchBar from "../../../components/barSearch/barSearch.tsx";
+import { Container, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 
 import { UserRound } from "lucide-react";
@@ -26,17 +25,12 @@ export function DadosProdutor() {
                         <UserRound />
                     </IconButton>
                 }
-                start={
-                    <Stack flex={1} minWidth="250px" maxWidth="400px">
-                        <SearchBar />
-                    </Stack>
-                }
             >
                 <>
                     <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">Início</Button>
                     <Button variante="ButtonLinkBlack" to="/HomeProdutor#produtos" tamanho="sm">Seus Produtos</Button>
                     <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">Pedidos</Button>
-                    <Button variante="ButtonLinkBlack" to="/HomeProdutor#sobre"tamanho="sm">Sobre</Button>
+                    <Button variante="ButtonLinkBlack" to="/Sobre" tamanho="sm">Sobre</Button>
                 </>
             </Header>
 

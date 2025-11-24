@@ -1,4 +1,4 @@
-import { Typography, Stack, Box, useTheme, useMediaQuery } from '@mui/material';
+import { Typography, Stack, useTheme, useMediaQuery } from '@mui/material';
 import { Input } from '../../../components/Input/Input';
 import { Button } from '../../../components/Button/Button';
 import { useForm } from 'react-hook-form';

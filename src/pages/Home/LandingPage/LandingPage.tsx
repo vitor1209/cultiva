@@ -9,19 +9,14 @@ import { useState } from "react";
 import ProductCard from "../../../components/Card/Card.tsx";
 import { useGetProdutosGeral } from "../../../controllers/produto.controller.ts";
 import { useGetHorta } from "../../../controllers/horta.controller.ts";
+import banner1 from "../../../assets/images/banner/3.svg"
+import banner2 from "../../../assets/images/banner/4.svg"
+import banner3 from "../../../assets/images/banner/5.svg"
 
-const scrollToSection = (id: string) => {
-    const section = document.getElementById(id);
-    if (section) {
-        const yOffset = -100;
-        const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: "smooth" });
-    }
-};
 
 export function HomePage() {
-    const [mostrarTodos, setMostrarTodos] = useState(false);
-    const [mostrarHortas, setMostrarHortas] = useState(false);
+    const [mostrarTodos, ] = useState(false);
+    const [mostrarHortas, ] = useState(false);
 
     const { data: produtos, isLoading: produtosLoading, error: produtosError } = useGetProdutosGeral();
     const { data: hortas, isLoading: hortasLoading, error: hortasError } = useGetHorta();
@@ -63,9 +58,9 @@ export function HomePage() {
                         </Typography>
 
                         <Stack direction="row" spacing={3} sx={{ mt: 6 }}>
-                            <Button variante="ButtonGreen" tamanho="xl" to="/Login" espacamento={14}>Começar Agora</Button>
-                            <Button variante="ButtonLinkBlack" onClick={() => scrollToSection('inicio')} tamanho="xl">
-                                Veja Como Funciona
+                            <Button variante="ButtonGreen" tamanho="xl" to="/Login" espacamento={10}>Começar Agora</Button>
+                            <Button variante="ButtonLinkBlack" to="/Sobre" tamanho="xl">
+                                Saiba Mais
                             </Button>
                         </Stack>
 
@@ -100,9 +95,9 @@ export function HomePage() {
 
             <Styled.Division id="inicio" />
             <CarouselFullScreen tamanho="full">
-                <Box sx={{ background: "#1976d2", height: 324 }} />
-                <Box sx={{ background: "#9c27b0", height: 324 }} />
-                <Box sx={{ background: "#2e7d32", height: 324 }} />
+                <Box component="img" src={banner1} sx={{ width: "100%", objectFit: "cover" }} />
+                <Box component="img" src={banner2} sx={{ width: "100%", objectFit: "cover" }} />
+                <Box component="img" src={banner3} sx={{ width: "100%", objectFit: "cover" }} />
             </CarouselFullScreen>
             <Styled.Division />
 
@@ -110,7 +105,7 @@ export function HomePage() {
             <Container id="produtos" maxWidth="xl" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Stack direction="row" justifyContent="space-between" width="90%" alignItems="center" marginBottom={2}>
                     <Typography level="h4">Mais Vendidos</Typography>
-                    <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho="sm" onClick={() => setMostrarTodos(true)}>
+                    <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" tamanho="sm" to="/Login">
                         Ver todos
                     </Button>
                 </Stack>
@@ -154,7 +149,7 @@ export function HomePage() {
                 <Stack direction="row" justifyContent='space-between' width="95%" alignItems='center' marginBottom={2}>
                     <Typography level="h4">Produtores em Destaque</Typography>
 
-                    <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" onClick={() => setMostrarHortas(true)} tamanho={"sm"}>Ver todos</Button>
+                    <Button ladoIcon="direita" icon={ChevronRight} variante="ButtonLinkBlack" to="/Login" tamanho={"sm"}>Ver todos</Button>
                 </Stack>
 
                 <Stack direction={{ xs: "column", sm: "row" }} flexWrap="wrap" gap={2.5}>
@@ -181,17 +176,6 @@ export function HomePage() {
 
             <Styled.Division />
 
-            {/* Sobre */}
-            <Styled.ContainerFull id="sobre">
-                <Styled.Session>
-                    <Typography level="h2" fontFamily={'"Anybody", "Inter", sans-serif'}>Sobre Cultiva+</Typography>
-                    <Typography level="body-md">
-                        O Cultiva+ é uma plataforma dedicada a conectar pequenos produtores locais a consumidores que buscam produtos naturais, frescos e de qualidade...
-                    </Typography>
-                </Styled.Session>
-            </Styled.ContainerFull>
-
-            <Styled.Division />
 
             {/* CTA */}
             <Styled.CTABox>

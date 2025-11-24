@@ -2,9 +2,9 @@ import { Container, IconButton, Stack, Typography } from "@mui/material";
 import { ShoppingCart, UserRound } from "lucide-react";
 import { Header } from "../../../components/Header/Header";
 import { Footer } from "../../../components/Footer/Footer";
-import SearchBar from "../../../components/barSearch/barSearch";
 import { Button } from "../../../components/Button/Button";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import SearchBar from "../../../components/barSearch/barSearch";
 
 export function CarrinhoVazioPage() {
     return (
@@ -19,23 +19,24 @@ export function CarrinhoVazioPage() {
                         <IconButton aria-label="delete" size="large">
                             <ShoppingCart />
                         </IconButton>
-                        <IconButton aria-label="delete" size="large" href="/DadosProdutor">
+                        <IconButton aria-label="delete" size="large" href="/DadosConsumidor">
                             <UserRound />
                         </IconButton>
                     </Stack>
                 }
                 start={
-                    <Stack flex={1} minWidth="250px" maxWidth="400px">
+                    <Stack flex={1} minWidth="250px" maxWidth="400px" zIndex={"300000"}>
                         <SearchBar />
                     </Stack>
                 }
+
             >
                 <>
                     <Button variante="ButtonLinkBlack" tamanho="sm" to="/HomeConsumidor">Início</Button>
                     <Button variante="ButtonLinkBlack" to="/HomeConsumidor#produtos" tamanho="sm">Produtos</Button>
 
-                    <Button variante="ButtonLinkBlack" to="/HomeConsumidor#produtores"tamanho="sm">Produtores</Button>
-                    <Button variante="ButtonLinkBlack" to="/HomeConsumidor#sobre" tamanho="sm">Sobre</Button>
+                    <Button variante="ButtonLinkBlack" to="/HomeConsumidor#produtores" tamanho="sm">Produtores</Button>
+                    <Button variante="ButtonLinkBlack" to="/Sobre" tamanho="sm">Sobre</Button>
                 </>
             </Header>
             <Stack p={"5% 0"} />

@@ -2,13 +2,13 @@ import { Container, IconButton, Stack } from "@mui/material";
 import { UserRound } from "lucide-react";
 import { Header } from "../../../components/Header/Header";
 import { Footer } from "../../../components/Footer/Footer";
-import SearchBar from "../../../components/barSearch/barSearch";
 import { Button } from "../../../components/Button/Button";
 import ProductCardComponent from "../../../components/CardCarrinho/CardCarrinho";
 import Typography from "@mui/joy/Typography";
 import { ResumoCompra } from "../../../components/ResumoCompra/ResumoCompra";
 import { CarrinhoButton } from "../carrinho.hook";
 import { useFinalizarCarrinho } from "./FinalizarCarrinho.hook";
+import SearchBar from "../../../components/barSearch/barSearch";
 
 export function FinalizarCarrinhoPage() {
 
@@ -36,22 +36,23 @@ export function FinalizarCarrinhoPage() {
         end={
           <Stack direction={'row'} gap={3}>
             <CarrinhoButton />
-            <IconButton aria-label="usuario" size="large">
+            <IconButton aria-label="usuario" size="large" href="/DadosConsumidor">
               <UserRound />
             </IconButton>
           </Stack>
         }
         start={
-          <Stack flex={1} minWidth="250px" maxWidth="400px">
+          <Stack flex={1} minWidth="250px" maxWidth="400px" zIndex={"300000"}>
             <SearchBar />
           </Stack>
         }
       >
         <>
-          <Button variante="ButtonLinkBlack" tamanho="sm">Início</Button>
-          <Button variante="ButtonLinkBlack" tamanho="sm">Produtores</Button>
-          <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">Produtos</Button>
-          <Button variante="ButtonLinkBlack" tamanho="sm">Como Funciona</Button>
+          <Button variante="ButtonLinkBlack" tamanho="sm" to="/HomeConsumidor">Início</Button>
+          <Button variante="ButtonLinkBlack" to="/HomeConsumidor#produtos" tamanho="sm">Produtos</Button>
+
+          <Button variante="ButtonLinkBlack" to="/HomeConsumidor#produtores" tamanho="sm">Produtores</Button>
+          <Button variante="ButtonLinkBlack" to="/Sobre" tamanho="sm">Sobre</Button>
         </>
       </Header>
 
@@ -98,9 +99,9 @@ export function FinalizarCarrinhoPage() {
             onChangeEntrega={setOpcaoEntrega}
             onFinalizar={handleFinalizar}
             onContinuar={() => console.log("Continuar!")}
-            page="Confirmar" 
-            formaPagamento={false} 
-            onChangePagamento={()=>{}}          />
+            page="Confirmar"
+            formaPagamento={false}
+            onChangePagamento={() => { }} />
         </Stack>
       </Stack>
 

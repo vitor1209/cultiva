@@ -3,7 +3,6 @@ import { Header } from "../../../components/Header/Header";
 import { Button } from "../../../components/Button/Button";
 import { Footer } from "../../../components/Footer/Footer";
 import { ArrowRight, CircleCheck, UserRound } from "lucide-react";
-import SearchBar from "../../../components/barSearch/barSearch";
 import * as styled from "../Pedidos.styled";
 import Typography from "@mui/joy/Typography";
 import { Link, useParams } from "react-router-dom";
@@ -52,11 +51,7 @@ export const PedidoDetalhePage = () => {
 
       {/* Header */}
       <Header
-        start={
-          <Stack flex={1} minWidth="250px" maxWidth="400px">
-            <SearchBar />
-          </Stack>
-        }
+
         end={
           <IconButton component={Link} to="/ProdutorPrivatePage" size="large">
             <UserRound />
@@ -66,7 +61,7 @@ export const PedidoDetalhePage = () => {
         <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">Início</Button>
         <Button variante="ButtonLinkBlack" to="/HomeProdutor#produtos" tamanho="sm">Seus Produtos</Button>
         <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">Pedidos</Button>
-        <Button variante="ButtonLinkBlack" to="/HomeProdutor#sobre" tamanho="sm">Sobre</Button>
+        <Button variante="ButtonLinkBlack" to="/Sobre" tamanho="sm">Sobre</Button>
       </Header>
 
       <styled.Division />
