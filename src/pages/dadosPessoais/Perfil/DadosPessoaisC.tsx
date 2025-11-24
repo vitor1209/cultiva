@@ -62,12 +62,6 @@ export const DadosPessoaisC = () => {
 
                         {/* INPUTS */}
                         <Stack flex={1} spacing={3} width="100%" textAlign={'start'}>
-                            <Input
-                                name="nome"
-                                placeholder="Nome Completo"
-                                control={control}
-                                label="Nome Completo:"
-                            />
 
                             <Input
                                 name="email"

@@ -31,6 +31,7 @@ export function useFinalizarEnderecoForm() {
                 complemento: enderecoExistente.complemento ?? "",
             });
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [enderecoExistente]);
 
     const onSubmit = (data: EnderecoEntregaDados) => {

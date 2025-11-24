@@ -1,31 +1,58 @@
+import { Box, Typography, Paper, CircularProgress } from "@mui/material";
+import { useGetPedidosConsumidor } from "../../../controllers/pedido.controller";
 
-import { Box, Typography, Paper } from "@mui/material";
+type StatusType =
+  | "Preparando"
+  | "Enviado"
+  | "Disponível para Retirada"
+  | "Finalizado"
+  | "Cancelado";
 
-interface Pedido {
-  id: string;
-  data: string;
-  status: "Finalizado" | "Em preparo";
-  valor: string;
-}
+const mapStatus = (statusNumber: number): StatusType => {
+  switch (statusNumber) {
+    case 1:
+      return "Preparando";
+    case 2:
+      return "Enviado";
+    case 3:
+      return "Disponível para Retirada";
+    case 4:
+      return "Finalizado";
+    case 5:
+      return "Cancelado";
+    default:
+      return "Preparando";
+  }
+};
 
-const pedidos: Pedido[] = [
-  { id: "001", data: "19/10/2025", status: "Finalizado", valor: "R$ 45,50" },
-  { id: "002", data: "15/10/2025", status: "Em preparo", valor: "R$ 32,00" },
-  { id: "003", data: "10/10/2025", status: "Finalizado", valor: "R$ 28,90" },
-];
-
-const getStatusColor = (status: string) => {
+const getStatusColor = (status: StatusType) => {
   switch (status) {
     case "Finalizado":
       return "success.main";
-    case "Em preparo":
+    case "Preparando":
+    case "Enviado":
+    case "Disponível para Retirada":
       return "warning.main";
+    case "Cancelado":
+      return "error.main";
     default:
       return "text.secondary";
   }
 };
 
 const Historico = () => {
+  const { data, isLoading, isError } = useGetPedidosConsumidor();
+
+  if (isLoading) return <CircularProgress />;
+
+  if (isError)
+    return <Typography color="error">Erro ao carregar pedidos</Typography>;
+
+  const pedidos = data?.pedidos ?? [];
+
+  if (pedidos.length === 0)
+    return <Typography sx={{ mt: 3 }}>Nenhum pedido encontrado.</Typography>;
+
   return (
     <Paper
       elevation={0}
@@ -41,62 +68,71 @@ const Historico = () => {
       <Typography
         variant="h5"
         fontWeight="bold"
+        mb={4}
         sx={{ mb: 3, textAlign: "left" }}
-        fontFamily={'"Anybody", "Inter", sans-serif'}
-      > 
+        fontFamily={'"Anybody", "Inter", sans-serif"'}
+      >
         Histórico de Pedidos
       </Typography>
 
-      {pedidos.map((pedido) => (
-        <Paper
-          key={pedido.id}
-          elevation={0}
-          sx={{
-            p: 3,
-            mb: 2,
-            borderRadius: "12px",
-            border: "1px solid #e0e0e0",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-          }}
-        >
-          {/* ESQUERDA */}
-          <Box>
-            <Typography variant="subtitle1" fontWeight={600} fontFamily={'"Anybody", "Inter", sans-serif'}>
-              Pedido #{pedido.id}
-            </Typography>
+      {pedidos.map((pedido) => {
+        const statusText = mapStatus(pedido.status);
 
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{ mt: 0.5 }}
-            >
-              Data: {pedido.data}
-            </Typography>
+        // Formata data DD/MM/AAAA
+        const dataFormatada = new Date(pedido.data_hora).toLocaleDateString(
+          "pt-BR",
+          { day: "2-digit", month: "2-digit", year: "numeric" }
+        );
 
-            <Typography
-              variant="body2"
-              sx={{
-                mt: 1,
-                color: getStatusColor(pedido.status),
-                fontWeight: 600,
-              }}
-            >
-              {pedido.status}
-            </Typography>
-          </Box>
+        return (
+          <Paper
+            key={pedido.id}
+            elevation={0}
+            sx={{
+              p: 3,
+              mb: 2,
+              borderRadius: "12px",
+              border: "1px solid #e0e0e0",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+            }}
+          >
+            {/* ESQUERDA */}
+            <Box>
+              <Typography
+                variant="subtitle1"
+                fontWeight={600}
+                fontFamily={'"Anybody", "Inter", sans-serif"'}
+              >
+                Pedido #{pedido.id}
+              </Typography>
 
-          {/* DIREITA */}
-          <Box textAlign="right">
-            <Typography variant="subtitle1" fontWeight={600}>
-              {pedido.valor}
-            </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+                Data: {dataFormatada}
+              </Typography>
 
-            
-          </Box>
-        </Paper>
-      ))}
+              <Typography
+                variant="body2"
+                sx={{
+                  mt: 1,
+                  color: getStatusColor(statusText),
+                  fontWeight: 600,
+                }}
+              >
+                {statusText}
+              </Typography>
+            </Box>
+
+            {/* DIREITA */}
+            <Box textAlign="right">
+              <Typography variant="subtitle1" fontWeight={600}>
+                R$ {pedido.preco_final != null ? pedido.preco_final.toFixed(2) : "-"}
+              </Typography>
+            </Box>
+          </Paper>
+        );
+      })}
     </Paper>
   );
 };

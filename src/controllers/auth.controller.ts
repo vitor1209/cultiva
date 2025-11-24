@@ -1,10 +1,8 @@
-// auth.hooks.ts
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { AuthQueryKey } from "../models/auth.types"
 import type { RegisterUser, LoginUser } from "../models/auth.types"
 import { api } from "../lib/api/api"
 
-// REGISTER
 export const useRegister = () => {
     return useMutation({
         mutationKey: [AuthQueryKey.REGISTER],
@@ -15,7 +13,6 @@ export const useRegister = () => {
     })
 }
 
-// LOGIN
 export const useLogin = () => {
     return useMutation({
         mutationKey: [AuthQueryKey.LOGIN],
@@ -26,7 +23,6 @@ export const useLogin = () => {
     })
 }
 
-// GET USER (rota protegida)
 export const useUser = () => {
     return useQuery({
         queryKey: [AuthQueryKey.USER],
