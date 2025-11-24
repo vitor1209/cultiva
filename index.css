@@ -41,3 +41,7 @@ button {
 button:active {
   cursor: url('/pointer.png') 16 16, pointer;
 }
+
+html, body {
+    overflow-x: hidden;
+}
