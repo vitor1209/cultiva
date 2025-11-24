@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Box, List, ListItem, ListItemButton, Paper } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 import { Search, SearchIconWrapper, StyledInputBase } from "./barSearch.styled"; // seu CSS aqui
 import SearchIcon from "@mui/icons-material/Search";

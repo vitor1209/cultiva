@@ -1,26 +1,27 @@
-import { Navigate, Outlet } from "react-router-dom";
-
-const isAuthenticated = (): boolean => {
-    const user = localStorage.getItem("usuarioLogado")
-    return !!user
-}
+import { Navigate, Outlet } from "react-router";
+import ScrollToTop from "../components/Scroll";
 
 const produtor = (): boolean => {
-   const dados = JSON.parse(localStorage.getItem("usuarioLogado")!)
-   return dados.Tipo_usuario === 'Produtor'
+    const dados = JSON.parse(localStorage.getItem("usuarioLogado")!)
+    return dados.Tipo_usuario === 'Produtor'
 }
 
 // sem login
 export const PublicRoute = () => {
-    return !isAuthenticated() ? <Outlet /> : <Navigate to="/" />
+    return (
+        <>
+            <ScrollToTop />
+            <Outlet />
+        </>
+    );
 };
 
 // com login produtor
 export const ProdutorRoute = () => {
-    return produtor() ? <Outlet /> : <Navigate to="/HomeProdutor" />
+    return produtor() ? <>  <ScrollToTop /> <Outlet /> </> : <Navigate to="/HomeProdutor" />
 };
 
 // com login consumidor
 export const ConsumidorRoute = () => {
-    return !produtor() ? <Outlet /> : <Navigate to="/HomeConsumidor" />
+    return !produtor() ? <>  <ScrollToTop /> <Outlet /> </> : <Navigate to="/HomeConsumidor" />
 };

@@ -12,30 +12,30 @@ import { SelectControlado } from "../../../components/Input/Select/Select.tsx";
 import { useCadastroProduto } from "./CadastrarProduto.hooks.ts";
 import { useForm } from "react-hook-form";
 import type { CadastroProdutoType } from "../CadastrarProduto.schemas.ts";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 
 export function CadastrarProdutoPage() {
     const { control, handleSubmit } = useForm<CadastroProdutoType>();
     const { cadastroProduto, successMessage, errorMessage, loading } = useCadastroProduto();
 
-   const onSubmit = handleSubmit((data) => {
-  const usuarioLogado = localStorage.getItem("usuarioLogado");
-  let fkHortaId = 0;
+    const onSubmit = handleSubmit((data) => {
+        const usuarioLogado = localStorage.getItem("usuarioLogado");
+        let fkHortaId = 0;
 
-  if (usuarioLogado) {
-    try {
-      const userObj = JSON.parse(usuarioLogado);
-      fkHortaId = userObj.id || 0;
-    } catch (err) {
-      console.warn("Não foi possível ler o usuário logado:", err);
-    }
-  }
+        if (usuarioLogado) {
+            try {
+                const userObj = JSON.parse(usuarioLogado);
+                fkHortaId = userObj.id || 0;
+            } catch (err) {
+                console.warn("Não foi possível ler o usuário logado:", err);
+            }
+        }
 
-  const formData = new FormData();
-  const precoFormatado = parseFloat(
-    data.preco.replace("R$", "").replace(/\./g, "").replace(",", ".")
-  );
+        const formData = new FormData();
+        const precoFormatado = parseFloat(
+            data.preco.replace("R$", "").replace(/\./g, "").replace(",", ".")
+        );
 
         formData.append("nome", data.nome);
         formData.append("descricao", data.descricao || "");
@@ -43,9 +43,9 @@ export function CadastrarProdutoPage() {
         formData.append("quantidade_estoque", String(Math.floor(Number(data.quantidadeEstoque))));
         formData.append("quant_unit_medida", String(Math.floor(Number(data.quantidadeMedida))));
 
-  const [day, month, year] = data.dataValidade.split("/").map(Number);
-  const validadeString = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-  formData.append("validade", validadeString);
+        const [day, month, year] = data.dataValidade.split("/").map(Number);
+        const validadeString = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+        formData.append("validade", validadeString);
 
         formData.append("fk_unidade_medida_id", String(Number(data.unidadeMedida)));
         formData.append("fk_horta_id", String(fkHortaId));
@@ -68,28 +68,34 @@ export function CadastrarProdutoPage() {
             imagem: data.imagem,
         });
 
-  cadastroProduto(formData);
-});
+        cadastroProduto(formData);
+    });
+
+    const theme = useTheme();
+    const isMdUp = useMediaQuery(theme.breakpoints.up("lg"));
+    const l = isMdUp ? 40 : 18;
+
+    const h = isMdUp ? 40 : 18;
 
     return (
         <Container disableGutters maxWidth={false} sx={{ backgroundColor: "#fff8f0", mt: 8, textAlign: "center", p: 0 }}>
             <Header
                 end={<IconButton size="large" component={Link} to="/ProdutorPrivatePage"><UserRound /></IconButton>}
- 
+
             >
-                
-                    <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">
-                        Início
-                    </Button>
-                    <Button variante="ButtonLinkBlack" to="/HomeProdutor#produtos" tamanho="sm">
-                        Seus Produtos
-                    </Button>
-                    <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">
-                        Pedidos
-                    </Button>
-                    <Button variante="ButtonLinkBlack" to="/Sobre" tamanho="sm">
-                        Sobre
-                    </Button>
+
+                <Button variante="ButtonLinkBlack" to="/HomeProdutor" tamanho="sm">
+                    Início
+                </Button>
+                <Button variante="ButtonLinkBlack" to="/HomeProdutor#produtos" tamanho="sm">
+                    Seus Produtos
+                </Button>
+                <Button variante="ButtonLinkBlack" to="/Pedidos" tamanho="sm">
+                    Pedidos
+                </Button>
+                <Button variante="ButtonLinkBlack" to="/Sobre" tamanho="sm">
+                    Sobre
+                </Button>
             </Header>
 
             <Stack>

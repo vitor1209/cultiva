@@ -1,7 +1,6 @@
 import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
 import Chip from '@mui/joy/Chip';
-import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import * as Styled from "./Card.styled.ts";
 import { Button } from "../../components/Button/Button";
@@ -11,9 +10,9 @@ import { Box, Stack } from '@mui/material';
 import { useDeleteProduto } from '../../controllers/produto.controller.ts';
 import { useState } from 'react';
 import { PadraoModal } from '../Modal/Modal.tsx';
-import { useNavigate } from 'react-router-dom';
 import { useAddCarrinho } from '../../pages/carrinho/carrinho.hook.tsx';
-import { Link as RouterLink } from "react-router-dom";
+import { useNavigate as useNavigate } from "react-router";
+import Link from '@mui/joy/Link';
 
 export default function ProductCard({
     image,
@@ -140,10 +139,8 @@ export default function ProductCard({
                 <CardContent className="cardContainer">
                     <div className="inline-item">
                         <Link
-                            component={RouterLink}
-                            to={`/Produto/${id}`}
+                            href={`/Produto/${id}`}
                             color="neutral"
-                            textColor="text.primary"
                             underline="none"
                         >
                             {name}

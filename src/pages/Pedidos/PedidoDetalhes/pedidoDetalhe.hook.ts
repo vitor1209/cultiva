@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import { useGetPedidosProdutor } from "../../../controllers/pedido.controller";
 import { useUpdateStatus } from "../../../controllers/status.controller";
 import type { StatusType } from "../../../components/CardPedido/CardPedido.type";

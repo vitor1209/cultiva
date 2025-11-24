@@ -7,7 +7,7 @@ import ProductCard from "../../components/Card/Card";
 import { Footer } from "../../components/Footer/Footer";
 import * as Styled from "./PerfilProdutor.styled";
 import { HeaderProdutor } from "../../components/HeaderProdutor/HeaderProdutor";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useGetHorta } from "../../controllers/horta.controller";
 import { useGetProdutos } from "../../controllers/produto.controller";
 import { useState } from "react";
@@ -58,7 +58,7 @@ let fkHortaId = 1
         }
         start={
           <Stack flex={1} minWidth="250px" maxWidth="400px">
-            <SearchBar />
+            {/* <SearchBar /> */}
           </Stack>
         }
       >

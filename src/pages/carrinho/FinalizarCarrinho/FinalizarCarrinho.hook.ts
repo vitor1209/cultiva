@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useCarrinhoAdd, useGetCarrinho } from "../../../controllers/carrinho.controller";
 import type { CarrinhoGet } from "../../../models/carrinho.types";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export function useFinalizarCarrinho() {
 

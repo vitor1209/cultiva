@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
 import {
     HomePage,
     LoginPage,
@@ -23,7 +23,6 @@ import {
 } from "./pages";
 import { PublicRoute, ProdutorRoute, ConsumidorRoute } from "./utils";
 
-// Layouts
 const RootLayout = () => <Outlet />;
 
 const router = createBrowserRouter([
@@ -57,6 +56,7 @@ const router = createBrowserRouter([
                     { path: "/ProdutorPrivatePage", element: <ProdutorPrivatePage /> },
                     { path: "/EditarProdutoPage/:id", element: <EditarProdutoPage /> },
                     { path: "/DadosProdutor", element: <DadosProdutor /> },
+                    
                 ],
             },
             {

@@ -6,7 +6,7 @@ import ProfileTabsContainer from "../Perfil/FormContainerProd.tsx"
 import { CaixaPerfil } from "../../../components/CaixaPerfil/CaixaPerfil.tsx";
 
 import { Container, IconButton } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { UserRound } from "lucide-react";
 
 export function DadosProdutor() {

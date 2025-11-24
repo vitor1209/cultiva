@@ -2,7 +2,6 @@ import { Container, IconButton, MenuItem, Stack, Typography } from "@mui/materia
 import { Alert } from "@mui/joy";
 import { Asterisk, UserRound } from "lucide-react";
 import { Header } from "../../../components/Header/Header.tsx";
-import SearchBar from "../../../components/barSearch/barSearch.tsx";
 import { Button } from "../../../components/Button/Button.tsx";
 import { Footer } from "../../../components/Footer/Footer.tsx";
 import { Input } from "../../../components/Input/Input.tsx";
@@ -12,7 +11,7 @@ import { InputImagem } from "../../../components/Input/BoxImg/BoxImg.tsx";
 import { SelectControlado } from "../../../components/Input/Select/Select.tsx";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router";
 import type { CadastroProdutoType } from "../CadastrarProduto.schemas.ts";
 import { useEditarProduto } from "./EditarProduto.hook.ts";
 

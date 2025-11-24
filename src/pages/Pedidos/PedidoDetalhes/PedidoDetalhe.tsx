@@ -5,7 +5,7 @@ import { Footer } from "../../../components/Footer/Footer";
 import { ArrowRight, CircleCheck, UserRound } from "lucide-react";
 import * as styled from "../Pedidos.styled";
 import Typography from "@mui/joy/Typography";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { PadraoModal } from "../../../components/Modal/Modal";
 import { usePedidoDetalhe } from "./pedidoDetalhe.hook";

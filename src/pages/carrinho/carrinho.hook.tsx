@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useCarrinhoAdd, useCarrinhoDel, useGetCarrinho } from "../../controllers/carrinho.controller";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import type { CarrinhoAdd } from "../../models/carrinho.types";
 import { Badge, IconButton } from "@mui/material";
 import { ShoppingCart } from "lucide-react";

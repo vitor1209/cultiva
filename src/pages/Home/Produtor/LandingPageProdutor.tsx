@@ -9,13 +9,13 @@ import ProductCard from "../../../components/Card/Card.tsx";
 import { Footer } from "../../../components/Footer/Footer.tsx";
 import SearchBar from "../../../components/barSearch/barSearch.tsx";
 import CardInfo from "../../../components/cardInfo/CardInfo.tsx";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { useGetProdutos } from "../../../controllers/produto.controller.ts";
 import banner1 from "../../../assets/images/banner/3.svg"
 import banner2 from "../../../assets/images/banner/4.svg"
 import banner3 from "../../../assets/images/banner/5.svg"
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 
 
 const scrollToSection = (id: string) => {

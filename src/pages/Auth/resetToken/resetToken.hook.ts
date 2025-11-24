@@ -2,7 +2,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { api } from "../../../lib/api/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 

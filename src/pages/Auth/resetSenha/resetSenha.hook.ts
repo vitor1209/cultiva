@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { api } from "../../../lib/api/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export const useResetSenha = () => {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);

@@ -8,7 +8,7 @@ import Typography from "@mui/joy/Typography";
 import * as styled from "../Pedidos.styled";
 import { FilterBar } from "../../../components/FilterBar/FilterBar";
 import { CardPedido } from "../../../components/CardPedido/CardPedido";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { useGetPedidosProdutor } from "../../../controllers/pedido.controller";
 
 export function PedidosPage() {

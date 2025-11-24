@@ -12,7 +12,7 @@ import ftNi from "../../assets/images/imgSobre/ftsGrupo/ftNicole.svg";
 import ftThais from "../../assets/images/imgSobre/ftsGrupo/ftThais.svg";
 import ftVitor from "../../assets/images/imgSobre/ftsGrupo/ftVitor.svg";
 import ftProfs from "../../assets/images/imgSobre/ftsGrupo/profs.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 
 

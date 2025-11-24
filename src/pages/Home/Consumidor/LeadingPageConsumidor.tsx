@@ -7,7 +7,6 @@ import { Button } from "../../../components/Button/Button.tsx";
 import Typography from '@mui/joy/Typography';
 import { CarouselFullScreen } from "../../../components/Carousel/Carousel.tsx";
 import * as Styled from "../LandingPage.styled.ts";
-import { CardPedidos } from "../../../components/CardPedidos/CardPedidos.tsx";
 import { useGetProdutosGeral } from "../../../controllers/produto.controller.ts";
 import { useEffect, useState } from "react";
 import ProductCard from "../../../components/Card/Card.tsx";
@@ -15,7 +14,7 @@ import { CarrinhoButton } from "../../carrinho/carrinho.hook.tsx";
 import banner1 from "../../../assets/images/banner/3.svg"
 import banner2 from "../../../assets/images/banner/4.svg"
 import banner3 from "../../../assets/images/banner/5.svg"
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router"
 import { useGetHorta } from "../../../controllers/horta.controller.ts";
 
 const scrollToSection = (id: string) => {
@@ -192,10 +191,6 @@ export function HomeConsumidorPage() {
 
 
             <Styled.Division />
-
-        
-
-
 
             <Stack p={"3% 0"} />
             <Footer />

@@ -4,7 +4,7 @@ import * as styled from "./Form.styled";
 import { Button } from "../Button/Button";
 import { useState } from "react";
 import { LogoCultiva } from "../../assets";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router";
 import type { ContainerFormProps } from "./Form.types";
 import { TabsApple } from "./TabsApple/TabsApple";
 

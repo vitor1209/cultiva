@@ -5,7 +5,7 @@ import type { CardPedidoPros, StatusType } from "./CardPedido.type";
 import { useState } from "react";
 import { theme } from "../../lib/theme/theme";
 import * as styled from "./CardPedido.styled";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export const CardPedido = ({
     img,

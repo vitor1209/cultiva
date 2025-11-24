@@ -8,7 +8,7 @@ import ProductCard from "../../components/Card/Card.tsx";
 import { Footer } from "../../components/Footer/Footer";
 import * as Styled from "../PerfilProdutor/PerfilProdutor.styled.ts";
 import { HeaderProdutor } from "../../components/HeaderProdutor/HeaderProdutor.tsx";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router";
 import { useGetHorta } from "../../controllers/horta.controller.ts";
 import { useGetProdutos } from "../../controllers/produto.controller.ts";
 import { useState } from "react";

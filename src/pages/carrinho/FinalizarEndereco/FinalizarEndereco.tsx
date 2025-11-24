@@ -6,10 +6,9 @@ import { Button } from "../../../components/Button/Button";
 import { ResumoCompra } from "../../../components/ResumoCompra/ResumoCompra";
 import { ResumoPedido } from "../../../components/ResumoPedido/ResumoPedido";
 import { EnderecoEntrega } from "./Endereco/EnderecoEntrega";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 import { useFinalizarEnderecoForm } from "./finalizarEndereco.hook";
 import { PadraoModal } from "../../../components/Modal/Modal";
-import SearchBar from "../../../components/barSearch/barSearch";
 
 export function FinalizarEnderecoPage() {
     const location = useLocation();

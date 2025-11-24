@@ -6,7 +6,7 @@ import { Header } from "../../../components/Header/Header";
 import SearchBar from "../../../components/barSearch/barSearch";
 import { Button } from "../../../components/Button/Button";
 import { Footer } from "../../../components/Footer/Footer";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router"
 import { useGetProdutosGeral } from "../../../controllers/produto.controller";
 import { useGetHorta } from "../../../controllers/horta.controller";
 import ProductCard from "../../../components/Card/Card";
