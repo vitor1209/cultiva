@@ -11,8 +11,11 @@ import { Link } from "react-router-dom";
 
 import { UserRound } from "lucide-react";
 
-
 export function DadosProdutor() {
+     const usuario = localStorage.getItem("usuarioLogado")
+        ? JSON.parse(localStorage.getItem("usuarioLogado")!)
+        : null;
+
     return (
         <>
             <Container
@@ -40,25 +43,14 @@ export function DadosProdutor() {
                 </>
             </Header>
 
-                <CaixaPerfil nome="Sítio Verde" perfil="Produtor"/>
+                <CaixaPerfil nome={usuario?.nome ?? "Produtor"} perfil="Produtor"/>
 
 
                 <ProfileTabsContainer />
 
-
-
-
-
                 <Footer />
             </Container>
 
-
         </>
-
-
-
     )
-
 }
-
-

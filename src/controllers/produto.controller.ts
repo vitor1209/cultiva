@@ -18,7 +18,6 @@ export const useCadastroProduto = () => {
   });
 };
 
-
 export const useGetProdutos = (fk_horta_id?: number) => {
   return useQuery<GetProduto.Response[]>({
     queryKey: [ProdutoQueryKey.GET, fk_horta_id],
@@ -46,7 +45,6 @@ export const useGetProdutosGeral = () => {
     },
   });
 };
-
 
 export const useDeleteProduto = () => {
   const queryClient = useQueryClient();
@@ -82,7 +80,6 @@ export const useUpdateProduto = () => {
           }
         }
       );
-
       return data;
     },
   });

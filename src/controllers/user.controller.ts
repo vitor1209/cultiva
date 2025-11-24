@@ -2,7 +2,6 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { api } from "../lib/api/api";
 import type { AuthUpdate, AuthUserData } from "../models/user.types";
 
-// GET USER LOGADO
 export const useGetUser = () => {
   return useQuery<AuthUserData.User>({
     queryKey: ["GET_USER"],

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Box, Tabs, Tab, Paper } from '@mui/material';
-import {DadosPessoais} from "./DadosPessoaisP";
-import Historico from './Historico';
+import {DadosPessoaisC} from "./DadosPessoaisC";
 import { DadosEndereco } from './DadosEndereco';
 
 const ProfileTabsContainer = () => {
@@ -13,9 +12,8 @@ const ProfileTabsContainer = () => {
 
     const renderTabContent = () => {
         switch (activeTab) {
-            case 0: return <DadosPessoais />;
+            case 0: return <DadosPessoaisC />;
             case 1: return <DadosEndereco />;
-            case 2: return <Historico />;
             default: return null;
         }
     };
@@ -46,7 +44,7 @@ const ProfileTabsContainer = () => {
                         },
                     }}
                 >
-                    {['Dados Pessoais', 'Dados do Endereço', 'Histórico'].map((label, index) => (
+                    {['Dados Pessoais', 'Dados do Endereço'].map((label, index) => (
                         <Tab
                             key={index}
                             label={label}

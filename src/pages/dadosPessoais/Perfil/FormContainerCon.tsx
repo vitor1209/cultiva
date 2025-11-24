@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Box, Tabs, Tab, Paper } from '@mui/material';
 import { DadosPessoaisC } from "./DadosPessoaisC";
-import Historico from './Historico';
+import  Historico  from './Historico';
 import { DadosEndereco } from './DadosEndereco';
 
 export const ProfileTabsContainerC = () => {

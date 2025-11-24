@@ -1,4 +1,4 @@
-import { Typography, Stack, Box, useTheme, useMediaQuery } from '@mui/material';
+import { Typography, Stack,  useTheme, useMediaQuery } from '@mui/material';
 import { Input } from '../../../components/Input/Input';
 import { Button } from '../../../components/Button/Button';
 import { useForm } from 'react-hook-form';
@@ -12,7 +12,6 @@ export const DadosPessoais = () => {
     const { control } = useForm({
         resolver: zodResolver(DadosPessoaisSchema),
         defaultValues: {
-            NomeCompleto: '',
             Email: '',
             celular: '',
             dataNasci: '',
@@ -48,7 +47,7 @@ export const DadosPessoais = () => {
                     fontWeight="bold"
                     fontFamily={'"Anybody", "Inter", sans-serif'}
                 >
-                    Dados do Endereço
+                    Dados Pessoais
                 </Typography>
 
                 <Button tamanho="md" espacamento={10}>
@@ -60,17 +59,17 @@ export const DadosPessoais = () => {
             <Stack
                 direction={{ xs: "column", md: "row" }}
                 spacing={6}
+                textAlign={'start'}
                 width="90%"
                 alignSelf="center"
             >
                 <Stack spacing={3} flex={1}>
-                    <Input name="NomeCompleto" placeholder="Nome Completo" control={control} label="Nome Completo:" />
                     <Input name="Email" placeholder="Email" control={control} label="Email:" />
                     <Input mask={MASCARAS.celular} name="celular" placeholder="Celular" control={control} label="Celular:" />
+                    <Input name="dataNasci" placeholder="Data de Nascimento" mask={MASCARAS.data} control={control} label="Data de Nascimento:" />
                 </Stack>
 
                 <Stack spacing={3} flex={1}>
-                    <Input name="dataNasci" placeholder="Data de Nascimento" mask={MASCARAS.data} control={control} label="Data de Nascimento:" />
                     <Input name="nome_horta" placeholder="Nome da Horta" control={control} label="Nome da Horta:" />
                     <Input mask={MASCARAS.real} name="frete" placeholder="Frete" control={control} label="Frete:" />
                 </Stack>

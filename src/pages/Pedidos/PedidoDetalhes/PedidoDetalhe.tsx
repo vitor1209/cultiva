@@ -42,7 +42,6 @@ export const PedidoDetalhePage = () => {
   };
 
 
-  // Tratamento de loading, erro e pedido não encontrado
   if (isLoading) return <Typography>Carregando...</Typography>;
   if (isError) return <Typography>Erro ao carregar pedido</Typography>;
   if (pedidoNotFound || !pedido) return <Typography>Pedido não encontrado</Typography>;
@@ -160,7 +159,6 @@ export const PedidoDetalhePage = () => {
               </Stack>
 
               <Stack pr="2rem" width={{ xs: "100%", md: "auto" }}>
-                <Typography>Entrega no endereço:</Typography>
                 <Typography>{pedido.endereco}</Typography>
               </Stack>
             </Stack>
